@@ -1,0 +1,42 @@
+[
+  {
+    "id": "usr-agent-1",
+    "email": "agent@ccmrs.com",
+    "name": "Rahul Sharma",
+    "passwordHash": "$2b$10$acvX4aUwVwPQBlGxnZaYVuuZzAcik0pcbxmV1QKkMOM5VAroMqr5y",
+    "role": "agent",
+    "mfaEnabled": false,
+    "mfaSecret": null,
+    "createdAt": "2026-09-16T17:17:39.420Z"
+  },
+  {
+    "id": "usr-agent-2",
+    "email": "priya@ccmrs.com",
+    "name": "Priya Patel",
+    "passwordHash": "$2b$10$acvX4aUwVwPQBlGxnZaYVuuZzAcik0pcbxmV1QKkMOM5VAroMqr5y",
+    "role": "agent",
+    "mfaEnabled": false,
+    "mfaSecret": null,
+    "createdAt": "2026-09-16T17:17:39.488Z"
+  },
+  {
+    "id": "usr-head-1",
+    "email": "head@ccmrs.com",
+    "name": "Vivek Addagatla",
+    "passwordHash": "$2b$10$acvX4aUwVwPQBlGxnZaYVuvXewBLkFwx9qFHuyRmH7IXhHl00/NGq",
+    "role": "Delivery Head",
+    "mfaEnabled": false,
+    "mfaSecret": null,
+    "createdAt": "2026-09-16T17:17:39.550Z"
+  },
+  {
+    "id": "usr-admin-1",
+    "email": "admin@ccmrs.com",
+    "name": "Administrator",
+    "passwordHash": "$2b$10$acvX4aUwVwPQBlGxnZaYVugac9knIgRGYSH3DvCGSmnDzPFBXkT0q",
+    "role": "admin",
+    "mfaEnabled": false,
+    "mfaSecret": null,
+    "createdAt": "2026-09-16T17:17:39.613Z"
+  }
+]

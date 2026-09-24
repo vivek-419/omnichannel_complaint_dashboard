@@ -1,0 +1,2306 @@
+[
+  {
+    "ticketId": "GMAIL-1A0BDA",
+    "channel": "gmail",
+    "channelMessageId": "1a0bdaaad683b9ce",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.60.00 is debited from your account ending 1442 towards VPA q467045162@ybl (Devansh dosa center) on 20-09-26. UPI transaction reference no.: 626347082057. If",
+    "category": "General Inquiry",
+    "timestamp": "Sun, 20 Sep 2026 12:44:33 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "New",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-20T15:14:33.000Z",
+    "isEscalated": false,
+    "messages": [
+      {
+        "id": "msg-1790174117286-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.60.00 is debited from your account ending 1442 towards VPA q467045162@ybl (Devansh dosa center) on 20-09-26. UPI transaction reference no.: 626347082057. If",
+        "timestamp": "Sun, 20 Sep 2026 12:44:33 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0BDA",
+    "channel": "gmail",
+    "channelMessageId": "1a0bdac34aca1d47",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.30.00 is debited from your account ending 1442 towards VPA paytmqr6wx5gq@ptys (GOKUL SWEETS AND DRY FRUITS) on 20-09-26. UPI transaction reference no.:",
+    "category": "General Inquiry",
+    "timestamp": "Sun, 20 Sep 2026 12:46:14 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-20T15:16:14.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790174117285-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.30.00 is debited from your account ending 1442 towards VPA paytmqr6wx5gq@ptys (GOKUL SWEETS AND DRY FRUITS) on 20-09-26. UPI transaction reference no.:",
+        "timestamp": "Sun, 20 Sep 2026 12:46:14 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0BE0",
+    "channel": "gmail",
+    "channelMessageId": "1a0be0f839d73471",
+    "sender": "HDFC Bank Alerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Account Statement",
+    "message": "Dear Customer, Thank you for banking with HDFC Bank! We would like to acknowledge and update you that your request for the Account Statement from 01/09/2026 to 19/09/2026 for Account No. XXXXXXXXXX1442",
+    "category": "General Inquiry",
+    "timestamp": "Sun, 20 Sep 2026 09:04:40 +0000 (UTC)",
+    "priority": "Low",
+    "sentiment": "Positive",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-20T17:04:40.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790174117283-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank Alerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Thank you for banking with HDFC Bank! We would like to acknowledge and update you that your request for the Account Statement from 01/09/2026 to 19/09/2026 for Account No. XXXXXXXXXX1442",
+        "timestamp": "Sun, 20 Sep 2026 09:04:40 +0000 (UTC)"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0BE1",
+    "channel": "gmail",
+    "channelMessageId": "1a0be14664dafa4a",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "View: Account update for your HDFC Bank A/c",
+    "message": "Dear Customer, Thank you for banking with HDFC Bank. You have successfully reset your NetBanking password via HDFC Bank NetBanking. Not you? Call 18002586161 Warm Regards, HDFC Bank For more details on",
+    "category": "General Inquiry",
+    "timestamp": "Sun, 20 Sep 2026 14:40:02 +0530",
+    "priority": "Low",
+    "sentiment": "Positive",
+    "status": "New",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-20T17:10:02.000Z",
+    "isEscalated": false,
+    "messages": [
+      {
+        "id": "msg-1790174117276-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Thank you for banking with HDFC Bank. You have successfully reset your NetBanking password via HDFC Bank NetBanking. Not you? Call 18002586161 Warm Regards, HDFC Bank For more details on",
+        "timestamp": "Sun, 20 Sep 2026 14:40:02 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0BE1",
+    "channel": "gmail",
+    "channelMessageId": "1a0be15642fff495",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "View: Account update for your HDFC Bank A/c",
+    "message": "Dear Customer, Thank you for using HDFC Bank online banking. You have successfully read secure usage tips and accepted the terms and conditions of using NetBanking. It&#39;s the most convenient way to",
+    "category": "General Inquiry",
+    "timestamp": "Sun, 20 Sep 2026 14:41:07 +0530",
+    "priority": "Low",
+    "sentiment": "Positive",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-20T17:11:07.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790174117275-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Thank you for using HDFC Bank online banking. You have successfully read secure usage tips and accepted the terms and conditions of using NetBanking. It&#39;s the most convenient way to",
+        "timestamp": "Sun, 20 Sep 2026 14:41:07 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0CEA",
+    "channel": "gmail",
+    "channelMessageId": "1a0cea348a5ef129",
+    "sender": "Vivek Addagatla <vivekaddagatla7@gmail.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "(No Subject)",
+    "message": "Broken producttt",
+    "category": "Damaged / Defective Item",
+    "timestamp": "Wed, 23 Sep 2026 19:49:51 +0530",
+    "priority": "High",
+    "sentiment": "Negative",
+    "status": "Resolved",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-23T15:19:51.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173418925-1",
+        "senderType": "customer",
+        "senderName": "Vivek Addagatla <vivekaddagatla7@gmail.com>",
+        "text": "Broken producttt",
+        "timestamp": "Wed, 23 Sep 2026 19:49:51 +0530"
+      },
+      {
+        "id": "msg-1790218779440-a",
+        "senderType": "agent",
+        "senderName": "Rahul Sharma",
+        "text": "Dear Vivek Addagatla,\n\nHello Vivek Addagatla,\n\nThis is **Rahul Sharma** from the CCMRS Technical Operations Desk regarding Ticket **[GMAIL-1A0CEA]**.\n\nWe have completed our system diagnostic for your request regarding \"(No Subject)\". System records indicate that the dependent services and API gateways are fully operational and synchronized with your account.\n\nIf you encounter any anomalous behavior, please reply directly to this message with any error codes or screenshots, and our L2 engineers will inspect it immediately.\n\nBest regards,\n**Rahul Sharma**\nCCMRS Technical Support",
+        "timestamp": "2026-09-24T02:59:39.441Z"
+      }
+    ],
+    "agentReply": "Dear Vivek Addagatla,\n\nHello Vivek Addagatla,\n\nThis is **Rahul Sharma** from the CCMRS Technical Operations Desk regarding Ticket **[GMAIL-1A0CEA]**.\n\nWe have completed our system diagnostic for your request regarding \"(No Subject)\". System records indicate that the dependent services and API gateways are fully operational and synchronized with your account.\n\nIf you encounter any anomalous behavior, please reply directly to this message with any error codes or screenshots, and our L2 engineers will inspect it immediately.\n\nBest regards,\n**Rahul Sharma**\nCCMRS Technical Support",
+    "resolvedAt": "2026-09-24T02:59:39.440Z",
+    "loyaltyReward": {
+      "voucherCode": "CCMRS-J58X-50PTS",
+      "points": 50,
+      "discount": "10%",
+      "reason": "Service Apology Credit",
+      "issuedAt": "2026-09-24T02:59:09.190Z"
+    }
+  },
+  {
+    "ticketId": "GMAIL-1A0CE9",
+    "channel": "gmail",
+    "channelMessageId": "1a0ce9a0f5643284",
+    "sender": "Vivek Addagatla <vivekaddagatla7@gmail.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Complaint",
+    "message": "The packaging was damaged",
+    "category": "Damaged / Defective Item",
+    "timestamp": "Wed, 23 Sep 2026 19:39:31 +0530",
+    "priority": "High",
+    "sentiment": "Negative",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-23T15:09:31.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173418935-1",
+        "senderType": "customer",
+        "senderName": "Vivek Addagatla <vivekaddagatla7@gmail.com>",
+        "text": "The packaging was damaged",
+        "timestamp": "Wed, 23 Sep 2026 19:39:31 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0CE4",
+    "channel": "gmail",
+    "channelMessageId": "1a0ce428753b7303",
+    "sender": "Crocs India <noreply@crocs.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Update: Disney·Pixar Cars x Crocs is available",
+    "message": "Dinoco&#39;s new classic is here. ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+    "category": "General Inquiry",
+    "timestamp": "Wed, 23 Sep 2026 18:04:21 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-23T20:34:21.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173418939-1",
+        "senderType": "customer",
+        "senderName": "Crocs India <noreply@crocs.in>",
+        "text": "Dinoco&#39;s new classic is here. ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+        "timestamp": "Wed, 23 Sep 2026 18:04:21 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0CE5",
+    "channel": "gmail",
+    "channelMessageId": "1a0ce586d2ea9299",
+    "sender": "DECATHLON <noreply-in@email.decathlon.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Drop a review and make our day too, Vivek! 🤗",
+    "message": "Drop a review and earn points! \\\\ View online version \\\\ Decathlon Review Our Products ☆ Poor ☆ Tolerable ☆ Average ☆ Amazing ☆ Perfect SUBMIT A REVIEW Get the app Become a member Facebook Twitter",
+    "category": "App Technical Issue",
+    "timestamp": "Wed, 23 Sep 2026 06:31:53 -0600",
+    "priority": "Low",
+    "sentiment": "Negative",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-23T20:31:53.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173418938-1",
+        "senderType": "customer",
+        "senderName": "DECATHLON <noreply-in@email.decathlon.in>",
+        "text": "Drop a review and earn points! \\\\ View online version \\\\ Decathlon Review Our Products ☆ Poor ☆ Tolerable ☆ Average ☆ Amazing ☆ Perfect SUBMIT A REVIEW Get the app Become a member Facebook Twitter",
+        "timestamp": "Wed, 23 Sep 2026 06:31:53 -0600"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0CE3",
+    "channel": "gmail",
+    "channelMessageId": "1a0ce37cdce86000",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.20.00 is debited from your account ending 1442 towards VPA gpay-12203092346@okbizaxis (Mr Vikas Jeevaram Choudhary) on 23-09-26. UPI transaction reference no",
+    "category": "General Inquiry",
+    "timestamp": "Wed, 23 Sep 2026 17:52:37 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-23T20:22:37.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173418942-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.20.00 is debited from your account ending 1442 towards VPA gpay-12203092346@okbizaxis (Mr Vikas Jeevaram Choudhary) on 23-09-26. UPI transaction reference no",
+        "timestamp": "Wed, 23 Sep 2026 17:52:37 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0CE3",
+    "channel": "gmail",
+    "channelMessageId": "1a0ce3484409467c",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.300.00 is debited from your account ending 1442 towards VPA q949703821@ybl (HASAN CHICKEN SHOP) on 23-09-26. UPI transaction reference no.: 626692766732. If",
+    "category": "General Inquiry",
+    "timestamp": "Wed, 23 Sep 2026 17:49:02 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "New",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-23T20:19:02.000Z",
+    "isEscalated": false,
+    "messages": [
+      {
+        "id": "msg-1790173418943-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.300.00 is debited from your account ending 1442 towards VPA q949703821@ybl (HASAN CHICKEN SHOP) on 23-09-26. UPI transaction reference no.: 626692766732. If",
+        "timestamp": "Wed, 23 Sep 2026 17:49:02 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0CD5",
+    "channel": "gmail",
+    "channelMessageId": "1a0cd5a062d2649e",
+    "sender": "Quora Digest <english-quora-digest@quora.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Heart Attack Symptoms Before 2 Days: Before a heart attack, our body starts giving man...",
+    "message": "Heart Attack Symptoms Before 2 Days: Before a heart attack, our body starts giving many types of signals. Any patient gets a heart attack when the blood flow in the heart becomes very low or b… Top",
+    "category": "General Inquiry",
+    "timestamp": "Wed, 23 Sep 2026 08:20:23 +0000",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-23T16:20:23.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173418947-1",
+        "senderType": "customer",
+        "senderName": "Quora Digest <english-quora-digest@quora.com>",
+        "text": "Heart Attack Symptoms Before 2 Days: Before a heart attack, our body starts giving many types of signals. Any patient gets a heart attack when the blood flow in the heart becomes very low or b… Top",
+        "timestamp": "Wed, 23 Sep 2026 08:20:23 +0000"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0CD0",
+    "channel": "gmail",
+    "channelMessageId": "1a0cd0c37880aeb3",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.45.00 is debited from your account ending 1442 towards VPA paytmqr6rxgp6@ptys (NITIN NANDLAL GUPTA SO NANDLAL GUPTA) on 23-09-26. UPI transaction reference",
+    "category": "General Inquiry",
+    "timestamp": "Wed, 23 Sep 2026 12:25:24 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "New",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-23T14:55:24.000Z",
+    "isEscalated": false,
+    "messages": [
+      {
+        "id": "msg-1790173418989-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.45.00 is debited from your account ending 1442 towards VPA paytmqr6rxgp6@ptys (NITIN NANDLAL GUPTA SO NANDLAL GUPTA) on 23-09-26. UPI transaction reference",
+        "timestamp": "Wed, 23 Sep 2026 12:25:24 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0CD0",
+    "channel": "gmail",
+    "channelMessageId": "1a0cd00657ab4faf",
+    "sender": "alerts@hdfcbank.bank.in",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.20.00 is debited from your account ending 1442 towards VPA paytmqr6g8184@ptys (HEERA LAL HEMRAJ) on 23-09-26. UPI transaction reference no.: 130096542837. If",
+    "category": "General Inquiry",
+    "timestamp": "Wed, 23 Sep 2026 12:12:29 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-23T14:42:29.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173418997-1",
+        "senderType": "customer",
+        "senderName": "alerts@hdfcbank.bank.in",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.20.00 is debited from your account ending 1442 towards VPA paytmqr6g8184@ptys (HEERA LAL HEMRAJ) on 23-09-26. UPI transaction reference no.: 130096542837. If",
+        "timestamp": "Wed, 23 Sep 2026 12:12:29 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0CD0",
+    "channel": "gmail",
+    "channelMessageId": "1a0cd002f79e16af",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.100.00 is debited from your account ending 1442 towards VPA 7522sarthaktajane@okaxis (7522sarthaktajane@okaxis) on 23-09-26. UPI transaction reference no.:",
+    "category": "General Inquiry",
+    "timestamp": "Wed, 23 Sep 2026 12:12:15 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "New",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-23T14:42:15.000Z",
+    "isEscalated": false,
+    "messages": [
+      {
+        "id": "msg-1790173419001-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.100.00 is debited from your account ending 1442 towards VPA 7522sarthaktajane@okaxis (7522sarthaktajane@okaxis) on 23-09-26. UPI transaction reference no.:",
+        "timestamp": "Wed, 23 Sep 2026 12:12:15 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0CC3",
+    "channel": "gmail",
+    "channelMessageId": "1a0cc3aa312a167f",
+    "sender": "\"daily.dev\" <informer@daily.dev>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Vivek, your personal update from daily.dev is ready",
+    "message": "Here&#39;s what developers in your topics are reading and bookmarking ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+    "category": "General Inquiry",
+    "timestamp": "Wed, 23 Sep 2026 03:06:29 +0000",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-23T11:06:29.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173419007-1",
+        "senderType": "customer",
+        "senderName": "\"daily.dev\" <informer@daily.dev>",
+        "text": "Here&#39;s what developers in your topics are reading and bookmarking ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+        "timestamp": "Wed, 23 Sep 2026 03:06:29 +0000"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0C9A",
+    "channel": "gmail",
+    "channelMessageId": "1a0c9af8fcbf02df",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.35.00 is debited from your account ending 1442 towards VPA q825373935@ybl (Laxmi stationery and Xerox) on 22-09-26. UPI transaction reference no.:",
+    "category": "General Inquiry",
+    "timestamp": "Tue, 22 Sep 2026 20:45:19 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-22T23:15:19.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173419012-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.35.00 is debited from your account ending 1442 towards VPA q825373935@ybl (Laxmi stationery and Xerox) on 22-09-26. UPI transaction reference no.:",
+        "timestamp": "Tue, 22 Sep 2026 20:45:19 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0C8E",
+    "channel": "gmail",
+    "channelMessageId": "1a0c8eb54da76848",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.20.00 is debited from your account ending 1442 towards VPA gpay-12203092346@okbizaxis (Mr Vikas Jeevaram Choudhary) on 22-09-26. UPI transaction reference no",
+    "category": "General Inquiry",
+    "timestamp": "Tue, 22 Sep 2026 11:41:00 +0000",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-22T19:41:00.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173419015-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.20.00 is debited from your account ending 1442 towards VPA gpay-12203092346@okbizaxis (Mr Vikas Jeevaram Choudhary) on 22-09-26. UPI transaction reference no",
+        "timestamp": "Tue, 22 Sep 2026 11:41:00 +0000"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0C72",
+    "channel": "gmail",
+    "channelMessageId": "1a0c727057e84db6",
+    "sender": "Facebook <notification@priority.facebookmail.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Updates for you: 11 new notifications",
+    "message": "A lot has happened on Facebook since you last logged in. Here are some notifications you&#39;ve missed from your friends. Vive A Notifications 11 new notifications ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+    "category": "App Technical Issue",
+    "timestamp": "Mon, 21 Sep 2026 20:26:54 -0700",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-22T11:26:54.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173419017-1",
+        "senderType": "customer",
+        "senderName": "Facebook <notification@priority.facebookmail.com>",
+        "text": "A lot has happened on Facebook since you last logged in. Here are some notifications you&#39;ve missed from your friends. Vive A Notifications 11 new notifications ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+        "timestamp": "Mon, 21 Sep 2026 20:26:54 -0700"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0C70",
+    "channel": "gmail",
+    "channelMessageId": "1a0c70b6808428b0",
+    "sender": "alerts@hdfcbank.bank.in",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.30.00 is debited from your account ending 1442 towards VPA paytmqr13id4gbyhp@paytm (PURNIMA GENERAL STOR) on 22-09-26. UPI transaction reference no.:",
+    "category": "General Inquiry",
+    "timestamp": "Tue, 22 Sep 2026 02:56:48 +0000",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-22T10:56:48.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173419020-1",
+        "senderType": "customer",
+        "senderName": "alerts@hdfcbank.bank.in",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.30.00 is debited from your account ending 1442 towards VPA paytmqr13id4gbyhp@paytm (PURNIMA GENERAL STOR) on 22-09-26. UPI transaction reference no.:",
+        "timestamp": "Tue, 22 Sep 2026 02:56:48 +0000"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0C6A",
+    "channel": "gmail",
+    "channelMessageId": "1a0c6a5a9330d2be",
+    "sender": "YouTube <no-reply@youtube.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Quarterly reminder about YouTube’s Terms of Service, Community Guidelines and Privacy Policy\r\n",
+    "message": "‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+    "category": "General Inquiry",
+    "timestamp": "Mon, 21 Sep 2026 18:05:40 -0700",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-22T09:05:40.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173419021-1",
+        "senderType": "customer",
+        "senderName": "YouTube <no-reply@youtube.com>",
+        "text": "‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+        "timestamp": "Mon, 21 Sep 2026 18:05:40 -0700"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0C4B",
+    "channel": "gmail",
+    "channelMessageId": "1a0c4babbef4a2eb",
+    "sender": "alerts@hdfcbank.bank.in",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "View: Account update for your HDFC Bank A/c",
+    "message": "Dear Customer, Greetings from HDFC Bank! We&#39;re writing to inform you that Rs.35.00 has been successfully credited to your HDFC Bank account ending in 1442. Transaction Details: a. Date: 21-09-26 b.",
+    "category": "General Inquiry",
+    "timestamp": "Mon, 21 Sep 2026 21:39:26 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-22T00:09:26.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173419023-1",
+        "senderType": "customer",
+        "senderName": "alerts@hdfcbank.bank.in",
+        "text": "Dear Customer, Greetings from HDFC Bank! We&#39;re writing to inform you that Rs.35.00 has been successfully credited to your HDFC Bank account ending in 1442. Transaction Details: a. Date: 21-09-26 b.",
+        "timestamp": "Mon, 21 Sep 2026 21:39:26 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "TG-H0K3Q",
+    "channel": "telegram",
+    "channelMessageId": "sim_telegram_1789998147911",
+    "sender": "Vikram Singh (@vikram_s)",
+    "senderId": null,
+    "chatId": "99887766",
+    "channelId": "987654321",
+    "subject": "Damaged Courier Delivery",
+    "message": "My shipment package arrived completely damaged and broken with torn box! I am furious and need an immediate replacement or refund!",
+    "category": "App Technical Issue",
+    "timestamp": "2026-09-21T13:42:27.912Z",
+    "priority": "Low",
+    "sentiment": "Negative",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-22T13:42:27.912Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789998147912-1",
+        "senderType": "customer",
+        "senderName": "Vikram Singh (@vikram_s)",
+        "text": "My shipment package arrived completely damaged and broken with torn box! I am furious and need an immediate replacement or refund!",
+        "timestamp": "2026-09-21T13:42:27.912Z"
+      },
+      {
+        "id": "msg-1789999485142-sys",
+        "senderType": "system",
+        "senderName": "System Audit",
+        "text": "⚙️ Manual Classification Updated by Rahul Sharma (Support Agent): Priority changed from \"High\" to \"Critical\", Category changed from \"Delayed Delivery\" to \"Damaged / Defective Item\".",
+        "timestamp": "2026-09-21T14:04:45.142Z"
+      },
+      {
+        "id": "msg-1789999502498-sys",
+        "senderType": "system",
+        "senderName": "System Audit",
+        "text": "⚙️ Manual Classification Updated by Vivek Addagatla (Delivery Head): Priority changed from \"Critical\" to \"Low\".",
+        "timestamp": "2026-09-21T14:05:02.498Z"
+      },
+      {
+        "id": "msg-1790048387122-sys",
+        "senderType": "system",
+        "senderName": "System Audit",
+        "text": "⚙️ Manual Classification Updated by Rahul Sharma (agent): Category changed from \"Damaged / Defective Item\" to \"App Technical Issue\".",
+        "timestamp": "2026-09-22T03:39:47.123Z"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "loyaltyReward": {
+      "voucherCode": "CCMRS-FQSN-50PTS",
+      "points": 50,
+      "discount": "10%",
+      "reason": "Service Apology Credit",
+      "issuedAt": "2026-09-21T14:25:01.973Z"
+    }
+  },
+  {
+    "ticketId": "GMAIL-1A0C31",
+    "channel": "gmail",
+    "channelMessageId": "1a0c31bef07e7799",
+    "sender": "ChatGPT <noreply@email.openai.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Look what you can do now",
+    "message": "Fresh ways to create, think out loud, and explore what&#39;s possible. We&#39;ve been busy. Here&#39;s what&#39;s new. From bringing your imagination to life with Images 2.5, to thinking out loud with",
+    "category": "General Inquiry",
+    "timestamp": "Mon, 21 Sep 2026 08:36:20 +0000 (UTC)",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-21T16:36:20.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173419024-1",
+        "senderType": "customer",
+        "senderName": "ChatGPT <noreply@email.openai.com>",
+        "text": "Fresh ways to create, think out loud, and explore what&#39;s possible. We&#39;ve been busy. Here&#39;s what&#39;s new. From bringing your imagination to life with Images 2.5, to thinking out loud with",
+        "timestamp": "Mon, 21 Sep 2026 08:36:20 +0000 (UTC)"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0C2D",
+    "channel": "gmail",
+    "channelMessageId": "1a0c2d76e360088e",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.20.00 is debited from your account ending 1442 towards VPA paytm.s1juyda@pty (AARTI DAIRY) on 21-09-26. UPI transaction reference no.: 626461234735. If you",
+    "category": "General Inquiry",
+    "timestamp": "Mon, 21 Sep 2026 12:51:33 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-21T15:21:33.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173419026-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.20.00 is debited from your account ending 1442 towards VPA paytm.s1juyda@pty (AARTI DAIRY) on 21-09-26. UPI transaction reference no.: 626461234735. If you",
+        "timestamp": "Mon, 21 Sep 2026 12:51:33 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0C2C",
+    "channel": "gmail",
+    "channelMessageId": "1a0c2cfbaf9d668b",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.178.00 is debited from your account ending 1442 towards VPA dmartavenuesupermart.27186042@hdfcbank (DMART AVENUE SUPERMARTS LTD) on 21-09-26. UPI transaction",
+    "category": "General Inquiry",
+    "timestamp": "Mon, 21 Sep 2026 12:43:08 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-21T15:13:08.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173419028-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.178.00 is debited from your account ending 1442 towards VPA dmartavenuesupermart.27186042@hdfcbank (DMART AVENUE SUPERMARTS LTD) on 21-09-26. UPI transaction",
+        "timestamp": "Mon, 21 Sep 2026 12:43:08 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0C1F",
+    "channel": "gmail",
+    "channelMessageId": "1a0c1ffac6930473",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.30.00 is debited from your account ending 1442 towards VPA gpay-11240165326@okbizaxis (NEW RAJ KAMAL KIRANA STORES) on 21-09-26. UPI transaction reference no",
+    "category": "General Inquiry",
+    "timestamp": "Mon, 21 Sep 2026 08:55:53 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-21T11:25:53.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173419029-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.30.00 is debited from your account ending 1442 towards VPA gpay-11240165326@okbizaxis (NEW RAJ KAMAL KIRANA STORES) on 21-09-26. UPI transaction reference no",
+        "timestamp": "Mon, 21 Sep 2026 08:55:53 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0BEA",
+    "channel": "gmail",
+    "channelMessageId": "1a0bea152d2f3cb3",
+    "sender": "Spotify <no-reply@spotify.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "12 months of Spotify Premium Standard at ₹799",
+    "message": "With Premium Standard, you can listen to music ad-free while staying in control. Get Spotify Premium. 12 months of Premium Standard at ₹799 Queue songs, repeat tracks, and move through playlists at",
+    "category": "General Inquiry",
+    "timestamp": "Sun, 20 Sep 2026 11:43:56 +0000 (UTC)",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-20T19:43:56.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173419034-1",
+        "senderType": "customer",
+        "senderName": "Spotify <no-reply@spotify.com>",
+        "text": "With Premium Standard, you can listen to music ad-free while staying in control. Get Spotify Premium. 12 months of Premium Standard at ₹799 Queue songs, repeat tracks, and move through playlists at",
+        "timestamp": "Sun, 20 Sep 2026 11:43:56 +0000 (UTC)"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0BE2",
+    "channel": "gmail",
+    "channelMessageId": "1a0be2bbd3e52167",
+    "sender": "alerts@hdfcbank.bank.in",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.10.00 is debited from your account ending 1442 towards VPA q605860253@ybl (FOOD WAY INN) on 20-09-26. UPI transaction reference no.: 626349003477. If you did",
+    "category": "General Inquiry",
+    "timestamp": "Sun, 20 Sep 2026 15:05:32 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-20T17:35:32.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173419037-1",
+        "senderType": "customer",
+        "senderName": "alerts@hdfcbank.bank.in",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.10.00 is debited from your account ending 1442 towards VPA q605860253@ybl (FOOD WAY INN) on 20-09-26. UPI transaction reference no.: 626349003477. If you did",
+        "timestamp": "Sun, 20 Sep 2026 15:05:32 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0BE2",
+    "channel": "gmail",
+    "channelMessageId": "1a0be2b7437b4975",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.105.00 is debited from your account ending 1442 towards VPA q605860253@ybl (FOOD WAY INN) on 20-09-26. UPI transaction reference no.: 626348999611. If you",
+    "category": "General Inquiry",
+    "timestamp": "Sun, 20 Sep 2026 15:05:13 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-20T17:35:13.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173419038-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.105.00 is debited from your account ending 1442 towards VPA q605860253@ybl (FOOD WAY INN) on 20-09-26. UPI transaction reference no.: 626348999611. If you",
+        "timestamp": "Sun, 20 Sep 2026 15:05:13 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0BE1",
+    "channel": "gmail",
+    "channelMessageId": "1a0be1848fdf6ca3",
+    "sender": "HDFC Bank Alerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Account Summary",
+    "message": "Dear Customer, Here is your summary for account number ending with 1442: Account Holder (s): ADDAGATLA VIVEK PRASAD, PRASAD NARAYANA ADDAGATLA Account Number: XXXXXXXXXX1442 Nominee: MALATH PRASAD",
+    "category": "General Inquiry",
+    "timestamp": "Sun, 20 Sep 2026 09:14:15 +0000 (UTC)",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-20T17:14:15.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1790173419039-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank Alerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Here is your summary for account number ending with 1442: Account Holder (s): ADDAGATLA VIVEK PRASAD, PRASAD NARAYANA ADDAGATLA Account Number: XXXXXXXXXX1442 Nominee: MALATH PRASAD",
+        "timestamp": "Sun, 20 Sep 2026 09:14:15 +0000 (UTC)"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B57",
+    "channel": "gmail",
+    "channelMessageId": "1a0b57b175ec56d5",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "View: Account update for your HDFC Bank A/c",
+    "message": "Dear Customer, Greetings from HDFC Bank! We&#39;re writing to inform you that Rs.2.00 has been successfully credited to your HDFC Bank account ending in 1442. Transaction Details: a. Date: 18-09-26 b.",
+    "category": "General Inquiry",
+    "timestamp": "Fri, 18 Sep 2026 22:35:37 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-19T01:05:37.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789751172191-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! We&#39;re writing to inform you that Rs.2.00 has been successfully credited to your HDFC Bank account ending in 1442. Transaction Details: a. Date: 18-09-26 b.",
+        "timestamp": "Fri, 18 Sep 2026 22:35:37 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B54",
+    "channel": "gmail",
+    "channelMessageId": "1a0b54c7b19d1d04",
+    "sender": "James Hu <support@jobscan.co>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "The HireReady Newsletter Vol. 104",
+    "message": "Smart Ways to Speed Up Your Job Search ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+    "category": "General Inquiry",
+    "timestamp": "Fri, 18 Sep 2026 12:14:29 -0400",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-19T00:14:29.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789748111031-1",
+        "senderType": "customer",
+        "senderName": "James Hu <support@jobscan.co>",
+        "text": "Smart Ways to Speed Up Your Job Search ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+        "timestamp": "Fri, 18 Sep 2026 12:14:29 -0400"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B51",
+    "channel": "gmail",
+    "channelMessageId": "1a0b51e1a3960d74",
+    "sender": "alerts@hdfcbank.bank.in",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.180.00 is debited from your account ending 1442 towards VPA paytm.s1vp5ya@pty (HARISH SURESH BHOSALE) on 18-09-26. UPI transaction reference no.:",
+    "category": "General Inquiry",
+    "timestamp": "Fri, 18 Sep 2026 20:54:03 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-18T23:24:03.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789747961047-1",
+        "senderType": "customer",
+        "senderName": "alerts@hdfcbank.bank.in",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.180.00 is debited from your account ending 1442 towards VPA paytm.s1vp5ya@pty (HARISH SURESH BHOSALE) on 18-09-26. UPI transaction reference no.:",
+        "timestamp": "Fri, 18 Sep 2026 20:54:03 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B4B",
+    "channel": "gmail",
+    "channelMessageId": "1a0b4b15f41f7a1c",
+    "sender": "Isha Offerings <isha.offerings@sadhguru.org>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "What If Life Didn't Have to Feel Like a Struggle?",
+    "message": "Shambhavi Mahamudra Kriya, a 21-minute practice that creates a foundation of balance, clarity, and wellbeing within. Inner Engineering — Sadhguru&#39;s 7-step program for taking charge of your body,",
+    "category": "General Inquiry",
+    "timestamp": "Fri, 18 Sep 2026 13:25:16 +0000",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-18T21:25:16.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789738212908-1",
+        "senderType": "customer",
+        "senderName": "Isha Offerings <isha.offerings@sadhguru.org>",
+        "text": "Shambhavi Mahamudra Kriya, a 21-minute practice that creates a foundation of balance, clarity, and wellbeing within. Inner Engineering — Sadhguru&#39;s 7-step program for taking charge of your body,",
+        "timestamp": "Fri, 18 Sep 2026 13:25:16 +0000"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B3E",
+    "channel": "gmail",
+    "channelMessageId": "1a0b3e2ccb153a30",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.46.00 is debited from your account ending 1442 towards VPA paytm.s30vx09@pty (GOKUL SWEETS AND DRY FRUITS) on 18-09-26. UPI transaction reference no.:",
+    "category": "General Inquiry",
+    "timestamp": "Fri, 18 Sep 2026 15:09:39 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-18T17:39:39.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789724966359-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.46.00 is debited from your account ending 1442 towards VPA paytm.s30vx09@pty (GOKUL SWEETS AND DRY FRUITS) on 18-09-26. UPI transaction reference no.:",
+        "timestamp": "Fri, 18 Sep 2026 15:09:39 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B3A",
+    "channel": "gmail",
+    "channelMessageId": "1a0b3ac1cd14d68a",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.14.00 is debited from your account ending 1442 towards VPA q936768300@ybl (Laxmi stationery and Xerox) on 18-09-26. UPI transaction reference no.:",
+    "category": "General Inquiry",
+    "timestamp": "Fri, 18 Sep 2026 08:39:55 +0000",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-18T16:39:55.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789724966362-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.14.00 is debited from your account ending 1442 towards VPA q936768300@ybl (Laxmi stationery and Xerox) on 18-09-26. UPI transaction reference no.:",
+        "timestamp": "Fri, 18 Sep 2026 08:39:55 +0000"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B34",
+    "channel": "gmail",
+    "channelMessageId": "1a0b34201b346559",
+    "sender": "HDFC Bank Alerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Missed Call from your HDFC Bank Relationship Manager - AKHIL MAJHI",
+    "message": "Dear ADDAGATLA VIVEK PRASAD, Your Relationship Manager, AKHIL MAJHI, recently tried to contact you from our official HDFC Bank number 1600314179. Please note that this number cannot receive incoming",
+    "category": "General Inquiry",
+    "timestamp": "Fri, 18 Sep 2026 06:44:00 +0000 (UTC)",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-18T14:44:00.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789716397363-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank Alerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear ADDAGATLA VIVEK PRASAD, Your Relationship Manager, AKHIL MAJHI, recently tried to contact you from our official HDFC Bank number 1600314179. Please note that this number cannot receive incoming",
+        "timestamp": "Fri, 18 Sep 2026 06:44:00 +0000 (UTC)"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B32",
+    "channel": "gmail",
+    "channelMessageId": "1a0b32c8718d5b92",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "View: Account update for your HDFC Bank A/c",
+    "message": "Dear Customer, Greetings from HDFC Bank! We&#39;re writing to inform you that Rs.324.00 has been successfully credited to your HDFC Bank account ending in 1442. Transaction Details: a. Date: 18-09-26 b",
+    "category": "General Inquiry",
+    "timestamp": "Fri, 18 Sep 2026 06:20:33 +0000",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-18T14:20:33.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789716397376-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! We&#39;re writing to inform you that Rs.324.00 has been successfully credited to your HDFC Bank account ending in 1442. Transaction Details: a. Date: 18-09-26 b",
+        "timestamp": "Fri, 18 Sep 2026 06:20:33 +0000"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B29",
+    "channel": "gmail",
+    "channelMessageId": "1a0b29f096832b42",
+    "sender": "Asana <no-reply@asana.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "📅 You have 2 overdue tasks",
+    "message": "It&#39;s time to catch up. VA 2 tasks from the past week are overdue Jump in and keep your team&#39;s work on track. My workspace Respond now Your overdue tasks between September 11 and September 18",
+    "category": "General Inquiry",
+    "timestamp": "Fri, 18 Sep 2026 03:46:01 +0000",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-18T11:46:01.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789716397379-1",
+        "senderType": "customer",
+        "senderName": "Asana <no-reply@asana.com>",
+        "text": "It&#39;s time to catch up. VA 2 tasks from the past week are overdue Jump in and keep your team&#39;s work on track. My workspace Respond now Your overdue tasks between September 11 and September 18",
+        "timestamp": "Fri, 18 Sep 2026 03:46:01 +0000"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B0F",
+    "channel": "gmail",
+    "channelMessageId": "1a0b0f4789d98965",
+    "sender": "alerts@hdfcbank.bank.in",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.60.00 is debited from your account ending 1442 towards VPA balkrushnakeshav@ybl (BALKRISHNA KESHAV PATIL) on 18-09-26. UPI transaction reference no.:",
+    "category": "General Inquiry",
+    "timestamp": "Fri, 18 Sep 2026 01:30:06 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-18T04:00:06.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789716397389-1",
+        "senderType": "customer",
+        "senderName": "alerts@hdfcbank.bank.in",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.60.00 is debited from your account ending 1442 towards VPA balkrushnakeshav@ybl (BALKRISHNA KESHAV PATIL) on 18-09-26. UPI transaction reference no.:",
+        "timestamp": "Fri, 18 Sep 2026 01:30:06 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B0B",
+    "channel": "gmail",
+    "channelMessageId": "1a0b0bd776b203fa",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.200.00 is debited from your account ending 1442 towards VPA ashirvadchaurasiya4-1@okicici (ASHIRVAD CHAURASIYA) on 18-09-26. UPI transaction reference no.:",
+    "category": "General Inquiry",
+    "timestamp": "Fri, 18 Sep 2026 00:30:01 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-18T03:00:01.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789716397389-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.200.00 is debited from your account ending 1442 towards VPA ashirvadchaurasiya4-1@okicici (ASHIRVAD CHAURASIYA) on 18-09-26. UPI transaction reference no.:",
+        "timestamp": "Fri, 18 Sep 2026 00:30:01 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B0A",
+    "channel": "gmail",
+    "channelMessageId": "1a0b0a9c00e5ca72",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.640.00 is debited from your account ending 1442 towards VPA q975818384@ybl (The Bombay Biryani Club) on 18-09-26. UPI transaction reference no.: 626113574536",
+    "category": "General Inquiry",
+    "timestamp": "Fri, 18 Sep 2026 00:08:29 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-18T02:38:29.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789716397395-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.640.00 is debited from your account ending 1442 towards VPA q975818384@ybl (The Bombay Biryani Club) on 18-09-26. UPI transaction reference no.: 626113574536",
+        "timestamp": "Fri, 18 Sep 2026 00:08:29 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B08",
+    "channel": "gmail",
+    "channelMessageId": "1a0b084706d7ca2b",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.70.00 is debited from your account ending 1442 towards VPA q867026170@ybl (One bite new snacks corner) on 17-09-26. UPI transaction reference no.:",
+    "category": "General Inquiry",
+    "timestamp": "Thu, 17 Sep 2026 17:57:43 +0000",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-18T01:57:43.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789716397396-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.70.00 is debited from your account ending 1442 towards VPA q867026170@ybl (One bite new snacks corner) on 17-09-26. UPI transaction reference no.:",
+        "timestamp": "Thu, 17 Sep 2026 17:57:43 +0000"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B06",
+    "channel": "gmail",
+    "channelMessageId": "1a0b06df6dd585f0",
+    "sender": "alerts@hdfcbank.bank.in",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.10.00 is debited from your account ending 1442 towards VPA paytmqrxeba2jilev@paytm (New gold coin chinese corner) on 17-09-26. UPI transaction reference no.:",
+    "category": "General Inquiry",
+    "timestamp": "Thu, 17 Sep 2026 23:03:11 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-18T01:33:11.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789716397396-1",
+        "senderType": "customer",
+        "senderName": "alerts@hdfcbank.bank.in",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.10.00 is debited from your account ending 1442 towards VPA paytmqrxeba2jilev@paytm (New gold coin chinese corner) on 17-09-26. UPI transaction reference no.:",
+        "timestamp": "Thu, 17 Sep 2026 23:03:11 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B06",
+    "channel": "gmail",
+    "channelMessageId": "1a0b065fe4feeeeb",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.50.00 is debited from your account ending 1442 towards VPA 8007488877@ybl (JYOTI BABALU SANKODE) on 17-09-26. UPI transaction reference no.: 626013239838. If",
+    "category": "General Inquiry",
+    "timestamp": "Thu, 17 Sep 2026 22:54:29 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-18T01:24:29.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789716397402-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.50.00 is debited from your account ending 1442 towards VPA 8007488877@ybl (JYOTI BABALU SANKODE) on 17-09-26. UPI transaction reference no.: 626013239838. If",
+        "timestamp": "Thu, 17 Sep 2026 22:54:29 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0B06",
+    "channel": "gmail",
+    "channelMessageId": "1a0b06563f2ac62f",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.60.00 is debited from your account ending 1442 towards VPA harshmishra5906@okhdfcbank (HARSH PRASHANT MISHRA) on 17-09-26. UPI transaction reference no.:",
+    "category": "General Inquiry",
+    "timestamp": "Thu, 17 Sep 2026 22:53:49 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-18T01:23:49.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789716397405-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.60.00 is debited from your account ending 1442 towards VPA harshmishra5906@okhdfcbank (HARSH PRASHANT MISHRA) on 17-09-26. UPI transaction reference no.:",
+        "timestamp": "Thu, 17 Sep 2026 22:53:49 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0AE7",
+    "channel": "gmail",
+    "channelMessageId": "1a0ae74395bbdb44",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.80.00 is debited from your account ending 1442 towards VPA harshmishra5906@okhdfcbank (HARSH PRASHANT MISHRA) on 17-09-26. UPI transaction reference no.:",
+    "category": "General Inquiry",
+    "timestamp": "Thu, 17 Sep 2026 13:50:46 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-17T16:20:46.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789633920214-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.80.00 is debited from your account ending 1442 towards VPA harshmishra5906@okhdfcbank (HARSH PRASHANT MISHRA) on 17-09-26. UPI transaction reference no.:",
+        "timestamp": "Thu, 17 Sep 2026 13:50:46 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0AE4",
+    "channel": "gmail",
+    "channelMessageId": "1a0ae49cab8cba04",
+    "sender": "WPS Office <info@wps.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Invitation to Participate in WPS User Research",
+    "message": "wps logo Free All-in-One Office Suite Invitation to Participate in WPS User Research Hey there, As a WPS user, your feedback matters to us. We&#39;d love to hear about your experience with WPS and",
+    "category": "General Inquiry",
+    "timestamp": "Thu, 17 Sep 2026 07:34:26 +0000",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-17T15:34:26.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789631459078-1",
+        "senderType": "customer",
+        "senderName": "WPS Office <info@wps.com>",
+        "text": "wps logo Free All-in-One Office Suite Invitation to Participate in WPS User Research Hey there, As a WPS user, your feedback matters to us. We&#39;d love to hear about your experience with WPS and",
+        "timestamp": "Thu, 17 Sep 2026 07:34:26 +0000"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0AE4",
+    "channel": "gmail",
+    "channelMessageId": "1a0ae49cbdfaf3b9",
+    "sender": "alerts@hdfcbank.bank.in",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.56.00 is debited from your account ending 1442 towards VPA q936768300@ybl (Laxmi stationery and Xerox) on 17-09-26. UPI transaction reference no.:",
+    "category": "General Inquiry",
+    "timestamp": "Thu, 17 Sep 2026 07:34:26 +0000",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-17T15:34:26.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789631459075-1",
+        "senderType": "customer",
+        "senderName": "alerts@hdfcbank.bank.in",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.56.00 is debited from your account ending 1442 towards VPA q936768300@ybl (Laxmi stationery and Xerox) on 17-09-26. UPI transaction reference no.:",
+        "timestamp": "Thu, 17 Sep 2026 07:34:26 +0000"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0AE3",
+    "channel": "gmail",
+    "channelMessageId": "1a0ae3ad807cee53",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "View: Account update for your HDFC Bank A/c",
+    "message": "Dear Customer, Greetings from HDFC Bank! We&#39;re writing to inform you that Rs.170.00 has been successfully credited to your HDFC Bank account ending in 1442. Transaction Details: a. Date: 17-09-26 b",
+    "category": "General Inquiry",
+    "timestamp": "Thu, 17 Sep 2026 12:48:06 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-17T15:18:06.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789630522274-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! We&#39;re writing to inform you that Rs.170.00 has been successfully credited to your HDFC Bank account ending in 1442. Transaction Details: a. Date: 17-09-26 b",
+        "timestamp": "Thu, 17 Sep 2026 12:48:06 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0AE3",
+    "channel": "gmail",
+    "channelMessageId": "1a0ae3a1018e3dce",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.290.00 is debited from your account ending 1442 towards VPA q605860253@ybl (FOOD WAY INN) on 17-09-26. UPI transaction reference no.: 626003641803. If you",
+    "category": "General Inquiry",
+    "timestamp": "Thu, 17 Sep 2026 12:47:15 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-17T15:17:15.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789630522277-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.290.00 is debited from your account ending 1442 towards VPA q605860253@ybl (FOOD WAY INN) on 17-09-26. UPI transaction reference no.: 626003641803. If you",
+        "timestamp": "Thu, 17 Sep 2026 12:47:15 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "TG-HL7I0",
+    "channel": "telegram",
+    "channelMessageId": "sim_telegram_1789622687650",
+    "sender": "Alex Kumar (@alex_k)",
+    "senderId": null,
+    "chatId": "123456789",
+    "channelId": "987654321",
+    "subject": "Urgent issue with order via telegram",
+    "message": "My order #84920 has been delayed for 4 days with no tracking updates! Need urgent help.",
+    "category": "Delayed Delivery",
+    "timestamp": "2026-09-17T05:24:47.651Z",
+    "priority": "Critical",
+    "sentiment": "Negative",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-17T05:39:47.651Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789622687651-1",
+        "senderType": "customer",
+        "senderName": "Alex Kumar (@alex_k)",
+        "text": "My order #84920 has been delayed for 4 days with no tracking updates! Need urgent help.",
+        "timestamp": "2026-09-17T05:24:47.651Z"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0ACF",
+    "channel": "gmail",
+    "channelMessageId": "1a0acff9a5359710",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.19.40 is debited from your account ending 1442 towards VPA bdpg2.iruts@sbi (Indian Railways UTS) on 17-09-26. UPI transaction reference no.: 129736397323. If",
+    "category": "General Inquiry",
+    "timestamp": "Thu, 17 Sep 2026 07:03:46 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-1",
+    "assignedAgentName": "Rahul Sharma",
+    "slaDeadline": "2026-09-17T09:33:46.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789622114448-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.19.40 is debited from your account ending 1442 towards VPA bdpg2.iruts@sbi (Indian Railways UTS) on 17-09-26. UPI transaction reference no.: 129736397323. If",
+        "timestamp": "Thu, 17 Sep 2026 07:03:46 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0AE3",
+    "channel": "gmail",
+    "channelMessageId": "1a0ae3752d324d62",
+    "sender": "Kaggle <no-reply@kaggle.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Competition Launch: Enveda CASMI 2026 - Molecule ID From Mass Spectra",
+    "message": "Hi Vivek Addagatla, Modern mass spectrometry can detect thousands of molecules in nature, but identifying them all remains a challenge. In this competition, you&#39;ll build machine learning models",
+    "category": "General Inquiry",
+    "timestamp": "Wed, 16 Sep 2026 12:37:45 -0700",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-17T03:37:45.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789630522278-1",
+        "senderType": "customer",
+        "senderName": "Kaggle <no-reply@kaggle.com>",
+        "text": "Hi Vivek Addagatla, Modern mass spectrometry can detect thousands of molecules in nature, but identifying them all remains a challenge. In this competition, you&#39;ll build machine learning models",
+        "timestamp": "Wed, 16 Sep 2026 12:37:45 -0700"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null
+  },
+  {
+    "ticketId": "GMAIL-1A0AB8",
+    "channel": "gmail",
+    "channelMessageId": "1a0ab832c473690a",
+    "sender": "Atlassian <info@e.atlassian.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "You have some unfinished business in Confluence",
+    "message": "Take a few minutes to finish setting up your site Your documentation hub is almost ready, Vivek Addagatla Finish setting up your Confluence You have some unfinished business in Confluence Your AI",
+    "category": "General Inquiry",
+    "timestamp": "Wed, 16 Sep 2026 12:38:14 -0600",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Resolved",
+    "assignedAgentId": "usr-agent-2",
+    "assignedAgentName": "Priya Patel",
+    "slaDeadline": "2026-09-17T02:38:14.000Z",
+    "isEscalated": true,
+    "messages": [
+      {
+        "id": "msg-1789622114454-1",
+        "senderType": "customer",
+        "senderName": "Atlassian <info@e.atlassian.com>",
+        "text": "Take a few minutes to finish setting up your site Your documentation hub is almost ready, Vivek Addagatla Finish setting up your Confluence You have some unfinished business in Confluence Your AI",
+        "timestamp": "Wed, 16 Sep 2026 12:38:14 -0600"
+      },
+      {
+        "id": "msg-1789625295905-a",
+        "senderType": "agent",
+        "senderName": "Administrator",
+        "text": "hiii",
+        "timestamp": "2026-09-17T06:08:15.905Z"
+      }
+    ],
+    "agentReply": "hiii",
+    "resolvedAt": "2026-09-17T06:08:15.905Z"
+  },
+  {
+    "ticketId": "DC-QXKUZ",
+    "channel": "discord",
+    "channelMessageId": "dc_1549780570991493173_1549814377635381439",
+    "sender": "Vivi (@vivi_94340)",
+    "senderId": "1549809924387770533",
+    "chatId": null,
+    "channelId": "1549780570991493173",
+    "subject": "Discord (#general): there is a problem with the packaging what are ...",
+    "message": "there is a problem with the packaging what are you doing man",
+    "timestamp": "2026-09-16T16:09:01.787Z",
+    "priority": "Medium",
+    "sentiment": "Neutral",
+    "status": "Resolved",
+    "messages": [
+      {
+        "id": "msg-1789574941981-1",
+        "senderType": "customer",
+        "senderName": "Vivi (@vivi_94340)",
+        "text": "there is a problem with the packaging what are you doing man",
+        "timestamp": "2026-09-16T16:09:01.787Z"
+      },
+      {
+        "id": "msg-1789578279854-a",
+        "senderType": "agent",
+        "senderName": "Support Agent",
+        "text": "We sincerely apologize for the inconvenience caused. A replacement order has been dispatched with priority express tracking.",
+        "timestamp": "2026-09-16T17:04:39.854Z"
+      }
+    ],
+    "agentReply": "We sincerely apologize for the inconvenience caused. A replacement order has been dispatched with priority express tracking.",
+    "resolvedAt": "2026-09-16T17:04:39.854Z",
+    "loyaltyReward": {
+      "voucherCode": "CCMRS-NJM4-100PTS",
+      "points": 100,
+      "discount": "20%",
+      "reason": "Priority Service Apology",
+      "issuedAt": "2026-09-21T13:36:24.675Z"
+    }
+  },
+  {
+    "ticketId": "TG-73DXY",
+    "channel": "telegram",
+    "channelMessageId": "tg_8981225710_3",
+    "sender": "Malathi",
+    "senderId": "8981225710",
+    "chatId": "8981225710",
+    "channelId": null,
+    "subject": "Telegram Grievance: The packaging is very bad",
+    "message": "The packaging is very bad",
+    "timestamp": "2026-09-16T15:50:25.000Z",
+    "priority": "Low",
+    "sentiment": "Negative",
+    "status": "Resolved",
+    "messages": [
+      {
+        "id": "msg-1789573826080-1",
+        "senderType": "customer",
+        "senderName": "Malathi",
+        "text": "The packaging is very bad",
+        "timestamp": "2026-09-16T15:50:25.000Z"
+      },
+      {
+        "id": "msg-1789578072305-a",
+        "senderType": "agent",
+        "senderName": "Support Agent",
+        "text": "Hello, thank you for reaching out. We have registered your grievance and our technical team is investigating the issue. We will update you shortly.",
+        "timestamp": "2026-09-16T17:01:12.306Z"
+      },
+      {
+        "id": "msg-1789625538571-a",
+        "senderType": "agent",
+        "senderName": "Administrator",
+        "text": "The issue has been resolved. Please reach out if you need further assistance.",
+        "timestamp": "2026-09-17T06:12:18.571Z"
+      }
+    ],
+    "agentReply": "The issue has been resolved. Please reach out if you need further assistance.",
+    "resolvedAt": "2026-09-17T06:12:18.571Z",
+    "loyaltyReward": {
+      "voucherCode": "CCMRS-122E-100PTS",
+      "points": 100,
+      "discount": "20%",
+      "reason": "Priority Service Apology",
+      "issuedAt": "2026-09-21T13:36:13.582Z"
+    }
+  },
+  {
+    "ticketId": "GMAIL-1A0AA9",
+    "channel": "gmail",
+    "channelMessageId": "1a0aa955fe7b347b",
+    "sender": "alerts@hdfcbank.bank.in",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.100.00 is debited from your account ending 1442 towards VPA gpay-11200182797@okbizaxis (NANHELAL KASHINATH S) on 16-09-26. UPI transaction reference no.:",
+    "timestamp": "Wed, 16 Sep 2026 14:18:30 +0000",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789569803056-1",
+        "senderType": "customer",
+        "senderName": "alerts@hdfcbank.bank.in",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.100.00 is debited from your account ending 1442 towards VPA gpay-11200182797@okbizaxis (NANHELAL KASHINATH S) on 16-09-26. UPI transaction reference no.:",
+        "timestamp": "Wed, 16 Sep 2026 14:18:30 +0000"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  },
+  {
+    "ticketId": "GMAIL-1A0AA7",
+    "channel": "gmail",
+    "channelMessageId": "1a0aa7a81918cd12",
+    "sender": "Discord <noreply@discord.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Discord Password Changed",
+    "message": "What&#39;s up nani1002, We&#39;ve channeled our psionic energy to change your Discord account password. Gonna go get a seltzer to calm down. If this wasn&#39;t done by you, please immediately reset the",
+    "timestamp": "Wed, 16 Sep 2026 13:49:09 +0000 (UTC)",
+    "priority": "Critical",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789566563924-1",
+        "senderType": "customer",
+        "senderName": "Discord <noreply@discord.com>",
+        "text": "What&#39;s up nani1002, We&#39;ve channeled our psionic energy to change your Discord account password. Gonna go get a seltzer to calm down. If this wasn&#39;t done by you, please immediately reset the",
+        "timestamp": "Wed, 16 Sep 2026 13:49:09 +0000 (UTC)"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  },
+  {
+    "ticketId": "GMAIL-1A0AA7",
+    "channel": "gmail",
+    "channelMessageId": "1a0aa75c87966413",
+    "sender": "Discord <noreply@discord.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Your Discord Login Link has Arrived!",
+    "message": "Hey nani1002, Click the link below to log in to your Discord account. This link is valid for 10 minutes. If you didn&#39;t try to log in to your account or request this email, there&#39;s nothing you",
+    "timestamp": "Wed, 16 Sep 2026 13:44:00 +0000 (UTC)",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789566264065-1",
+        "senderType": "customer",
+        "senderName": "Discord <noreply@discord.com>",
+        "text": "Hey nani1002, Click the link below to log in to your Discord account. This link is valid for 10 minutes. If you didn&#39;t try to log in to your account or request this email, there&#39;s nothing you",
+        "timestamp": "Wed, 16 Sep 2026 13:44:00 +0000 (UTC)"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  },
+  {
+    "ticketId": "DC-BJVK8",
+    "channel": "discord",
+    "channelMessageId": "sim_discord_1789564318667",
+    "sender": "Rohan_Dev#4012",
+    "senderId": null,
+    "chatId": "123456789",
+    "channelId": "1122334455",
+    "subject": "Urgent issue with order via discord",
+    "message": "The checkout page on the app is failing with error 500 when using wallet points. Please fix.",
+    "timestamp": "2026-09-16T13:11:58.667Z",
+    "priority": "Critical",
+    "sentiment": "Negative",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789564318667-1",
+        "senderType": "customer",
+        "senderName": "Rohan_Dev#4012",
+        "text": "The checkout page on the app is failing with error 500 when using wallet points. Please fix.",
+        "timestamp": "2026-09-16T13:11:58.667Z"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  },
+  {
+    "ticketId": "TG-8XNGM",
+    "channel": "telegram",
+    "channelMessageId": "sim_telegram_1789564313021",
+    "sender": "Vivek (@vivek_student)",
+    "senderId": null,
+    "chatId": "987654321",
+    "channelId": "987654321",
+    "subject": "Urgent issue with order via telegram",
+    "message": "My order #TG-9942 was damaged during transit. Need urgent replacement!",
+    "timestamp": "2026-09-16T13:11:53.021Z",
+    "priority": "Critical",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789564313021-1",
+        "senderType": "customer",
+        "senderName": "Vivek (@vivek_student)",
+        "text": "My order #TG-9942 was damaged during transit. Need urgent replacement!",
+        "timestamp": "2026-09-16T13:11:53.021Z"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  },
+  {
+    "ticketId": "GMAIL-1A0AA6",
+    "channel": "gmail",
+    "channelMessageId": "1a0aa683bdef314c",
+    "sender": "DECATHLON <noreply-in@email.decathlon.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Love sports, Vivek? Loved our products too?",
+    "message": "Drop a review and earn points! \\\\ View online version \\\\ Decathlon Review Our Products ☆ Poor ☆ Tolerable ☆ Average ☆ Amazing ☆ Perfect SUBMIT A REVIEW Decathlon Facebook Linkedin Youtube Instagram",
+    "timestamp": "Wed, 16 Sep 2026 06:33:22 -0600",
+    "priority": "Low",
+    "sentiment": "Negative",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789565693214-1",
+        "senderType": "customer",
+        "senderName": "DECATHLON <noreply-in@email.decathlon.in>",
+        "text": "Drop a review and earn points! \\\\ View online version \\\\ Decathlon Review Our Products ☆ Poor ☆ Tolerable ☆ Average ☆ Amazing ☆ Perfect SUBMIT A REVIEW Decathlon Facebook Linkedin Youtube Instagram",
+        "timestamp": "Wed, 16 Sep 2026 06:33:22 -0600"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  },
+  {
+    "ticketId": "GMAIL-1A0A8F",
+    "channel": "gmail",
+    "channelMessageId": "1a0a8fb0401a0158",
+    "sender": "Tata 1mg <care@emaila.1mg.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Launching the world’s first mouth-dissolving creatine",
+    "message": "ClearZorb by Miduty If you no longer wish to receive emails from Tata 1mg, you may unsubscribe",
+    "timestamp": "Wed, 16 Sep 2026 12:20:17 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789564298812-1",
+        "senderType": "customer",
+        "senderName": "Tata 1mg <care@emaila.1mg.com>",
+        "text": "ClearZorb by Miduty If you no longer wish to receive emails from Tata 1mg, you may unsubscribe",
+        "timestamp": "Wed, 16 Sep 2026 12:20:17 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  },
+  {
+    "ticketId": "GMAIL-1A0A8D",
+    "channel": "gmail",
+    "channelMessageId": "1a0a8d4ca3807079",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.44.00 is debited from your account ending 1442 towards VPA paytm.s1odizl@pty (My Choice Super Market) on 16-09-26. UPI transaction reference no.:",
+    "timestamp": "Wed, 16 Sep 2026 11:38:32 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789564298814-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.44.00 is debited from your account ending 1442 towards VPA paytm.s1odizl@pty (My Choice Super Market) on 16-09-26. UPI transaction reference no.:",
+        "timestamp": "Wed, 16 Sep 2026 11:38:32 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  },
+  {
+    "ticketId": "GMAIL-1A0A88",
+    "channel": "gmail",
+    "channelMessageId": "1a0a889e82e8c31c",
+    "sender": "Uber <uber@uber.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Book your train ticket in-app today 🚆",
+    "message": "The Uber app is more than just the ticket. ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+    "timestamp": "Wed, 16 Sep 2026 04:46:44 +0000 (UTC)",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789564298814-1",
+        "senderType": "customer",
+        "senderName": "Uber <uber@uber.com>",
+        "text": "The Uber app is more than just the ticket. ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+        "timestamp": "Wed, 16 Sep 2026 04:46:44 +0000 (UTC)"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  },
+  {
+    "ticketId": "GMAIL-1A0A82",
+    "channel": "gmail",
+    "channelMessageId": "1a0a82b3f9b5bfa4",
+    "sender": "Facebook <groupupdates@facebookmail.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Hii and 7 others are new group suggestions for you",
+    "message": "Vive, join groups to connect with people who share your interests. Join groups to connect with people who share your interests. RECOMMENDED FOR YOU Hii Visit group USA 🇺🇸 UK 🇬🇧 GIRLS FRIENDSHIP Visit",
+    "timestamp": "Tue, 15 Sep 2026 20:03:12 -0700",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789564298815-1",
+        "senderType": "customer",
+        "senderName": "Facebook <groupupdates@facebookmail.com>",
+        "text": "Vive, join groups to connect with people who share your interests. Join groups to connect with people who share your interests. RECOMMENDED FOR YOU Hii Visit group USA 🇺🇸 UK 🇬🇧 GIRLS FRIENDSHIP Visit",
+        "timestamp": "Tue, 15 Sep 2026 20:03:12 -0700"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  },
+  {
+    "ticketId": "GMAIL-1A0A82",
+    "channel": "gmail",
+    "channelMessageId": "1a0a8298bbdae0d4",
+    "sender": "\"daily.dev\" <informer@daily.dev>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Vivek, your personal update from daily.dev is ready",
+    "message": "Here&#39;s what developers in your topics are reading and bookmarking ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+    "timestamp": "Wed, 16 Sep 2026 03:01:29 +0000",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789564298815-1",
+        "senderType": "customer",
+        "senderName": "\"daily.dev\" <informer@daily.dev>",
+        "text": "Here&#39;s what developers in your topics are reading and bookmarking ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+        "timestamp": "Wed, 16 Sep 2026 03:01:29 +0000"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  },
+  {
+    "ticketId": "GMAIL-1A0A81",
+    "channel": "gmail",
+    "channelMessageId": "1a0a81abf6927eae",
+    "sender": "Asana <no-reply@asana.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Wednesday - tasks due soon: 1 - My workspace",
+    "message": "Hi Vivek, here&#39;s your daily update of Asana tasks: Task 2… VA Wednesday: tasks assigned to you My workspace View in Asana Due soon: 1 Due soon: 1 Tasks due soon Task 2 Sep 15 Don&#39;t miss",
+    "timestamp": "Wed, 16 Sep 2026 02:45:19 +0000",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789564298816-1",
+        "senderType": "customer",
+        "senderName": "Asana <no-reply@asana.com>",
+        "text": "Hi Vivek, here&#39;s your daily update of Asana tasks: Task 2… VA Wednesday: tasks assigned to you My workspace View in Asana Due soon: 1 Due soon: 1 Tasks due soon Task 2 Sep 15 Don&#39;t miss",
+        "timestamp": "Wed, 16 Sep 2026 02:45:19 +0000"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  },
+  {
+    "ticketId": "GMAIL-1A0A60",
+    "channel": "gmail",
+    "channelMessageId": "1a0a605e80aa5a6a",
+    "sender": "Facebook <notification@priority.facebookmail.com>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "Updates for you: 12 new notifications",
+    "message": "A lot has happened on Facebook since you last logged in. Here are some notifications you&#39;ve missed from your friends. Vive A Notifications 12 new notifications ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+    "timestamp": "Tue, 15 Sep 2026 10:03:07 -0700",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789564298817-1",
+        "senderType": "customer",
+        "senderName": "Facebook <notification@priority.facebookmail.com>",
+        "text": "A lot has happened on Facebook since you last logged in. Here are some notifications you&#39;ve missed from your friends. Vive A Notifications 12 new notifications ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌",
+        "timestamp": "Tue, 15 Sep 2026 10:03:07 -0700"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  },
+  {
+    "ticketId": "GMAIL-1A0A5F",
+    "channel": "gmail",
+    "channelMessageId": "1a0a5fd0f548cf95",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.68.00 is debited from your account ending 1442 towards VPA gpay-11250018511@okbizaxis (PRINCE SUPER MARKET) on 15-09-26. UPI transaction reference no.:",
+    "timestamp": "Tue, 15 Sep 2026 22:23:39 +0530",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789564298818-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.68.00 is debited from your account ending 1442 towards VPA gpay-11250018511@okbizaxis (PRINCE SUPER MARKET) on 15-09-26. UPI transaction reference no.:",
+        "timestamp": "Tue, 15 Sep 2026 22:23:39 +0530"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  },
+  {
+    "ticketId": "GMAIL-1A0A56",
+    "channel": "gmail",
+    "channelMessageId": "1a0a561537bbfa6d",
+    "sender": "James Hu <support@jobscan.co>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "I'd love to hear about your experience so far",
+    "message": "I&#39;m James, CEO of Jobscan. How are things going? ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+    "timestamp": "Tue, 15 Sep 2026 10:03:26 -0400",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789564298818-1",
+        "senderType": "customer",
+        "senderName": "James Hu <support@jobscan.co>",
+        "text": "I&#39;m James, CEO of Jobscan. How are things going? ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",
+        "timestamp": "Tue, 15 Sep 2026 10:03:26 -0400"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  },
+  {
+    "ticketId": "GMAIL-1A0A53",
+    "channel": "gmail",
+    "channelMessageId": "1a0a538ce5ce8205",
+    "sender": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "senderId": null,
+    "chatId": null,
+    "channelId": null,
+    "subject": "❗  You have done a UPI txn. Check details!",
+    "message": "Dear Customer, Greetings from HDFC Bank! Rs.30.00 is debited from your account ending 1442 towards VPA 9321682464@fam (Shirisha Prasad Addagatla) on 15-09-26. UPI transaction reference no.:",
+    "timestamp": "Tue, 15 Sep 2026 13:19:18 +0000",
+    "priority": "Low",
+    "sentiment": "Neutral",
+    "status": "Escalated",
+    "messages": [
+      {
+        "id": "msg-1789564298819-1",
+        "senderType": "customer",
+        "senderName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+        "text": "Dear Customer, Greetings from HDFC Bank! Rs.30.00 is debited from your account ending 1442 towards VPA 9321682464@fam (Shirisha Prasad Addagatla) on 15-09-26. UPI transaction reference no.:",
+        "timestamp": "Tue, 15 Sep 2026 13:19:18 +0000"
+      }
+    ],
+    "agentReply": null,
+    "resolvedAt": null,
+    "isEscalated": true
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "gm_alerts_hdfcbank_bank_in": {
+    "customerId": "gm_alerts_hdfcbank_bank_in",
+    "customerName": "HDFC Bank InstaAlerts <alerts@hdfcbank.bank.in>",
+    "pointsBalance": 50,
+    "vouchers": [
+      {
+        "voucherId": "vch_16ab079d",
+        "code": "CCMRS-5VN7-50PTS",
+        "points": 50,
+        "discount": "10%",
+        "reason": "Test Apology",
+        "ticketId": "GMAIL-1A0B57",
+        "status": "ACTIVE",
+        "issuedAt": "2026-09-21T13:33:47.393Z",
+        "expiresAt": "2026-10-21T13:33:47.393Z"
+      }
+    ],
+    "transactions": [
+      {
+        "id": "tx_5317b586",
+        "type": "CREDIT",
+        "points": 50,
+        "voucherCode": "CCMRS-5VN7-50PTS",
+        "description": "Test Apology (Ticket GMAIL-1A0B57)",
+        "timestamp": "2026-09-21T13:33:47.393Z"
+      }
+    ],
+    "createdAt": "2026-09-21T13:33:47.386Z",
+    "updatedAt": "2026-09-21T13:33:47.393Z"
+  },
+  "tg_8981225710": {
+    "customerId": "tg_8981225710",
+    "customerName": "Valued Customer",
+    "pointsBalance": 100,
+    "vouchers": [
+      {
+        "voucherId": "vch_df0084a4",
+        "code": "CCMRS-122E-100PTS",
+        "points": 100,
+        "discount": "20%",
+        "reason": "Priority Service Apology",
+        "ticketId": "TG-73DXY",
+        "status": "ACTIVE",
+        "issuedAt": "2026-09-21T13:36:13.582Z",
+        "expiresAt": "2026-10-21T13:36:13.582Z"
+      }
+    ],
+    "transactions": [
+      {
+        "id": "tx_ef22a604",
+        "type": "CREDIT",
+        "points": 100,
+        "voucherCode": "CCMRS-122E-100PTS",
+        "description": "Priority Service Apology (Ticket TG-73DXY)",
+        "timestamp": "2026-09-21T13:36:13.582Z"
+      }
+    ],
+    "createdAt": "2026-09-21T13:36:10.370Z",
+    "updatedAt": "2026-09-21T13:36:13.582Z"
+  },
+  "dc_1549809924387770533": {
+    "customerId": "dc_1549809924387770533",
+    "customerName": "Valued Customer",
+    "pointsBalance": 100,
+    "vouchers": [
+      {
+        "voucherId": "vch_261d6d20",
+        "code": "CCMRS-NJM4-100PTS",
+        "points": 100,
+        "discount": "20%",
+        "reason": "Priority Service Apology",
+        "ticketId": "DC-QXKUZ",
+        "status": "ACTIVE",
+        "issuedAt": "2026-09-21T13:36:24.675Z",
+        "expiresAt": "2026-10-21T13:36:24.675Z"
+      }
+    ],
+    "transactions": [
+      {
+        "id": "tx_9d5d9bbc",
+        "type": "CREDIT",
+        "points": 100,
+        "voucherCode": "CCMRS-NJM4-100PTS",
+        "description": "Priority Service Apology (Ticket DC-QXKUZ)",
+        "timestamp": "2026-09-21T13:36:24.675Z"
+      }
+    ],
+    "createdAt": "2026-09-21T13:36:22.309Z",
+    "updatedAt": "2026-09-21T13:36:24.675Z"
+  },
+  "tg_99887766": {
+    "customerId": "tg_99887766",
+    "customerName": "Valued Customer",
+    "pointsBalance": 50,
+    "vouchers": [
+      {
+        "voucherId": "vch_0542d332",
+        "code": "CCMRS-FQSN-50PTS",
+        "points": 50,
+        "discount": "10%",
+        "reason": "Service Apology Credit",
+        "ticketId": "TG-H0K3Q",
+        "status": "ACTIVE",
+        "issuedAt": "2026-09-21T14:25:01.973Z",
+        "expiresAt": "2026-10-21T14:25:01.973Z"
+      }
+    ],
+    "transactions": [
+      {
+        "id": "tx_1684b13e",
+        "type": "CREDIT",
+        "points": 50,
+        "voucherCode": "CCMRS-FQSN-50PTS",
+        "description": "Service Apology Credit (Ticket TG-H0K3Q)",
+        "timestamp": "2026-09-21T14:25:01.973Z"
+      }
+    ],
+    "createdAt": "2026-09-21T13:44:30.620Z",
+    "updatedAt": "2026-09-21T14:25:01.973Z"
+  },
+  "tg_123456789": {
+    "customerId": "tg_123456789",
+    "customerName": "Valued Customer",
+    "pointsBalance": 0,
+    "vouchers": [],
+    "transactions": [],
+    "createdAt": "2026-09-22T03:57:51.488Z",
+    "updatedAt": "2026-09-22T03:57:51.488Z"
+  },
+  "gm_vivekaddagatla7_gmail_com": {
+    "customerId": "gm_vivekaddagatla7_gmail_com",
+    "customerName": "Vivek Addagatla <vivekaddagatla7@gmail.com>",
+    "pointsBalance": 150,
+    "vouchers": [
+      {
+        "voucherId": "vch_72eb74f5",
+        "code": "CCMRS-190N-100PTS",
+        "points": 100,
+        "discount": "20%",
+        "reason": "Service Apology Credit",
+        "ticketId": "GMAIL-1A0CE9",
+        "status": "ACTIVE",
+        "issuedAt": "2026-09-24T04:56:01.393Z",
+        "expiresAt": "2026-10-24T04:56:01.393Z"
+      },
+      {
+        "voucherId": "vch_016591e6",
+        "code": "CCMRS-J58X-50PTS",
+        "points": 50,
+        "discount": "10%",
+        "reason": "Service Apology Credit",
+        "ticketId": "GMAIL-1A0CEA",
+        "status": "ACTIVE",
+        "issuedAt": "2026-09-24T02:59:09.190Z",
+        "expiresAt": "2026-10-24T02:59:09.190Z"
+      }
+    ],
+    "transactions": [
+      {
+        "id": "tx_c7113658",
+        "type": "CREDIT",
+        "points": 100,
+        "voucherCode": "CCMRS-190N-100PTS",
+        "description": "Service Apology Credit (Ticket GMAIL-1A0CE9)",
+        "timestamp": "2026-09-24T04:56:01.393Z"
+      },
+      {
+        "id": "tx_4ec90612",
+        "type": "CREDIT",
+        "points": 50,
+        "voucherCode": "CCMRS-J58X-50PTS",
+        "description": "Service Apology Credit (Ticket GMAIL-1A0CEA)",
+        "timestamp": "2026-09-24T02:59:09.190Z"
+      }
+    ],
+    "createdAt": "2026-09-24T02:59:09.189Z",
+    "updatedAt": "2026-09-24T04:56:01.393Z"
+  }
+}

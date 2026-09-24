@@ -1,0 +1,31 @@
+{
+  "name": "ticket-auto-creation-service",
+  "version": "1.0.0",
+  "description": "Backend service that auto-generates support tickets from multi-channel complaint intake",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "ticket",
+    "helpdesk",
+    "complaints",
+    "multi-channel",
+    "support"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "morgan": "^1.12.1",
+    "nodemailer": "^7.0.13",
+    "uuid": "^14.0.2"
+  }
+}

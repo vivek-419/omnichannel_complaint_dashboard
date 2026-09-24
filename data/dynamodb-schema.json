@@ -1,0 +1,82 @@
+{
+  "TableName": "CCMRS_Enterprise_Store",
+  "KeySchema": [
+    { "AttributeName": "PK", "KeyType": "HASH" },
+    { "AttributeName": "SK", "KeyType": "RANGE" }
+  ],
+  "AttributeDefinitions": [
+    { "AttributeName": "PK", "AttributeType": "S" },
+    { "AttributeName": "SK", "AttributeType": "S" },
+    { "AttributeName": "GSI1_PK", "AttributeType": "S" },
+    { "AttributeName": "GSI1_SK", "AttributeType": "S" },
+    { "AttributeName": "GSI2_PK", "AttributeType": "S" },
+    { "AttributeName": "GSI2_SK", "AttributeType": "S" }
+  ],
+  "GlobalSecondaryIndexes": [
+    {
+      "IndexName": "GSI1_Status_SLA",
+      "KeySchema": [
+        { "AttributeName": "GSI1_PK", "KeyType": "HASH" },
+        { "AttributeName": "GSI1_SK", "KeyType": "RANGE" }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+      }
+    },
+    {
+      "IndexName": "GSI2_Customer_History",
+      "KeySchema": [
+        { "AttributeName": "GSI2_PK", "KeyType": "HASH" },
+        { "AttributeName": "GSI2_SK", "KeyType": "RANGE" }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+      }
+    }
+  ],
+  "BillingMode": "PAY_PER_REQUEST",
+  "SSESpecification": {
+    "Enabled": true,
+    "SSEType": "KMS"
+  },
+  "TimeToLiveSpecification": {
+    "AttributeName": "ttl_timestamp",
+    "Enabled": true
+  },
+  "DataModelingGuide": {
+    "TicketEntity": {
+      "PK": "TICKET#<ticketId>",
+      "SK": "METADATA",
+      "GSI1_PK": "STATUS#<status>",
+      "GSI1_SK": "<slaDeadline>",
+      "GSI2_PK": "CUSTOMER#<customerId>",
+      "GSI2_SK": "<createdAt>"
+    },
+    "TicketMessageEntity": {
+      "PK": "TICKET#<ticketId>",
+      "SK": "MSG#<timestamp>#<messageId>"
+    },
+    "CustomerWalletEntity": {
+      "PK": "WALLET#<customerId>",
+      "SK": "BALANCE"
+    },
+    "VoucherEntity": {
+      "PK": "WALLET#<customerId>",
+      "SK": "VOUCHER#<voucherCode>"
+    },
+    "NotificationEntity": {
+      "PK": "NOTIFICATION#<type>",
+      "SK": "<timestamp>#<notificationId>",
+      "GSI1_PK": "UNREAD",
+      "GSI1_SK": "<timestamp>"
+    }
+  }
+}

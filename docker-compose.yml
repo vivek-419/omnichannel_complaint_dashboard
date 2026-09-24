@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # ============================================================================
+  # CCMRS Main Application Service
+  # ============================================================================
+  ccmrs-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ccmrs_application
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    environment:
+      - NODE_ENV=production
+      - PORT=5001
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - DATABASE_URL=postgres://ccmrs_user:ccmrs_secure_password@postgres-db:5432/ccmrs_db
+    depends_on:
+      - postgres-db
+    volumes:
+      - app_data:/app/data
+    networks:
+      - ccmrs-network
+
+  # ============================================================================
+  # AWS RDS (PostgreSQL) Local Replication Service
+  # ============================================================================
+  postgres-db:
+    image: postgres:16-alpine
+    container_name: ccmrs_postgres_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ccmrs_user
+      POSTGRES_PASSWORD: ccmrs_secure_password
+      POSTGRES_DB: ccmrs_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    networks:
+      - ccmrs-network
+
+volumes:
+  app_data:
+  pg_data:
+
+networks:
+  ccmrs-network:
+    driver: bridge

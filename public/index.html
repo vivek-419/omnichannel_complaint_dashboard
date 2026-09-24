@@ -1,0 +1,2972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCMRS | Omnichannel Customer Resolution Platform</title>
+  
+  <!-- Inter Font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       JIRA-INSPIRED ENTERPRISE DESIGN SYSTEM (Atlassian Design Tokens)
+       ========================================================================== */
+    :root {
+      /* Brand & Primary Colors */
+      --primary: #0052CC;
+      --primary-hover: #0065FF;
+      --primary-active: #0747A6;
+      --primary-subtle: #DEEBFF;
+      --sidebar-bg: #0747A6;
+      --sidebar-active: #0052CC;
+      --sidebar-hover: rgba(255, 255, 255, 0.12);
+
+      /* Neutrals */
+      --bg-page: #FAFBFC;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F4F5F7;
+      --text-main: #172B4D;
+      --text-muted: #6B778C;
+      --text-subtle: #8993A4;
+      --border: #DFE1E6;
+      --border-focus: #4C9AFF;
+
+      /* Jira Status & Tag Color Tokens */
+      --tag-green-bg: #E3FCEF;
+      --tag-green-text: #00875A;
+      --tag-green-border: #ABF5D1;
+
+      --tag-blue-bg: #DEEBFF;
+      --tag-blue-text: #0052CC;
+      --tag-blue-border: #B3D4FF;
+
+      --tag-yellow-bg: #FFF0B3;
+      --tag-yellow-text: #B76E00;
+      --tag-yellow-border: #FFE380;
+
+      --tag-red-bg: #FFEBE6;
+      --tag-red-text: #DE350B;
+      --tag-red-border: #FFBDAD;
+
+      --tag-purple-bg: #EAE6FF;
+      --tag-purple-text: #5243AA;
+      --tag-purple-border: #C0B6F2;
+
+      /* Channel Identifiers */
+      --channel-tg: #0088cc;
+      --channel-dc: #5865F2;
+      --channel-gm: #EA4335;
+
+      /* Layout */
+      --header-height: 52px;
+      --sidebar-width: 240px;
+      --sidebar-collapsed-width: 64px;
+      --radius: 3px;
+      --radius-pill: 9999px;
+      --shadow-card: 0 1px 2px rgba(9, 30, 66, 0.1);
+      --shadow-modal: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 0 1px rgba(9, 30, 66, 0.08);
+      --shadow-drawer: -4px 0 16px rgba(9, 30, 66, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--text-main);
+      background: var(--bg-page);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+    }
+
+    /* SVG Icon Helpers */
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      stroke-width: 2;
+      stroke: currentColor;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+    .icon-lg { width: 20px; height: 20px; }
+    .icon-sm { width: 13px; height: 13px; }
+
+    /* ==========================================================================
+       1. COLLAPSIBLE COBALT SIDEBAR
+       ========================================================================== */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--sidebar-bg);
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      transition: width 0.2s cubic-bezier(0.2, 0, 0, 1);
+      position: relative;
+      z-index: 40;
+      user-select: none;
+    }
+    .sidebar.collapsed {
+      width: var(--sidebar-collapsed-width);
+    }
+
+    .sidebar-header {
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .logo-badge {
+      width: 28px;
+      height: 28px;
+      background: #FFFFFF;
+      color: var(--primary);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .sidebar-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: -0.1px;
+      line-height: 1.2;
+    }
+    .sidebar-subtitle {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      overflow-y: auto;
+    }
+    .nav-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+      padding: 10px 12px 4px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .sidebar.collapsed .nav-group-label {
+      display: none;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      border-radius: var(--radius);
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.12s ease;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .nav-item:hover {
+      background: var(--sidebar-hover);
+      color: #FFFFFF;
+    }
+    .nav-item.active {
+      background: var(--sidebar-active);
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+    .nav-item .badge-count {
+      margin-left: auto;
+      background: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 10px;
+    }
+    .sidebar.collapsed .nav-item .badge-count {
+      display: none;
+    }
+    .sidebar.collapsed .nav-label {
+      display: none;
+    }
+
+    /* Bottom User Profile inside Sidebar */
+    .sidebar-footer {
+      padding: 10px 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(0, 0, 0, 0.1);
+    }
+    .user-profile-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 8px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .user-profile-pill:hover {
+      background: var(--sidebar-hover);
+    }
+    .avatar-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+    .user-info {
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .user-name {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+    .user-role {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .sidebar.collapsed .user-info {
+      display: none;
+    }
+
+    .sidebar-collapse-btn {
+      position: absolute;
+      top: 16px;
+      right: -12px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 50;
+      transition: all 0.15s;
+    }
+    .sidebar-collapse-btn:hover {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+    }
+
+    /* ==========================================================================
+       2. TOP APP HEADER
+       ========================================================================== */
+    .app-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--bg-page);
+    }
+
+    .top-header {
+      height: var(--header-height);
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      flex-shrink: 0;
+      z-index: 30;
+    }
+
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .breadcrumb-item.active {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .breadcrumb-sep {
+      color: var(--text-subtle);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Search Bar */
+    .search-wrapper {
+      position: relative;
+      width: 240px;
+      transition: width 0.2s;
+    }
+    .search-wrapper:focus-within {
+      width: 320px;
+    }
+    .search-input {
+      width: 100%;
+      height: 32px;
+      padding: 0 10px 0 32px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-subtle);
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--text-main);
+      transition: all 0.15s;
+    }
+    .search-input:focus {
+      outline: none;
+      background: var(--bg-surface);
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 1px var(--border-focus);
+    }
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* Channel Status Badges in Header */
+    .channel-pills {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .channel-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #36B37E;
+      display: inline-block;
+      box-shadow: 0 0 0 2px rgba(54, 179, 126, 0.2);
+    }
+    .pulse-dot.disconnected {
+      background: #FF5630;
+      box-shadow: 0 0 0 2px rgba(255, 86, 48, 0.2);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 32px;
+      padding: 0 12px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.12s ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #FFFFFF;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+    .btn-primary:active {
+      background: var(--primary-active);
+    }
+    .btn-default {
+      background: var(--bg-subtle);
+      border-color: var(--border);
+      color: var(--text-main);
+    }
+    .btn-default:hover {
+      background: #EBECF0;
+    }
+    .btn-icon-only {
+      width: 32px;
+      padding: 0;
+    }
+
+    /* ==========================================================================
+       3. WORKSPACE CONTAINER (BOARD / LIST / ANALYTICS)
+       ========================================================================== */
+    .workspace-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 16px 24px;
+      min-height: 0;
+      height: calc(100vh - var(--header-height));
+    }
+
+    /* Page Title & Filter Bar */
+    .view-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-shrink: 0;
+      gap: 12px;
+    }
+    .view-title-group h1 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-main);
+      letter-spacing: -0.2px;
+    }
+    .view-title-group p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .select-filter {
+      height: 32px;
+      padding: 0 8px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-surface);
+      font-size: 12.5px;
+      font-weight: 500;
+      font-family: inherit;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+    .select-filter:focus {
+      outline: none;
+      border-color: var(--border-focus);
+    }
+
+    /* View Switcher Tabs (Board vs Queue vs Analytics) */
+    .tab-pills {
+      display: inline-flex;
+      background: #EBECF0;
+      padding: 2px;
+      border-radius: var(--radius);
+    }
+    .tab-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border: none;
+      background: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .tab-pill-btn.active {
+      background: var(--bg-surface);
+      color: var(--text-main);
+      box-shadow: 0 1px 2px rgba(9, 30, 66, 0.12);
+    }
+
+    /* Custom Clean Jira Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(9, 30, 66, 0.04);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C1C7D0;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #8993A4;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+    .spin {
+      animation: spin 0.8s linear infinite;
+    }
+
+    /* Toast Notification Pill */
+    .jira-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #172B4D;
+      color: #FFFFFF;
+      padding: 10px 16px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: var(--shadow-modal);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 9999;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+      pointer-events: none;
+    }
+    .jira-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .jira-toast.toast-error {
+      background: #DE350B;
+    }
+    .jira-toast.toast-success {
+      background: #00875A;
+    }
+
+    /* ==========================================================================
+       4. JIRA KANBAN BOARD VIEW
+       ========================================================================== */
+    .board-container {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(260px, 1fr));
+      gap: 14px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      min-height: 0;
+      height: 100%;
+      padding-bottom: 6px;
+    }
+
+    .board-column {
+      background: var(--bg-subtle);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      max-height: 100%;
+      min-height: 0;
+      overflow: hidden;
+      border: 1px solid #EBECF0;
+    }
+    .column-header {
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid transparent;
+      flex-shrink: 0;
+      background: var(--bg-subtle);
+    }
+    .column-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .col-todo { border-bottom-color: #4C9AFF; }
+    .col-inprogress { border-bottom-color: #FFAB00; }
+    .col-escalated { border-bottom-color: #FF5630; }
+    .col-done { border-bottom-color: #36B37E; }
+
+    .column-count-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: #DFE1E6;
+      padding: 1px 6px;
+      border-radius: var(--radius-pill);
+    }
+
+    .cards-scroll-list {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Jira Card Component */
+    .jira-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px;
+      box-shadow: var(--shadow-card);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .jira-card:hover {
+      border-color: #B3D4FF;
+      box-shadow: 0 4px 8px rgba(9, 30, 66, 0.08);
+      transform: translateY(-1px);
+    }
+    .jira-card.card-selected {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-subtle);
+    }
+
+    .card-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .card-key {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.2px;
+    }
+    .card-subject {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-snippet {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.4;
+    }
+
+    .card-bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+      padding-top: 6px;
+      border-top: 1px solid #F4F5F7;
+    }
+    .card-tags {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    /* Status & Priority Badges */
+    .jira-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+    .tag-green { background: var(--tag-green-bg); color: var(--tag-green-text); }
+    .tag-blue { background: var(--tag-blue-bg); color: var(--tag-blue-text); }
+    .tag-yellow { background: var(--tag-yellow-bg); color: var(--tag-yellow-text); }
+    .tag-red { background: var(--tag-red-bg); color: var(--tag-red-text); }
+    .tag-purple { background: var(--tag-purple-bg); color: var(--tag-purple-text); }
+
+    .tag-channel-tg { background: #E1F5FE; color: #0288D1; }
+    .tag-channel-dc { background: #EEF2FF; color: #4F46E5; }
+    .tag-channel-gm { background: #FEE2E2; color: #DC2626; }
+
+    /* Priority Indicator Icons */
+    .priority-icon-critical { color: #DE350B; }
+    .priority-icon-high { color: #FF5630; }
+    .priority-icon-medium { color: #FFAB00; }
+    .priority-icon-low { color: #36B37E; }
+
+    /* SLA Micro Timer */
+    .sla-micro-badge {
+      font-size: 11px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .sla-micro-badge.overdue {
+      color: #DE350B;
+    }
+    .sla-micro-badge.active {
+      color: #00875A;
+    }
+
+    /* ==========================================================================
+       5. JIRA SPLIT / DRAWER ISSUE DETAIL VIEW
+       ========================================================================== */
+    .detail-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 680px;
+      height: 100vh;
+      background: var(--bg-surface);
+      box-shadow: var(--shadow-drawer);
+      border-left: 1px solid var(--border);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1);
+    }
+    .detail-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      height: var(--header-height);
+      padding: 0 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .drawer-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .drawer-key-badge {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .drawer-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .issue-title-input {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+
+    /* Jira Alert Banner (SLA / Warning) */
+    .jira-banner {
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12.5px;
+      font-weight: 500;
+    }
+    .jira-banner-info {
+      background: #DEEBFF;
+      border: 1px solid #B3D4FF;
+      color: #0747A6;
+    }
+    .jira-banner-danger {
+      background: #FFEBE6;
+      border: 1px solid #FFBDAD;
+      color: #BF2600;
+    }
+
+    /* 2-Column Meta Grid inside Detail */
+    .meta-field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+    }
+    .meta-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .meta-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .meta-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Section Cards */
+    .section-box {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      background: var(--bg-surface);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .section-heading {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* AI Resolution Assistant Box */
+    .ai-assistant-card {
+      background: linear-gradient(180deg, #FAFBFC 0%, #F4F5F7 100%);
+      border: 1px solid #C0B6F2;
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .ai-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ai-title-tag {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--tag-purple-text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-ai-sparkle {
+      background: #5243AA;
+      color: #FFFFFF;
+      border: none;
+      border-radius: var(--radius);
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s;
+    }
+    .btn-ai-sparkle:hover {
+      background: #403294;
+    }
+
+    /* Message Thread */
+    .thread-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .thread-bubble {
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .thread-bubble-customer {
+      background: var(--bg-surface);
+      border-left: 3px solid var(--primary);
+    }
+    .thread-bubble-agent {
+      background: #F0FDF4;
+      border-left: 3px solid #36B37E;
+    }
+    .thread-bubble-system {
+      background: var(--bg-subtle);
+      border-left: 3px solid #6B778C;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .bubble-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Reply Textarea */
+    .reply-composer {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .composer-textarea {
+      width: 100%;
+      height: 96px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 13px;
+      resize: vertical;
+      color: var(--text-main);
+    }
+    .composer-textarea:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 1px var(--border-focus);
+    }
+
+    /* ==========================================================================
+       6. EXECUTIVE ANALYTICS VIEW
+       ========================================================================== */
+    .analytics-view-container {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .kpi-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow-card);
+    }
+    .kpi-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .kpi-metric {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 4px;
+    }
+
+    .chart-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .progress-bar-bg {
+      height: 6px;
+      background: #EBECF0;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 3px;
+    }
+
+    /* ==========================================================================
+       7. NOTIFICATION SLIDEOUT & MODALS
+       ========================================================================== */
+    .notification-drawer {
+      position: fixed;
+      top: var(--header-height);
+      right: 0;
+      width: 380px;
+      height: calc(100vh - var(--header-height));
+      background: var(--bg-surface);
+      box-shadow: var(--shadow-drawer);
+      border-left: 1px solid var(--border);
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.2s ease;
+    }
+    .notification-drawer.open {
+      transform: translateX(0);
+    }
+    .notif-item {
+      padding: 12px 14px;
+      border-bottom: 1px solid #F4F5F7;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .notif-item:hover {
+      background: var(--bg-subtle);
+    }
+    .notif-item.unread {
+      background: #F4F7FB;
+      border-left: 3px solid var(--primary);
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 30, 66, 0.54);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-box {
+      background: var(--bg-surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-modal);
+      width: 480px;
+      max-width: 95vw;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .modal-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Helper utility classes */
+    .flex-between { display: flex; align-items: center; justify-content: space-between; }
+    .text-sm { font-size: 12px; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. COBALT BLUE ATTIRED SIDEBAR (Jira Spec)
+       ======================================================================== -->
+  <aside class="sidebar" id="sidebar">
+    <!-- Collapse / Expand Toggle Button -->
+    <button class="sidebar-collapse-btn" onclick="toggleSidebar()" title="Toggle Sidebar">
+      <svg class="icon icon-sm" id="collapseIcon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+
+    <!-- Project / Platform Header -->
+    <div class="sidebar-header">
+      <div class="logo-badge">C</div>
+      <div>
+        <div class="sidebar-title">CCMRS Desk</div>
+        <div class="sidebar-subtitle">Enterprise Resolution</div>
+      </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="sidebar-nav">
+      <div class="nav-group-label" id="groupViews">Workspaces</div>
+      
+      <a class="nav-item active" id="navBoard" onclick="switchView('board')">
+        <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+        <span class="nav-label">Complaints Board</span>
+        <span class="badge-count" id="badgeBoardCount">0</span>
+      </a>
+
+      <a class="nav-item" id="navQueue" onclick="switchView('queue')">
+        <svg class="icon" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+        <span class="nav-label">Issue Queue</span>
+      </a>
+
+      <div class="nav-group-label" id="groupIntelligence">Operations & KPIs</div>
+
+      <a class="nav-item" id="navAnalytics" onclick="switchView('analytics')">
+        <svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        <span class="nav-label">Executive Analytics</span>
+      </a>
+
+      <a class="nav-item" id="navWallets" onclick="openWalletsModal()">
+        <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+        <span class="nav-label">Digital Wallets</span>
+      </a>
+
+      <div class="nav-group-label" id="groupAdmin">Administration</div>
+
+      <a class="nav-item" id="navAdmin" onclick="switchView('admin')">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        <span class="nav-label">Admin Settings</span>
+      </a>
+
+      <div class="nav-group-label" id="groupTools">Testing & Simulator</div>
+
+      <a class="nav-item" id="navSimulator" onclick="openSimulatorModal()">
+        <svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        <span class="nav-label">Ingest Simulator</span>
+      </a>
+    </nav>
+
+    <!-- Bottom User Profile Card -->
+    <div class="sidebar-footer">
+      <div class="user-profile-pill" onclick="openLoginModal()" title="Switch Role / View User Profile">
+        <div class="avatar-circle" id="userAvatar">RS</div>
+        <div class="user-info">
+          <div class="user-name" id="userName">Rahul Sharma</div>
+          <div class="user-role" id="userRole"><span class="jira-tag tag-blue" style="font-size: 10px; padding: 1px 6px;">Support Agent</span></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       2. TOP APP HEADER BAR
+       ======================================================================== -->
+  <div class="app-main">
+    <header class="top-header">
+      <!-- Breadcrumbs -->
+      <div class="breadcrumbs">
+        <span>Projects</span>
+        <span class="breadcrumb-sep">/</span>
+        <span>CCMRS Support</span>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-item active" id="breadcrumbCurrent">Complaints Board</span>
+      </div>
+
+      <!-- Actions & Global Search -->
+      <div class="header-actions">
+        <!-- Live Channel Status -->
+        <div class="channel-pills">
+          <div class="channel-pill" title="Telegram Bot (@ccmrs_bot)">
+            <span class="pulse-dot" id="dotTelegram"></span>
+            <span>Telegram</span>
+          </div>
+          <div class="channel-pill" title="Discord Bot (CCMRS Bot#8660)">
+            <span class="pulse-dot" id="dotDiscord"></span>
+            <span>Discord</span>
+          </div>
+          <div class="channel-pill" title="Gmail Sync">
+            <span class="pulse-dot" id="dotGmail"></span>
+            <span>Gmail</span>
+          </div>
+        </div>
+
+        <!-- Global Search -->
+        <div class="search-wrapper">
+          <svg class="icon icon-sm search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" class="search-input" id="globalSearch" placeholder="Search complaints, senders..." oninput="handleSearch(this.value)">
+        </div>
+
+        <!-- Notifications Bell Button -->
+        <button class="btn btn-default btn-icon-only" onclick="toggleNotificationDrawer()" title="SLA Alerts & Notifications" style="position: relative;">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span id="notifBadge" style="display: none; position: absolute; top: -2px; right: -2px; background: #DE350B; color: white; font-size: 10px; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">0</span>
+        </button>
+
+        <!-- Sync Gmail Button -->
+        <button class="btn btn-default" id="btnSyncGmail" onclick="manualSyncGmail()" title="Fetch latest emails from Gmail inbox">
+          <svg class="icon icon-sm" id="iconSyncGmail" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+          <span>Sync Gmail</span>
+        </button>
+
+        <!-- 1-Click Ingest Test Button -->
+        <button class="btn btn-primary" onclick="openSimulatorModal()">
+          <svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>New Grievance</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ========================================================================
+         3. WORKSPACE VIEWPORT
+         ======================================================================== -->
+    <main class="workspace-body">
+      
+      <!-- View 1: Kanban Board View -->
+      <section id="viewBoard" style="display: flex; flex-direction: column; flex: 1; min-height: 0;">
+        <div class="view-toolbar">
+          <div class="view-title-group">
+            <h1 id="viewHeading">Complaints Board</h1>
+            <p>Real-time omnichannel grievance routing, SLA timers, and AI resolution dispatch</p>
+          </div>
+          
+          <div class="filter-group">
+            <div class="tab-pills">
+              <button class="tab-pill-btn active" id="btnTabBoard" onclick="switchView('board')">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                Board
+              </button>
+              <button class="tab-pill-btn" id="btnTabQueue" onclick="switchView('queue')">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line></svg>
+                List Queue
+              </button>
+            </div>
+
+            <!-- Quick Channel Filter -->
+            <select class="select-filter" id="filterChannel" onchange="applyFilters()">
+              <option value="all">All Channels</option>
+              <option value="telegram">Telegram (@ccmrs_bot)</option>
+              <option value="discord">Discord (CCMRS Bot)</option>
+              <option value="gmail">Gmail Inbound</option>
+            </select>
+
+            <!-- Quick Priority Filter -->
+            <select class="select-filter" id="filterPriority" onchange="applyFilters()">
+              <option value="all">All Priorities</option>
+              <option value="Critical">Critical (15m SLA)</option>
+              <option value="High">High (60m SLA)</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 4 Column Kanban Board -->
+        <div class="board-container">
+          <!-- Column 1: To Do / New -->
+          <div class="board-column">
+            <div class="column-header col-todo">
+              <span class="column-title">To Do / New</span>
+              <span class="column-count-badge" id="countColNew">0</span>
+            </div>
+            <div class="cards-scroll-list" id="cardsColNew">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Column 2: In Progress -->
+          <div class="board-column">
+            <div class="column-header col-inprogress">
+              <span class="column-title">In Progress</span>
+              <span class="column-count-badge" id="countColProgress">0</span>
+            </div>
+            <div class="cards-scroll-list" id="cardsColProgress">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Column 3: Escalated / SLA Breached -->
+          <div class="board-column">
+            <div class="column-header col-escalated">
+              <span class="column-title">Escalated (Breached)</span>
+              <span class="column-count-badge" id="countColEscalated">0</span>
+            </div>
+            <div class="cards-scroll-list" id="cardsColEscalated">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Column 4: Resolved / Done -->
+          <div class="board-column">
+            <div class="column-header col-done">
+              <span class="column-title">Done / Resolved</span>
+              <span class="column-count-badge" id="countColResolved">0</span>
+            </div>
+            <div class="cards-scroll-list" id="cardsColResolved">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- View 2: Dense List Queue View -->
+      <section id="viewQueue" style="display: none; flex-direction: column; flex: 1; min-height: 0;">
+        <div class="view-toolbar">
+          <div class="view-title-group">
+            <h1>Complaints Queue</h1>
+            <p>Tabular overview of customer tickets, SLA deadlines, and assignments</p>
+          </div>
+        </div>
+        <div style="flex: 1; overflow-y: auto; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius);">
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+            <thead>
+              <tr style="background: var(--bg-subtle); border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 11.5px; text-transform: uppercase;">
+                <th style="padding: 10px 14px;">Key</th>
+                <th style="padding: 10px 14px;">Channel</th>
+                <th style="padding: 10px 14px;">Subject & Complaint</th>
+                <th style="padding: 10px 14px;">Sender</th>
+                <th style="padding: 10px 14px;">Priority</th>
+                <th style="padding: 10px 14px;">Status</th>
+                <th style="padding: 10px 14px;">SLA Deadline</th>
+                <th style="padding: 10px 14px;">Assignee</th>
+              </tr>
+            </thead>
+            <tbody id="queueTableBody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- View 3: Executive Analytics & AI Root-Cause View -->
+      <section id="viewAnalytics" style="display: none; flex-direction: column; flex: 1; overflow-y: auto;">
+        <div class="view-toolbar">
+          <div class="view-title-group">
+            <h1>Executive Delivery Head Dashboard</h1>
+            <p>SLA Compliance, Operational Bottlenecks & Strategic Recommendations</p>
+          </div>
+          <button class="btn btn-default" onclick="loadAnalyticsData()">
+            <svg class="icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            <span>Refresh Analytics</span>
+          </button>
+        </div>
+
+        <div class="analytics-view-container">
+          <!-- Top KPI Cards -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-label">SLA Compliance Rate</div>
+              <div class="kpi-metric" id="kpiSLA" style="color: #00875A;">98.4%</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Total Ingested Grievances</div>
+              <div class="kpi-metric" id="kpiTotal">0</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Overdue Escalations</div>
+              <div class="kpi-metric" id="kpiEscalated" style="color: #DE350B;">0</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Loyalty Compensation Issued</div>
+              <div class="kpi-metric" id="kpiPoints" style="color: var(--primary);">0 pts</div>
+            </div>
+          </div>
+
+          <!-- 2 Columns: Agent Workload & Category Clusters -->
+          <div class="chart-columns">
+            <div class="section-box">
+              <div class="section-heading">
+                <span>Agent Workload Distribution</span>
+                <span class="text-sm" id="workloadTotalAgents">Active Team</span>
+              </div>
+              <div id="analyticsAgentLoads" style="display: flex; flex-direction: column; gap: 10px;">
+                <!-- Dynamically loaded -->
+              </div>
+            </div>
+
+            <div class="section-box">
+              <div class="section-heading">
+                <span>Complaint Categories Breakdown</span>
+                <span class="text-sm">Categorized by AI</span>
+              </div>
+              <div id="analyticsCategoryClusters" style="display: flex; flex-direction: column; gap: 10px;">
+                <!-- Dynamically loaded -->
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Executive Root-Cause Synthesis Panel -->
+          <div class="section-box" style="background: #FAFBFC; border: 1px solid #C0B6F2;">
+            <div class="section-heading">
+              <div class="ai-title-tag">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+                <span>Executive AI Root-Cause & Systemic Insights</span>
+              </div>
+              <button class="btn-ai-sparkle" onclick="fetchAIRootCauseAnalysis()">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>Synthesize Live Analysis</span>
+              </button>
+            </div>
+
+            <div id="aiRootCauseSummaryText" style="font-size: 13px; color: var(--text-main); line-height: 1.5; padding: 8px 0;">
+              Synthesizing latest complaint logs, SLA performance, and channel trends...
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px;">
+              <div>
+                <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; color: #DE350B; margin-bottom: 6px;">Identified Root-Cause Bottlenecks</div>
+                <div id="aiBottlenecksList" style="display: flex; flex-direction: column; gap: 8px;">
+                  <!-- Dynamically loaded -->
+                </div>
+              </div>
+              <div>
+                <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; color: #00875A; margin-bottom: 6px;">Strategic Remediation Actions</div>
+                <div id="aiRecommendationsList" style="display: flex; flex-direction: column; gap: 8px;">
+                  <!-- Dynamically loaded -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================
+           ADMIN CONTROL PANEL & RBAC SYSTEM VIEW
+           ======================================================================== -->
+      <section id="viewAdmin" style="display: none; flex-direction: column; flex: 1; min-height: 0; overflow-y: auto;">
+        <div class="analytics-wrapper" style="padding: 24px;">
+          <!-- Top Title Banner -->
+          <div style="margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <h1 style="font-size: 20px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
+                  <span class="jira-tag tag-red" style="font-size: 11px; padding: 3px 8px;">ADMIN ONLY</span>
+                  <span>System Administration & Channel Gateway Manager</span>
+                </h1>
+                <p class="text-sm" style="margin-top: 4px;">Configure real-time Telegram/Discord bot tokens, verify OAuth2 connections, and manage RBAC user roles.</p>
+              </div>
+              <button class="btn btn-primary" onclick="saveAdminChannelConfig()">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                <span>Save Channel Settings</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Grid: Channel Integrations & Bot Gateway Configuration -->
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px;">
+            
+            <!-- Telegram Bot Card -->
+            <div class="kpi-card" style="align-items: flex-start;">
+              <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 12px;">
+                <span class="jira-tag tag-blue" style="font-weight: 700;">TELEGRAM BOT</span>
+                <span id="adminStatusTelegram" class="jira-tag tag-green">Connected</span>
+              </div>
+              <div style="width: 100%;">
+                <label class="meta-label">Bot Token (HTTP API)</label>
+                <input type="password" class="select-filter" id="adminTelegramToken" placeholder="123456:ABC-DEF..." style="width: 100%; font-family: monospace; font-size: 11.5px;">
+                <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Long-polling active (@ccmrs_bot).</div>
+              </div>
+            </div>
+
+            <!-- Discord Bot Card -->
+            <div class="kpi-card" style="align-items: flex-start;">
+              <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 12px;">
+                <span class="jira-tag tag-purple" style="font-weight: 700;">DISCORD BOT</span>
+                <span id="adminStatusDiscord" class="jira-tag tag-green">Connected</span>
+              </div>
+              <div style="width: 100%;">
+                <label class="meta-label">Bot Token</label>
+                <input type="password" class="select-filter" id="adminDiscordToken" placeholder="MTE5...bot_token" style="width: 100%; font-family: monospace; font-size: 11.5px;">
+                <label class="meta-label" style="margin-top: 8px;">Default Channel ID</label>
+                <input type="text" class="select-filter" id="adminDiscordChannelId" placeholder="1346083049187311658" style="width: 100%; font-family: monospace; font-size: 11.5px;">
+              </div>
+            </div>
+
+            <!-- Gmail OAuth2 Card -->
+            <div class="kpi-card" style="align-items: flex-start;">
+              <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 12px;">
+                <span class="jira-tag tag-red" style="font-weight: 700;">GMAIL OAUTH2</span>
+                <span id="adminStatusGmail" class="jira-tag tag-green">Active</span>
+              </div>
+              <div style="width: 100%;">
+                <div style="font-size: 12px; margin-bottom: 8px;">
+                  <div><strong>Credentials:</strong> <span id="adminCredsFound">credentials.json OK</span></div>
+                  <div><strong>OAuth Token:</strong> <span id="adminTokenFound">token.json OK</span></div>
+                </div>
+                <button class="btn btn-default" onclick="triggerManualSync()" style="width: 100%; justify-content: center;">
+                  <span>Trigger Inbound Sync Now</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Section: RBAC User Directory -->
+          <div class="section-box" style="margin-bottom: 24px;">
+            <div class="section-heading">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <span>Authenticated User Accounts & Role Permissions Matrix</span>
+              </div>
+              <span class="text-sm" id="adminTotalUsersBadge">4 Active Users</span>
+            </div>
+
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 12.5px; text-align: left;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--border); color: var(--text-muted); font-size: 11px; text-transform: uppercase;">
+                    <th style="padding: 10px 12px;">User</th>
+                    <th style="padding: 10px 12px;">Email</th>
+                    <th style="padding: 10px 12px;">Assigned Role</th>
+                    <th style="padding: 10px 12px;">2FA / MFA</th>
+                    <th style="padding: 10px 12px;">Allowed Permissions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminUserTableBody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Section: PostgreSQL Enterprise Database Engine -->
+          <div class="section-box" style="margin-bottom: 24px;">
+            <div class="section-heading">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <svg class="icon icon-sm" viewBox="0 0 24 24" style="color: #0052CC;"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                <span>PostgreSQL Enterprise Database (AWS RDS Multi-AZ Architecture)</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span id="adminDbStatusBadge" class="jira-tag tag-green">Connected: ccmrs_db</span>
+                <button class="btn btn-default btn-sm" onclick="refreshAdminDbStatus()">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                  <span>Refresh DB Stats</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Database connection parameters summary -->
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; font-size: 12px;">
+              <div style="padding: 10px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 4px;">
+                <div style="color: var(--text-muted); font-size: 11px;">DATABASE HOST</div>
+                <div id="adminDbHost" style="font-weight: 700; font-family: monospace; margin-top: 4px;">localhost:5432</div>
+              </div>
+              <div style="padding: 10px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 4px;">
+                <div style="color: var(--text-muted); font-size: 11px;">DATABASE NAME</div>
+                <div id="adminDbName" style="font-weight: 700; font-family: monospace; margin-top: 4px; color: var(--primary);">ccmrs_db</div>
+              </div>
+              <div style="padding: 10px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 4px;">
+                <div style="color: var(--text-muted); font-size: 11px;">SCHEMA STANDARD</div>
+                <div style="font-weight: 700; margin-top: 4px;">PostgreSQL 15 / schema.sql</div>
+              </div>
+              <div style="padding: 10px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 4px;">
+                <div style="color: var(--text-muted); font-size: 11px;">STORAGE ENGINE</div>
+                <div style="font-weight: 700; margin-top: 4px; color: #00875A;">Live RDBMS + JSON Cache</div>
+              </div>
+            </div>
+
+            <!-- Live Tables Summary Grid with Inspection Buttons -->
+            <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 8px;">
+              Live Tables in PostgreSQL Database:
+            </div>
+            <div id="adminDbTablesGrid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px;">
+              <!-- Dynamically populated table cards with row counts -->
+            </div>
+
+            <!-- Interactive Live Table Data Inspector Box -->
+            <div id="adminDbInspectorBox" style="display: none; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <div style="font-weight: 700; font-size: 13px; display: flex; align-items: center; gap: 6px;">
+                  <span>Live Records from Table:</span>
+                  <code id="adminInspectorTableName" style="color: var(--primary); background: #e6effc; padding: 2px 8px; border-radius: 4px;">tickets</code>
+                </div>
+                <button class="btn btn-default btn-sm" onclick="closeDbInspector()">Close Inspector</button>
+              </div>
+              <div style="max-height: 260px; overflow: auto; border: 1px solid var(--border); border-radius: 4px; background: #ffffff;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 11.5px; text-align: left;">
+                  <thead id="adminInspectorTableHead" style="background: var(--bg-surface); position: sticky; top: 0; border-bottom: 1px solid var(--border);"></thead>
+                  <tbody id="adminInspectorTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- System Diagnostics & Telemetry -->
+          <div class="section-box">
+            <div class="section-heading">
+              <span>System Telemetry & Architecture Diagnostics</span>
+              <span class="jira-tag tag-green">Production Ready (3-Tier Layered)</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; font-size: 12px;">
+              <div style="padding: 12px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 4px;">
+                <div style="color: var(--text-muted); font-size: 11px;">ARCHITECTURE</div>
+                <div style="font-weight: 700; margin-top: 4px;">Controller-Service-Store</div>
+              </div>
+              <div style="padding: 12px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 4px;">
+                <div style="color: var(--text-muted); font-size: 11px;">PRIMARY DATABASE</div>
+                <div style="font-weight: 700; margin-top: 4px; color: #0052CC;">PostgreSQL (ccmrs_db)</div>
+              </div>
+              <div style="padding: 12px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 4px;">
+                <div style="color: var(--text-muted); font-size: 11px;">SLA BACKGROUND POLLER</div>
+                <div style="font-weight: 700; margin-top: 4px; color: #00875A;">Active (Every 20s)</div>
+              </div>
+              <div style="padding: 12px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 4px;">
+                <div style="color: var(--text-muted); font-size: 11px;">LLM INTELLIGENCE</div>
+                <div style="font-weight: 700; margin-top: 4px;">Gemini 1.5 Flash + Contextual NLP</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ========================================================================
+       4. JIRA ISSUE DETAIL DRAWER (Slide-out Panel)
+       ======================================================================== -->
+  <div class="detail-drawer" id="detailDrawer">
+    <!-- Header -->
+    <div class="drawer-header">
+      <div class="drawer-header-left">
+        <span class="drawer-key-badge" id="drawerKey">TICK-000</span>
+        <span class="jira-tag" id="drawerChannelTag">Channel</span>
+      </div>
+      <button class="btn btn-default btn-icon-only" onclick="closeDetailDrawer()" title="Close (Esc)">
+        <svg class="icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+
+    <!-- Scrollable Content -->
+    <div class="drawer-content" id="drawerContent">
+      
+      <!-- Issue Subject -->
+      <h2 class="issue-title-input" id="drawerSubject">Customer Complaint Subject</h2>
+
+      <!-- SLA Resolution Target Banner -->
+      <div class="jira-banner jira-banner-info" id="drawerSLABanner">
+        <span id="drawerSLAText">SLA Resolution Target: Loading...</span>
+        <span id="drawerSLAStatus" class="jira-tag tag-blue">Active Window</span>
+      </div>
+
+      <!-- Quick Classification Selectors (Priority & Category) -->
+      <div class="meta-field-grid">
+        <div class="meta-field">
+          <label class="meta-label">Priority (Dynamic SLA)</label>
+          <select class="select-filter" id="drawerSelectPriority" onchange="updateClassificationFromDrawer()">
+            <option value="Critical">Critical (15m SLA)</option>
+            <option value="High">High (60m SLA)</option>
+            <option value="Medium">Medium (4h SLA)</option>
+            <option value="Low">Low (24h SLA)</option>
+          </select>
+        </div>
+
+        <div class="meta-field">
+          <label class="meta-label">Category</label>
+          <select class="select-filter" id="drawerSelectCategory" onchange="updateClassificationFromDrawer()">
+            <option value="Delayed Delivery">Delayed Delivery</option>
+            <option value="Damaged / Defective Item">Damaged / Defective Item</option>
+            <option value="Billing & Refund">Billing & Refund</option>
+            <option value="App Technical Issue">App Technical Issue</option>
+            <option value="General Inquiry">General Inquiry</option>
+          </select>
+        </div>
+
+        <div class="meta-field">
+          <label class="meta-label">Sender</label>
+          <div class="meta-value" id="drawerSender" style="word-break: break-all;">customer@example.com</div>
+        </div>
+
+        <div class="meta-field">
+          <label class="meta-label">Assigned Agent</label>
+          <div class="meta-value" id="drawerAssignee">Rahul Sharma</div>
+        </div>
+
+        <!-- Managerial Reassignment Control (Visible to Delivery Head & Admin) -->
+        <div class="meta-field" id="drawerReassignWrapper" style="display: none; grid-column: span 2;">
+          <label class="meta-label" style="color: #6554C0;">👔 Reassign Agent (Managerial Escalation Control)</label>
+          <div style="display: flex; gap: 8px;">
+            <select class="select-filter" id="drawerSelectAgent" style="flex: 1;">
+              <option value="usr-agent-1" data-name="Rahul Sharma">Rahul Sharma (Support Agent)</option>
+              <option value="usr-agent-2" data-name="Priya Patel">Priya Patel (Support Agent)</option>
+              <option value="usr-head-1" data-name="Vivek Addagatla">Vivek Addagatla (Delivery Head)</option>
+            </select>
+            <button class="btn btn-default" onclick="reassignTicketFromDrawer()" style="white-space: nowrap;">
+              <span>Reassign</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Digital Wallet & Loyalty Rewards (SRS 3.2.7) -->
+      <div class="section-box" style="background: #FFFDF5; border-color: #FFE380;">
+        <div class="section-heading">
+          <span style="color: #974F00; display: flex; align-items: center; gap: 6px;">
+            <svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+            Customer Digital Wallet & Loyalty Compensation
+          </span>
+          <span class="jira-tag tag-yellow" id="drawerWalletBalanceBadge">Wallet: 0 Pts</span>
+        </div>
+
+        <div id="drawerRewardStatus">
+          <!-- Rendered dynamically (buttons or issued banner) -->
+        </div>
+      </div>
+
+      <!-- AI Resolution Assistant (Step 2) -->
+      <div class="ai-assistant-card">
+        <div class="ai-card-header">
+          <div class="ai-title-tag">
+            <svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <span>AI Smart Resolution Assistant</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <select class="select-filter" id="drawerAITone" style="height: 28px; font-size: 11.5px;">
+              <option value="empathetic" selected>Empathetic Apology & Resolution</option>
+              <option value="technical">Technical Troubleshooting</option>
+              <option value="escalation">Priority Manager Escalation</option>
+              <option value="standard">Standard Formal Resolution</option>
+            </select>
+            <button class="btn-ai-sparkle" id="btnDrawerAIDraft" onclick="triggerAIDraftForDrawer()">
+              <span>Draft AI Reply</span>
+            </button>
+          </div>
+        </div>
+        <div id="drawerAILoading" style="display: none; font-size: 12px; color: var(--tag-purple-text);">
+          Analyzing complaint telemetry, sentiment polarity & formulating response...
+        </div>
+      </div>
+
+      <!-- Conversation Messages & Audit Thread -->
+      <div class="section-box">
+        <div class="section-heading">
+          <span>Activity & Conversation Thread</span>
+        </div>
+        <div class="thread-stream" id="drawerThreadStream">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Reply Composer -->
+      <div class="reply-composer">
+        <div class="flex-between">
+          <label style="font-size: 12.5px; font-weight: 700; color: var(--text-main);">Dispatch Resolution Reply</label>
+          <span class="text-sm" id="drawerReplyChannelHint">Sending via Telegram</span>
+        </div>
+        <textarea class="composer-textarea" id="drawerReplyInput" placeholder="Type resolution or click 'Draft AI Reply' above..."></textarea>
+        <div class="flex-between">
+          <span class="text-sm">Auto-delivered directly to customer chat.</span>
+          <button class="btn btn-primary" id="btnDrawerSendReply" onclick="dispatchDrawerReply()">
+            <span>Send Resolution</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       5. NOTIFICATION SLIDEOUT DRAWER
+       ======================================================================== -->
+  <div class="notification-drawer" id="notificationDrawer">
+    <div class="modal-header">
+      <h3 style="font-size: 13.5px; font-weight: 700;">SLA Alerts & Notifications</h3>
+      <button class="btn btn-default btn-icon-only" onclick="toggleNotificationDrawer()">
+        <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div id="notificationList" style="flex: 1; overflow-y: auto;">
+      <!-- Populated dynamically -->
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       6. MODALS (RBAC LOGIN & SIMULATOR)
+       ======================================================================== -->
+  <!-- RBAC Role Switcher Modal -->
+  <div class="modal-backdrop" id="loginModal">
+    <div class="modal-box" style="max-width: 460px;">
+      <div class="modal-header">
+        <h3 style="font-size: 14px; font-weight: 700;">Role-Based Access Control (RBAC) Switcher</h3>
+        <button class="btn btn-default btn-icon-only" onclick="closeLoginModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="text-sm">Select an authenticated user role to evaluate role-gated features & permissions:</p>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          
+          <!-- 1. Support Agent Card -->
+          <button class="btn btn-default" onclick="quickLogin('agent@ccmrs.com', 'agent123')" style="height: 54px; justify-content: flex-start; gap: 12px; border-left: 4px solid #0052CC; padding: 8px 12px;">
+            <div class="avatar-circle" style="background: #DEEBFF; color: #0052CC; font-weight: 700;">RS</div>
+            <div style="text-align: left; flex: 1;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 600; font-size: 12.5px;">Rahul Sharma</span>
+                <span class="jira-tag tag-blue">Support Agent</span>
+              </div>
+              <div style="font-size: 11px; color: var(--text-muted);">Triage, AI Smart Reply, Digital Wallet Compensation</div>
+            </div>
+          </button>
+
+          <!-- 2. Delivery Head Card -->
+          <button class="btn btn-default" onclick="quickLogin('head@ccmrs.com', 'head123')" style="height: 54px; justify-content: flex-start; gap: 12px; border-left: 4px solid #6554C0; padding: 8px 12px;">
+            <div class="avatar-circle" style="background: #EAE6FF; color: #6554C0; font-weight: 700;">VA</div>
+            <div style="text-align: left; flex: 1;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 600; font-size: 12.5px;">Vivek Addagatla</span>
+                <span class="jira-tag tag-purple">Delivery Head</span>
+              </div>
+              <div style="font-size: 11px; color: var(--text-muted);">Executive AI Root Cause, SLA Alerts & Agent Reassignment</div>
+            </div>
+          </button>
+
+          <!-- 3. System Administrator Card -->
+          <button class="btn btn-default" onclick="quickLogin('admin@ccmrs.com', 'admin123')" style="height: 54px; justify-content: flex-start; gap: 12px; border-left: 4px solid #DE350B; padding: 8px 12px;">
+            <div class="avatar-circle" style="background: #FFEBE6; color: #DE350B; font-weight: 700;">AD</div>
+            <div style="text-align: left; flex: 1;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 600; font-size: 12.5px;">Administrator</span>
+                <span class="jira-tag tag-red">System Admin</span>
+              </div>
+              <div style="font-size: 11px; color: var(--text-muted);">Bot Tokens, Channels Config, RBAC User Roster & All Views</div>
+            </div>
+          </button>
+
+        </div>
+
+        <!-- Manual Login Form -->
+        <div style="border-top: 1px solid var(--border); margin-top: 14px; padding-top: 14px;">
+          <div style="font-size: 11.5px; font-weight: 600; margin-bottom: 8px; color: var(--text-muted); text-transform: uppercase;">Or Login with Credentials:</div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <input type="email" class="select-filter" id="customLoginEmail" placeholder="Email (e.g. agent@ccmrs.com)" style="width: 100%;">
+            <input type="password" class="select-filter" id="customLoginPassword" placeholder="Password" style="width: 100%;">
+            <button class="btn btn-primary" onclick="submitCustomLogin()" style="width: 100%; justify-content: center;">
+              <span>Authenticate & Sign In</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Simulator Ingest Modal -->
+  <div class="modal-backdrop" id="simulatorModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="font-size: 14px; font-weight: 700;">Simulate Incoming Grievance</h3>
+        <button class="btn btn-default btn-icon-only" onclick="closeSimulatorModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label class="meta-label">Channel</label>
+          <select class="select-filter" id="simChannel" style="width: 100%;">
+            <option value="telegram">Telegram Bot (@ccmrs_bot)</option>
+            <option value="discord">Discord (CCMRS Bot)</option>
+            <option value="gmail">Gmail Email</option>
+          </select>
+        </div>
+        <div>
+          <label class="meta-label">Sender Display</label>
+          <input type="text" class="select-filter" id="simSender" value="Vikram Singh (@vikram_s)" style="width: 100%;">
+        </div>
+        <div>
+          <label class="meta-label">Subject</label>
+          <input type="text" class="select-filter" id="simSubject" value="Damaged consignment package received" style="width: 100%;">
+        </div>
+        <div>
+          <label class="meta-label">Complaint Message</label>
+          <textarea class="composer-textarea" id="simMessage" style="height: 70px;">My shipment #84920 arrived completely broken and damaged with a torn box! Need urgent help or immediate refund!</textarea>
+        </div>
+        <button class="btn btn-primary" onclick="submitSimulatedGrievance()">
+          <span>Ingest Complaint</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       7. JAVASCRIPT LOGIC & API CLIENT
+       ======================================================================== -->
+  <script>
+    // State
+    let currentTickets = [];
+    let activeTicket = null;
+    let currentView = 'board';
+    let currentUser = {
+      id: 'usr-agent-1',
+      name: 'Rahul Sharma',
+      email: 'agent@ccmrs.com',
+      role: 'agent'
+    };
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', async () => {
+      await checkAuthSession();
+      await loadTickets();
+      await checkChannelStatus();
+      loadNotifications();
+
+      // Poll every 10s for new tickets and SLA alerts
+      setInterval(loadTickets, 10000);
+      setInterval(checkChannelStatus, 30000);
+      setInterval(loadNotifications, 15000);
+    });
+
+    // 1. Sidebar Toggle
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('collapsed');
+      const icon = document.getElementById('collapseIcon');
+      if (sidebar.classList.contains('collapsed')) {
+        icon.innerHTML = '<polyline points="9 18 15 12 9 6"></polyline>';
+      } else {
+        icon.innerHTML = '<polyline points="15 18 9 12 15 6"></polyline>';
+      }
+    }
+
+    // 2. View Switcher (Board vs Queue vs Analytics vs Admin)
+    function switchView(viewName) {
+      currentView = viewName;
+      document.getElementById('viewBoard').style.display = viewName === 'board' ? 'flex' : 'none';
+      document.getElementById('viewQueue').style.display = viewName === 'queue' ? 'flex' : 'none';
+      document.getElementById('viewAnalytics').style.display = viewName === 'analytics' ? 'flex' : 'none';
+      const viewAdmin = document.getElementById('viewAdmin');
+      if (viewAdmin) viewAdmin.style.display = viewName === 'admin' ? 'flex' : 'none';
+
+      // Update Nav active classes
+      document.getElementById('navBoard')?.classList.toggle('active', viewName === 'board');
+      document.getElementById('navQueue')?.classList.toggle('active', viewName === 'queue');
+      document.getElementById('navAnalytics')?.classList.toggle('active', viewName === 'analytics');
+      document.getElementById('navAdmin')?.classList.toggle('active', viewName === 'admin');
+
+      // Update Header tab pills
+      document.getElementById('btnTabBoard')?.classList.toggle('active', viewName === 'board');
+      document.getElementById('btnTabQueue')?.classList.toggle('active', viewName === 'queue');
+
+      const breadcrumb = document.getElementById('breadcrumbCurrent');
+      if (viewName === 'board') breadcrumb.innerText = 'Complaints Board';
+      else if (viewName === 'queue') breadcrumb.innerText = 'Complaints Queue';
+      else if (viewName === 'analytics') {
+        breadcrumb.innerText = 'Executive Analytics';
+        loadAnalyticsData();
+      } else if (viewName === 'admin') {
+        breadcrumb.innerText = 'Admin Settings & Channels';
+        loadAdminData();
+      }
+    }
+
+    // 3. Load Tickets API
+    // Format relative time
+    function formatTimeAgo(dateStr) {
+      if (!dateStr) return '';
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return '';
+      const now = new Date();
+      const diffSec = Math.floor((now - d) / 1000);
+      if (diffSec < 60) return 'Just now';
+      if (diffSec < 3600) return `${Math.floor(diffSec / 60)}m ago`;
+      if (diffSec < 86400) return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      return d.toLocaleDateString([], { month: 'short', day: 'numeric' });
+    }
+
+    // 3. Load Tickets API
+    async function loadTickets() {
+      try {
+        const res = await fetch('/api/tickets');
+        const json = await res.json();
+        if (json.success && json.data) {
+          currentTickets = json.data.sort((a, b) => (new Date(b.timestamp).getTime() || 0) - (new Date(a.timestamp).getTime() || 0));
+          renderBoardView();
+          renderQueueView();
+          document.getElementById('badgeBoardCount').innerText = currentTickets.length;
+        }
+      } catch (err) {
+        console.error('Error loading tickets:', err);
+      }
+    }
+
+    // Manual Sync Gmail Trigger
+    async function manualSyncGmail() {
+      const btn = document.getElementById('btnSyncGmail');
+      const icon = document.getElementById('iconSyncGmail');
+      if (icon) icon.classList.add('spin');
+      if (btn) btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/sync', { method: 'POST' });
+        const data = await res.json();
+        if (data.success) {
+          await loadTickets();
+          showToast(`Gmail sync complete! ${data.added > 0 ? `+${data.added} new complaint(s) added` : 'All emails up to date.'}`);
+        } else {
+          showToast(`Gmail sync error: ${data.error || 'Failed'}`, true);
+        }
+      } catch (e) {
+        showToast(`Sync error: ${e.message}`, true);
+      } finally {
+        if (icon) icon.classList.remove('spin');
+        if (btn) btn.disabled = false;
+      }
+    }
+
+    // 4. Render Jira Kanban Board
+    function renderBoardView() {
+      const cols = {
+        New: document.getElementById('cardsColNew'),
+        InProgress: document.getElementById('cardsColProgress'),
+        Escalated: document.getElementById('cardsColEscalated'),
+        Resolved: document.getElementById('cardsColResolved')
+      };
+
+      // Filter tickets
+      const chFilter = document.getElementById('filterChannel').value;
+      const prFilter = document.getElementById('filterPriority').value;
+      const searchVal = (document.getElementById('globalSearch').value || '').toLowerCase();
+
+      let filtered = currentTickets.filter(t => {
+        if (chFilter !== 'all' && t.channel !== chFilter) return false;
+        if (prFilter !== 'all' && t.priority !== prFilter) return false;
+        if (searchVal) {
+          const match = (t.ticketId + t.subject + t.sender + t.message).toLowerCase();
+          if (!match.includes(searchVal)) return false;
+        }
+        return true;
+      });
+
+      // Clear columns
+      Object.values(cols).forEach(c => c.innerHTML = '');
+
+      let counts = { New: 0, InProgress: 0, Escalated: 0, Resolved: 0 };
+
+      filtered.forEach(t => {
+        const isEscalated = t.isEscalated || t.status === 'Escalated';
+        let targetCol = 'New';
+        if (t.status === 'Resolved') targetCol = 'Resolved';
+        else if (isEscalated) targetCol = 'Escalated';
+        else if (t.status === 'In Progress') targetCol = 'InProgress';
+        else targetCol = 'New';
+
+        counts[targetCol]++;
+
+        const card = document.createElement('div');
+        card.className = `jira-card ${activeTicket && activeTicket.ticketId === t.ticketId ? 'card-selected' : ''}`;
+        card.onclick = () => openDetailDrawer(t.ticketId);
+
+        const channelClass = t.channel === 'telegram' ? 'tag-channel-tg' : (t.channel === 'discord' ? 'tag-channel-dc' : 'tag-channel-gm');
+        const priorityIcon = getPriorityChevron(t.priority);
+        const slaMeta = getSLAMeta(t);
+        const timeAgo = formatTimeAgo(t.timestamp);
+
+        card.innerHTML = `
+          <div class="card-top-row">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span class="card-key">${t.ticketId}</span>
+              ${timeAgo ? `<span style="font-size: 11px; color: var(--text-subtle); font-weight: 500;">${timeAgo}</span>` : ''}
+            </div>
+            <span class="jira-tag ${channelClass}">${t.channel.toUpperCase()}</span>
+          </div>
+          <div style="font-size: 11.5px; font-weight: 600; color: var(--text-muted); display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;">
+            ${escapeHtml(t.sender)}
+          </div>
+          <div class="card-subject">${escapeHtml(t.subject)}</div>
+          <div class="card-snippet">${escapeHtml(t.message)}</div>
+          <div class="card-bottom-row">
+            <div class="card-tags">
+              ${priorityIcon}
+              <span class="jira-tag tag-purple">${t.category || 'General'}</span>
+            </div>
+            <div class="sla-micro-badge ${slaMeta.overdue ? 'overdue' : 'active'}">
+              <span>${slaMeta.text}</span>
+            </div>
+          </div>
+        `;
+
+        cols[targetCol].appendChild(card);
+      });
+
+      // Update counters
+      document.getElementById('countColNew').innerText = counts.New;
+      document.getElementById('countColProgress').innerText = counts.InProgress;
+      document.getElementById('countColEscalated').innerText = counts.Escalated;
+      document.getElementById('countColResolved').innerText = counts.Resolved;
+    }
+
+    // 5. Render Queue List View
+    function renderQueueView() {
+      const tbody = document.getElementById('queueTableBody');
+      tbody.innerHTML = currentTickets.map(t => {
+        const isEscalated = t.isEscalated || t.status === 'Escalated';
+        const slaMeta = getSLAMeta(t);
+        return `
+          <tr style="border-bottom: 1px solid var(--border); cursor: pointer;" onclick="openDetailDrawer('${t.ticketId}')" onmouseover="this.style.background='var(--bg-subtle)'" onmouseout="this.style.background=''">
+            <td style="padding: 10px 14px; font-weight: 700; color: var(--primary);">${t.ticketId}</td>
+            <td style="padding: 10px 14px;"><span class="jira-tag ${t.channel === 'telegram' ? 'tag-channel-tg' : (t.channel === 'discord' ? 'tag-channel-dc' : 'tag-channel-gm')}">${t.channel.toUpperCase()}</span></td>
+            <td style="padding: 10px 14px; font-weight: 600;">${escapeHtml(t.subject)}</td>
+            <td style="padding: 10px 14px; color: var(--text-muted);">${escapeHtml(t.sender)}</td>
+            <td style="padding: 10px 14px;"><span class="jira-tag ${t.priority === 'Critical' ? 'tag-red' : (t.priority === 'High' ? 'tag-yellow' : 'tag-blue')}">${t.priority}</span></td>
+            <td style="padding: 10px 14px;"><span class="jira-tag ${t.status === 'Resolved' ? 'tag-green' : (isEscalated ? 'tag-red' : 'tag-blue')}">${t.status}</span></td>
+            <td style="padding: 10px 14px; font-weight: 600; color: ${slaMeta.overdue ? '#DE350B' : '#00875A'};">${slaMeta.text}</td>
+            <td style="padding: 10px 14px; color: var(--text-muted);">${escapeHtml(t.assignedAgentName || 'Unassigned')}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // 6. Jira Issue Detail Drawer
+    async function openDetailDrawer(ticketId) {
+      const ticket = currentTickets.find(t => t.ticketId === ticketId);
+      if (!ticket) return;
+      activeTicket = ticket;
+
+      const drawer = document.getElementById('detailDrawer');
+      drawer.classList.add('open');
+
+      document.getElementById('drawerKey').innerText = ticket.ticketId;
+      const chTag = document.getElementById('drawerChannelTag');
+      chTag.innerText = ticket.channel.toUpperCase();
+      chTag.className = `jira-tag ${ticket.channel === 'telegram' ? 'tag-channel-tg' : (t => 'tag-channel-gm')(ticket)}`;
+
+      document.getElementById('drawerSubject').innerText = ticket.subject;
+      document.getElementById('drawerSender').innerText = ticket.sender;
+      document.getElementById('drawerAssignee').innerText = ticket.assignedAgentName || 'Unassigned';
+
+      // Dropdowns
+      document.getElementById('drawerSelectPriority').value = ticket.priority || 'Medium';
+      document.getElementById('drawerSelectCategory').value = ticket.category || 'General Inquiry';
+
+      // SLA Banner
+      const isEscalated = ticket.isEscalated || ticket.status === 'Escalated';
+      const slaBanner = document.getElementById('drawerSLABanner');
+      const slaText = document.getElementById('drawerSLAText');
+      const slaStatus = document.getElementById('drawerSLAStatus');
+      
+      const targetTime = new Date(ticket.slaDeadline).toLocaleTimeString();
+      if (ticket.status === 'Resolved') {
+        slaBanner.className = 'jira-banner jira-banner-info';
+        slaText.innerText = `Issue marked resolved at ${new Date(ticket.resolvedAt || Date.now()).toLocaleTimeString()}`;
+        slaStatus.innerText = 'Resolved';
+        slaStatus.className = 'jira-tag tag-green';
+      } else if (isEscalated) {
+        slaBanner.className = 'jira-banner jira-banner-danger';
+        slaText.innerText = `SLA Breached! Escalated to Delivery Head. Target was: ${targetTime}`;
+        slaStatus.innerText = 'Overdue';
+        slaStatus.className = 'jira-tag tag-red';
+      } else {
+        slaBanner.className = 'jira-banner jira-banner-info';
+        slaText.innerText = `SLA Resolution Target Window: ${targetTime}`;
+        slaStatus.innerText = 'Active Window';
+        slaStatus.className = 'jira-tag tag-blue';
+      }
+
+      // Customer Digital Wallet Status
+      renderDrawerWallet(ticket);
+
+      // Thread Messages
+      renderDrawerThread(ticket);
+
+      // Composer
+      document.getElementById('drawerReplyChannelHint').innerText = `Reply dispatched via ${ticket.channel.toUpperCase()}`;
+      document.getElementById('drawerReplyInput').value = '';
+
+      renderBoardView();
+    }
+
+    function closeDetailDrawer() {
+      document.getElementById('detailDrawer').classList.remove('open');
+      activeTicket = null;
+      renderBoardView();
+    }
+
+    // Render Digital Wallet in Drawer
+    async function renderDrawerWallet(ticket) {
+      const container = document.getElementById('drawerRewardStatus');
+      const badge = document.getElementById('drawerWalletBalanceBadge');
+
+      if (ticket.loyaltyReward) {
+        badge.innerText = `Wallet: +${ticket.loyaltyReward.points} Pts Active`;
+        container.innerHTML = `
+          <div style="background: #E3FCEF; border: 1px solid #ABF5D1; color: #00875A; padding: 8px 12px; border-radius: 3px; font-size: 12px; display: flex; justify-content: space-between; align-items: center;">
+            <span>Compensation Issued: +${ticket.loyaltyReward.points} pts (Code: <code>${ticket.loyaltyReward.voucherCode}</code>)</span>
+            <span class="jira-tag tag-green">Dispatched to ${ticket.channel}</span>
+          </div>
+        `;
+      } else {
+        badge.innerText = 'Wallet: 0 Pts';
+        container.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+            <span style="font-size: 12px; color: #7A4100;">Issue 1-click customer loyalty compensation:</span>
+            <div style="display: flex; gap: 6px;">
+              <button class="btn btn-default" style="font-size: 11.5px; height: 28px;" onclick="issueRewardFromDrawer('${ticket.ticketId}', 50, '10%')">
+                +50 Pts ($5)
+              </button>
+              <button class="btn btn-default" style="font-size: 11.5px; height: 28px;" onclick="issueRewardFromDrawer('${ticket.ticketId}', 100, '20%')">
+                +100 Pts (20% Off)
+              </button>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Render Conversation Thread
+    function renderDrawerThread(ticket) {
+      const threadBox = document.getElementById('drawerThreadStream');
+      const msgs = ticket.messages && ticket.messages.length > 0 ? ticket.messages : [
+        { senderType: 'customer', senderName: ticket.sender, text: ticket.message, timestamp: ticket.timestamp },
+        ...(ticket.agentReply ? [{ senderType: 'agent', senderName: ticket.assignedAgentName || 'Agent', text: ticket.agentReply, timestamp: ticket.resolvedAt || new Date().toISOString() }] : [])
+      ];
+
+      threadBox.innerHTML = msgs.map(m => {
+        let bubbleClass = 'thread-bubble-customer';
+        let author = m.senderName || ticket.sender;
+        if (m.senderType === 'agent') {
+          bubbleClass = 'thread-bubble-agent';
+          author = `Agent: ${m.senderName}`;
+        } else if (m.senderType === 'system') {
+          bubbleClass = 'thread-bubble-system';
+          author = 'System Audit';
+        }
+        return `
+          <div class="thread-bubble ${bubbleClass}">
+            <div class="bubble-meta">
+              <span>${escapeHtml(author)}</span>
+              <span>${new Date(m.timestamp).toLocaleTimeString()}</span>
+            </div>
+            <div style="line-height: 1.45; white-space: pre-wrap;">${escapeHtml(m.text)}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 7. Manual Priority & Category Classifier
+    async function updateClassificationFromDrawer() {
+      if (!activeTicket) return;
+      const priority = document.getElementById('drawerSelectPriority').value;
+      const category = document.getElementById('drawerSelectCategory').value;
+
+      try {
+        const res = await fetch(`/api/tickets/${activeTicket.ticketId}/classify`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            priority,
+            category,
+            updatedBy: `${currentUser.name} (${currentUser.role})`
+          })
+        });
+        const data = await res.json();
+        if (data.success && data.ticket) {
+          await loadTickets();
+          openDetailDrawer(data.ticket.ticketId);
+        }
+      } catch (err) {
+        alert('Failed to update classification: ' + err.message);
+      }
+    }
+
+    // 8. 1-Click AI Smart Resolution Assistant (Step 2)
+    async function triggerAIDraftForDrawer() {
+      if (!activeTicket) return;
+      const tone = document.getElementById('drawerAITone').value;
+      const loading = document.getElementById('drawerAILoading');
+      const btn = document.getElementById('btnDrawerAIDraft');
+      const input = document.getElementById('drawerReplyInput');
+
+      loading.style.display = 'block';
+      btn.disabled = true;
+      btn.innerText = 'Drafting...';
+
+      try {
+        const res = await fetch('/api/ai/draft-response', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ticketId: activeTicket.ticketId,
+            tone,
+            agentName: currentUser.name
+          })
+        });
+        const data = await res.json();
+        if (data.success && data.draft) {
+          input.value = data.draft;
+          input.focus();
+        } else {
+          alert('Failed to generate draft: ' + data.message);
+        }
+      } catch (err) {
+        alert('AI draft error: ' + err.message);
+      } finally {
+        loading.style.display = 'none';
+        btn.disabled = false;
+        btn.innerText = 'Draft AI Reply';
+      }
+    }
+
+    // 9. Dispatch Resolution Reply
+    async function dispatchDrawerReply() {
+      if (!activeTicket) return;
+      const replyMessage = document.getElementById('drawerReplyInput').value.trim();
+      if (!replyMessage) {
+        alert('Please enter a resolution reply message.');
+        return;
+      }
+
+      const btn = document.getElementById('btnDrawerSendReply');
+      btn.disabled = true;
+      btn.innerText = 'Dispatching...';
+
+      try {
+        const res = await fetch(`/api/tickets/${activeTicket.ticketId}/reply`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            replyMessage,
+            agentName: currentUser.name
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert(`Resolution sent to customer via ${activeTicket.channel.toUpperCase()}!`);
+          await loadTickets();
+          openDetailDrawer(activeTicket.ticketId);
+        } else {
+          alert('Reply error: ' + data.message);
+        }
+      } catch (err) {
+        alert('Reply error: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerText = 'Send Resolution';
+      }
+    }
+
+    // 10. Issue Loyalty Reward
+    async function issueRewardFromDrawer(ticketId, points, discount) {
+      try {
+        const res = await fetch(`/api/tickets/${ticketId}/issue-reward`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ points, discount, reason: 'Service Apology Credit' })
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert(`Loyalty points + Voucher [${data.voucher.code}] dispatched to customer's chat!`);
+          await loadTickets();
+          openDetailDrawer(ticketId);
+        } else {
+          alert('Error: ' + data.message);
+        }
+      } catch (e) {
+        alert('Reward error: ' + e.message);
+      }
+    }
+
+    // 11. Load Executive Analytics
+    async function loadAnalyticsData() {
+      try {
+        const res = await fetch('/api/analytics/dashboard');
+        const json = await res.json();
+        if (json.success && json.data) {
+          const d = json.data;
+          document.getElementById('kpiSLA').innerText = `${d.slaComplianceRate}%`;
+          document.getElementById('kpiTotal').innerText = d.total;
+          document.getElementById('kpiEscalated').innerText = d.escalated;
+          if (d.walletSummary) {
+            document.getElementById('kpiPoints').innerText = `${d.walletSummary.totalPointsIssued} pts`;
+          }
+
+          // Agent loads
+          const loadBox = document.getElementById('analyticsAgentLoads');
+          loadBox.innerHTML = d.agentWorkloads.map(w => `
+            <div>
+              <div class="flex-between" style="font-size: 12.5px;">
+                <strong>${escapeHtml(w.name)}</strong>
+                <span>${w.pending} pending • ${w.resolved} resolved ${w.escalated > 0 ? `<span class="jira-tag tag-red">${w.escalated} Escalated</span>` : ''}</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: ${Math.min(100, w.pending * 10)}%;"></div>
+              </div>
+            </div>
+          `).join('');
+
+          // Categories
+          const catBox = document.getElementById('analyticsCategoryClusters');
+          catBox.innerHTML = d.topCategories.map(c => `
+            <div>
+              <div class="flex-between" style="font-size: 12.5px;">
+                <span>${escapeHtml(c.category)}</span>
+                <strong>${c.count} (${c.percentage}%)</strong>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: ${c.percentage}%; background: #5243AA;"></div>
+              </div>
+            </div>
+          `).join('');
+
+          fetchAIRootCauseAnalysis();
+        }
+      } catch (err) {
+        console.error('Analytics load error:', err);
+      }
+    }
+
+    // 12. AI Root-Cause Synthesis
+    async function fetchAIRootCauseAnalysis() {
+      try {
+        const res = await fetch('/api/ai/root-cause-analysis');
+        const json = await res.json();
+        if (json.success && json.analysis) {
+          const a = json.analysis;
+          document.getElementById('aiRootCauseSummaryText').innerText = a.executiveSummary;
+          
+          document.getElementById('aiBottlenecksList').innerHTML = (a.coreBottlenecks || []).map(b => `
+            <div style="background: white; border: 1px solid var(--border); border-radius: 3px; padding: 8px 10px; font-size: 12px;">
+              <div class="flex-between">
+                <strong>${escapeHtml(b.title)}</strong>
+                <span class="jira-tag ${b.severity === 'CRITICAL' ? 'tag-red' : 'tag-yellow'}">${b.severity}</span>
+              </div>
+              <p style="color: var(--text-muted); margin-top: 3px;">${escapeHtml(b.rootCause)}</p>
+            </div>
+          `).join('');
+
+          document.getElementById('aiRecommendationsList').innerHTML = (a.strategicRecommendations || []).map(r => `
+            <div style="background: #E3FCEF; border: 1px solid #ABF5D1; color: #00875A; border-radius: 3px; padding: 8px 10px; font-size: 12px;">
+              <div class="flex-between">
+                <strong>${escapeHtml(r.action)}</strong>
+                <span class="jira-tag tag-green">${r.priority}</span>
+              </div>
+              <p style="margin-top: 2px;">${escapeHtml(r.expectedBenefit)}</p>
+            </div>
+          `).join('');
+        }
+      } catch (e) {
+        console.warn('Root cause error:', e);
+      }
+    }
+
+    // 13. Channel Status Poller
+    async function checkChannelStatus() {
+      try {
+        const res = await fetch('/api/channels/status');
+        const json = await res.json();
+        if (json.success && json.channels) {
+          const ch = json.channels;
+          document.getElementById('dotTelegram').className = `pulse-dot ${ch.telegram?.connected ? '' : 'disconnected'}`;
+          document.getElementById('dotDiscord').className = `pulse-dot ${ch.discord?.connected ? '' : 'disconnected'}`;
+          document.getElementById('dotGmail').className = `pulse-dot ${ch.gmail?.connected ? '' : 'disconnected'}`;
+        }
+      } catch (e) {
+        console.warn('Channel check error:', e);
+      }
+    }
+
+    // 14. Notifications Drawer
+    async function loadNotifications() {
+      try {
+        const res = await fetch('/api/notifications');
+        const json = await res.json();
+        if (json.success) {
+          const unread = json.unreadCount || 0;
+          const badge = document.getElementById('notifBadge');
+          if (unread > 0) {
+            badge.style.display = 'flex';
+            badge.innerText = unread;
+          } else {
+            badge.style.display = 'none';
+          }
+
+          document.getElementById('notificationList').innerHTML = (json.notifications || []).map(n => `
+            <div class="notif-item ${n.read ? '' : 'unread'}" onclick="handleNotifClick('${n.ticketId}')">
+              <div class="flex-between" style="font-size: 11px; color: var(--text-muted);">
+                <span class="jira-tag ${n.type === 'ESCALATION' ? 'tag-red' : 'tag-blue'}">${n.type}</span>
+                <span>${new Date(n.timestamp).toLocaleTimeString()}</span>
+              </div>
+              <strong style="font-size: 12.5px; display: block; margin-top: 4px;">${escapeHtml(n.title)}</strong>
+              <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">${escapeHtml(n.message)}</p>
+            </div>
+          `).join('') || '<p style="padding: 20px; text-align: center; color: var(--text-muted);">No new notifications.</p>';
+        }
+      } catch (e) {
+        console.warn('Notif error:', e);
+      }
+    }
+
+    function toggleNotificationDrawer() {
+      document.getElementById('notificationDrawer').classList.toggle('open');
+    }
+
+    function handleNotifClick(ticketId) {
+      toggleNotificationDrawer();
+      if (ticketId) openDetailDrawer(ticketId);
+    }
+
+    // 15. Helper Utilities
+    function getPriorityChevron(priority) {
+      if (priority === 'Critical') {
+        return `<svg class="icon icon-sm priority-icon-critical" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline><polyline points="18 9 12 3 6 9"></polyline></svg>`;
+      } else if (priority === 'High') {
+        return `<svg class="icon icon-sm priority-icon-high" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>`;
+      } else if (priority === 'Medium') {
+        return `<svg class="icon icon-sm priority-icon-medium" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line></svg>`;
+      }
+      return `<svg class="icon icon-sm priority-icon-low" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+    }
+
+    function getSLAMeta(ticket) {
+      if (ticket.status === 'Resolved') return { text: 'Resolved', overdue: false };
+      const now = Date.now();
+      const target = new Date(ticket.slaDeadline).getTime();
+      const diffMin = Math.round((target - now) / 60000);
+      if (diffMin <= 0 || ticket.isEscalated) {
+        return { text: `Overdue (${Math.abs(diffMin)}m)`, overdue: true };
+      }
+      return { text: `${diffMin}m left`, overdue: false };
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]);
+    }
+
+    function handleSearch(val) {
+      renderBoardView();
+      renderQueueView();
+    }
+
+    function applyFilters() {
+      renderBoardView();
+      renderQueueView();
+    }
+
+    // Modal Helpers
+    function openLoginModal() { document.getElementById('loginModal').style.display = 'flex'; }
+    function closeLoginModal() { document.getElementById('loginModal').style.display = 'none'; }
+    function openSimulatorModal() { document.getElementById('simulatorModal').style.display = 'flex'; }
+    function closeSimulatorModal() { document.getElementById('simulatorModal').style.display = 'none'; }
+    function openWalletsModal() { switchView('analytics'); }
+
+    // Role-Based Access Control: Apply View & Feature Permissions
+    function applyRolePermissions(user) {
+      if (!user) return;
+      currentUser = user;
+
+      // Update User Profile Card
+      document.getElementById('userName').innerText = currentUser.name;
+      const initials = currentUser.name.split(' ').map(n=>n[0]).join('').substring(0, 2);
+      document.getElementById('userAvatar').innerText = initials;
+
+      const roleContainer = document.getElementById('userRole');
+      if (currentUser.role === 'admin') {
+        roleContainer.innerHTML = '<span class="jira-tag tag-red" style="font-size: 10px; padding: 1px 6px;">System Administrator</span>';
+      } else if (currentUser.role === 'Delivery Head') {
+        roleContainer.innerHTML = '<span class="jira-tag tag-purple" style="font-size: 10px; padding: 1px 6px;">Delivery Head</span>';
+      } else {
+        roleContainer.innerHTML = '<span class="jira-tag tag-blue" style="font-size: 10px; padding: 1px 6px;">Support Agent</span>';
+      }
+
+      // Sidebar Tab Visibility
+      const navAnalytics = document.getElementById('navAnalytics');
+      const navAdmin = document.getElementById('navAdmin');
+      const groupAdmin = document.getElementById('groupAdmin');
+      const groupIntelligence = document.getElementById('groupIntelligence');
+
+      if (currentUser.role === 'agent') {
+        if (navAnalytics) navAnalytics.style.display = 'none';
+        if (navAdmin) navAdmin.style.display = 'none';
+        if (groupAdmin) groupAdmin.style.display = 'none';
+        if (currentView === 'analytics' || currentView === 'admin') {
+          switchView('board');
+        }
+      } else if (currentUser.role === 'Delivery Head') {
+        if (navAnalytics) navAnalytics.style.display = 'flex';
+        if (navAdmin) navAdmin.style.display = 'none';
+        if (groupAdmin) groupAdmin.style.display = 'none';
+        if (currentView === 'admin') {
+          switchView('analytics');
+        }
+      } else if (currentUser.role === 'admin') {
+        if (navAnalytics) navAnalytics.style.display = 'flex';
+        if (navAdmin) navAdmin.style.display = 'flex';
+        if (groupAdmin) groupAdmin.style.display = 'block';
+      }
+
+      // Update drawer if open
+      const reassignWrapper = document.getElementById('drawerReassignWrapper');
+      if (reassignWrapper) {
+        reassignWrapper.style.display = (currentUser.role === 'Delivery Head' || currentUser.role === 'admin') ? 'block' : 'none';
+      }
+    }
+
+    async function quickLogin(email, password) {
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (data.success && data.user) {
+          applyRolePermissions(data.user);
+          closeLoginModal();
+          showToast(`🧑‍💼 Authenticated as ${data.user.name} (${data.user.role})`);
+          if (data.user.role === 'Delivery Head') {
+            switchView('analytics');
+          } else if (data.user.role === 'admin') {
+            switchView('admin');
+          } else {
+            switchView('board');
+          }
+        } else {
+          showToast('Login failed: ' + (data.message || 'Unknown error'), true);
+        }
+      } catch (e) {
+        showToast('Login error: ' + e.message, true);
+      }
+    }
+
+    async function submitCustomLogin() {
+      const email = document.getElementById('customLoginEmail')?.value;
+      const password = document.getElementById('customLoginPassword')?.value;
+      if (!email || !password) {
+        showToast('Please enter both email and password', true);
+        return;
+      }
+      await quickLogin(email, password);
+    }
+
+    // Load Admin Settings & RBAC Users Table
+    async function loadAdminData() {
+      try {
+        // 1. Fetch channel status
+        const chRes = await fetch('/api/channels/status');
+        const chData = await chRes.json();
+        if (chData.success && chData.channels) {
+          const tg = chData.channels.telegram;
+          const dc = chData.channels.discord;
+          const gm = chData.channels.gmail;
+
+          const tgStatus = document.getElementById('adminStatusTelegram');
+          if (tgStatus) {
+            tgStatus.className = tg.connected ? 'jira-tag tag-green' : 'jira-tag tag-red';
+            tgStatus.innerText = tg.connected ? `Connected (@${tg.botUsername || 'bot'})` : 'Disconnected';
+          }
+
+          const dcStatus = document.getElementById('adminStatusDiscord');
+          if (dcStatus) {
+            dcStatus.className = dc.connected ? 'jira-tag tag-green' : 'jira-tag tag-red';
+            dcStatus.innerText = dc.connected ? `Connected (${dc.botTag || 'bot'})` : 'Disconnected';
+          }
+
+          const gmStatus = document.getElementById('adminStatusGmail');
+          if (gmStatus) {
+            gmStatus.className = gm.connected ? 'jira-tag tag-green' : 'jira-tag tag-red';
+            gmStatus.innerText = gm.connected ? 'OAuth2 Synced' : (gm.error || 'Setup Needed');
+          }
+        }
+
+        // 2. Fetch all users for RBAC directory
+        const userRes = await fetch('/api/auth/users');
+        const userData = await userRes.json();
+        if (userData.success && Array.isArray(userData.users)) {
+          const tbody = document.getElementById('adminUserTableBody');
+          const badge = document.getElementById('adminTotalUsersBadge');
+          if (badge) badge.innerText = `${userData.users.length} Active Users`;
+
+          if (tbody) {
+            tbody.innerHTML = userData.users.map(u => {
+              const rolePill = u.role === 'admin' 
+                ? '<span class="jira-tag tag-red">System Administrator</span>'
+                : (u.role === 'Delivery Head'
+                    ? '<span class="jira-tag tag-purple">Delivery Head</span>'
+                    : '<span class="jira-tag tag-blue">Support Agent</span>');
+
+              const permissions = u.role === 'admin'
+                ? 'All Access (Bot Tokens, Channels, Users, Reassignment, Executive AI, Board)'
+                : (u.role === 'Delivery Head'
+                    ? 'Executive Analytics, AI Root-Cause, SLA Escalations, Agent Reassignment'
+                    : 'Triage Complaints, AI Smart Reply, Digital Wallet Apology Compensation');
+
+              const initials = u.name.split(' ').map(n => n[0]).join('').substring(0, 2);
+
+              return `
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td style="padding: 12px; display: flex; align-items: center; gap: 8px;">
+                    <div class="avatar-circle" style="background: var(--bg-card-hover); color: var(--text-main); font-weight: 700;">${initials}</div>
+                    <div>
+                      <div style="font-weight: 600;">${escapeHtml(u.name)}</div>
+                      <div style="font-size: 11px; color: var(--text-muted);">${u.id}</div>
+                    </div>
+                  </td>
+                  <td style="padding: 12px;"><code>${escapeHtml(u.email)}</code></td>
+                  <td style="padding: 12px;">${rolePill}</td>
+                  <td style="padding: 12px;">
+                    <span class="jira-tag ${u.mfaEnabled ? 'tag-green' : 'tag-yellow'}">${u.mfaEnabled ? '2FA Enabled' : 'Standard Auth'}</span>
+                  </td>
+                  <td style="padding: 12px; font-size: 11.5px; color: var(--text-muted); max-width: 320px;">
+                    ${permissions}
+                  </td>
+                </tr>
+              `;
+            }).join('');
+          }
+        }
+
+        // 3. Fetch PostgreSQL Database Status & Table Metrics
+        await refreshAdminDbStatus();
+      } catch (e) {
+        console.error('Error loading admin data:', e);
+      }
+    }
+
+    async function refreshAdminDbStatus() {
+      try {
+        const res = await fetch('/api/system/database-status');
+        const data = await res.json();
+        
+        const badge = document.getElementById('adminDbStatusBadge');
+        const hostEl = document.getElementById('adminDbHost');
+        const nameEl = document.getElementById('adminDbName');
+        const grid = document.getElementById('adminDbTablesGrid');
+
+        if (data.connected) {
+          if (badge) {
+            badge.className = 'jira-tag tag-green';
+            badge.innerText = `● Connected: ${data.database} (${data.type})`;
+          }
+          if (hostEl) hostEl.innerText = `${data.host}:${data.port}`;
+          if (nameEl) nameEl.innerText = data.database;
+
+          if (grid && Array.isArray(data.tables)) {
+            const friendlyNames = {
+              'tickets': 'Omnichannel Tickets',
+              'users': 'RBAC System Users',
+              'ticket_messages': 'Conversation Audit Logs',
+              'customer_wallets': 'Digital Customer Wallets',
+              'vouchers': 'Loyalty Compensation Vouchers',
+              'notifications': 'Real-Time Escalation Alerts',
+              'wallet_transactions': 'Points Ledger'
+            };
+
+            grid.innerHTML = data.tables.map(t => {
+              const friendly = friendlyNames[t.table_name] || t.table_name;
+              return `
+                <div style="padding: 10px 12px; background: #ffffff; border: 1px solid var(--border); border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <div style="font-weight: 700; font-family: monospace; font-size: 12px; color: var(--text-main);">${t.table_name}</div>
+                    <div style="font-size: 10.5px; color: var(--text-muted);">${friendly}</div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="jira-tag tag-blue" style="font-weight: 700; font-size: 11px;">${t.row_count} rows</span>
+                    <button class="btn btn-default btn-sm" onclick="inspectDbTable('${t.table_name}')" style="padding: 3px 6px; font-size: 10.5px;" title="Inspect live records">
+                      Inspect
+                    </button>
+                  </div>
+                </div>
+              `;
+            }).join('');
+          }
+        } else {
+          if (badge) {
+            badge.className = 'jira-tag tag-yellow';
+            badge.innerText = `Fallback Store (JSON Persistence)`;
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching db status:', err);
+      }
+    }
+
+    async function inspectDbTable(tableName) {
+      const box = document.getElementById('adminDbInspectorBox');
+      const nameEl = document.getElementById('adminInspectorTableName');
+      const head = document.getElementById('adminInspectorTableHead');
+      const body = document.getElementById('adminInspectorTableBody');
+
+      if (box) box.style.display = 'block';
+      if (nameEl) nameEl.innerText = tableName;
+      if (head) head.innerHTML = '<tr><th style="padding: 8px;">Loading columns...</th></tr>';
+      if (body) body.innerHTML = '<tr><td style="padding: 12px; color: var(--text-muted);">Fetching live rows from PostgreSQL...</td></tr>';
+
+      try {
+        const res = await fetch(`/api/system/db-inspect/${tableName}`);
+        const data = await res.json();
+        if (data.success && Array.isArray(data.rows) && data.rows.length > 0) {
+          const cols = Object.keys(data.rows[0]);
+          head.innerHTML = `<tr>${cols.map(c => `<th style="padding: 8px 10px; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid var(--border);">${c}</th>`).join('')}</tr>`;
+          body.innerHTML = data.rows.map(r => `
+            <tr style="border-bottom: 1px solid var(--border);">
+              ${cols.map(c => {
+                let val = r[c];
+                if (typeof val === 'object' && val !== null) val = JSON.stringify(val);
+                if (typeof val === 'string' && val.length > 60) val = val.substring(0, 60) + '...';
+                return `<td style="padding: 6px 10px; font-family: monospace; font-size: 11px; white-space: nowrap;">${escapeHtml(String(val ?? ''))}</td>`;
+              }).join('')}
+            </tr>
+          `).join('');
+        } else {
+          head.innerHTML = '<tr><th style="padding: 8px;">Status</th></tr>';
+          body.innerHTML = `<tr><td style="padding: 12px; color: var(--text-muted);">Table <strong>${tableName}</strong> is currently empty (0 records).</td></tr>`;
+        }
+      } catch (err) {
+        body.innerHTML = `<tr><td style="padding: 12px; color: #DE350B;">Error reading table: ${err.message}</td></tr>`;
+      }
+    }
+
+    function closeDbInspector() {
+      const box = document.getElementById('adminDbInspectorBox');
+      if (box) box.style.display = 'none';
+    }
+
+    async function saveAdminChannelConfig() {
+      const telegramBotToken = document.getElementById('adminTelegramToken')?.value;
+      const discordBotToken = document.getElementById('adminDiscordToken')?.value;
+      const discordChannelId = document.getElementById('adminDiscordChannelId')?.value;
+
+      const payload = {};
+      if (telegramBotToken && telegramBotToken.trim()) payload.telegramBotToken = telegramBotToken.trim();
+      if (discordBotToken && discordBotToken.trim()) payload.discordBotToken = discordBotToken.trim();
+      if (discordChannelId && discordChannelId.trim()) payload.discordChannelId = discordChannelId.trim();
+
+      if (Object.keys(payload).length === 0) {
+        showToast('Please provide at least one token to update', true);
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/channels/config', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast('✅ Channel bot tokens updated and services re-initialized!');
+          await checkChannelStatus();
+          await loadAdminData();
+        } else {
+          showToast('Failed to update config: ' + (data.message || data.error), true);
+        }
+      } catch (e) {
+        showToast('Configuration error: ' + e.message, true);
+      }
+    }
+
+    // Reassign ticket from drawer (Delivery Head & Admin)
+    async function reassignTicketFromDrawer() {
+      if (!activeTicket) return;
+      const select = document.getElementById('drawerSelectAgent');
+      const agentId = select.value;
+      const agentName = select.options[select.selectedIndex].getAttribute('data-name') || select.options[select.selectedIndex].text;
+
+      try {
+        const res = await fetch(`/api/tickets/${activeTicket.ticketId}/reassign`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ agentId, agentName })
+        });
+        const data = await res.json();
+        if (data.success && data.ticket) {
+          activeTicket = data.ticket;
+          document.getElementById('drawerAssignee').innerText = activeTicket.assignedAgentName;
+          showToast(`⚙️ Reassigned ticket [${activeTicket.ticketId}] to ${activeTicket.assignedAgentName}`);
+          await loadTickets();
+          renderDrawerThread(activeTicket);
+        } else {
+          showToast(data.message || 'Failed to reassign', true);
+        }
+      } catch (e) {
+        showToast('Reassignment error: ' + e.message, true);
+      }
+    }
+
+    async function checkAuthSession() {
+      try {
+        const res = await fetch('/api/auth/me');
+        const data = await res.json();
+        if (data.success && data.user) {
+          applyRolePermissions(data.user);
+        }
+      } catch (e) {}
+    }
+
+    async function submitSimulatedGrievance() {
+      const channel = document.getElementById('simChannel').value;
+      const sender = document.getElementById('simSender').value;
+      const subject = document.getElementById('simSubject').value;
+      const message = document.getElementById('simMessage').value;
+
+      try {
+        const res = await fetch('/api/simulate-message', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ channel, sender, subject, message })
+        });
+        const data = await res.json();
+        if (data.success && data.ticket) {
+          closeSimulatorModal();
+          await loadTickets();
+          openDetailDrawer(data.ticket.ticketId);
+        }
+      } catch (e) {
+        alert('Simulation error: ' + e.message);
+      }
+    }
+
+    // Toast Notification helper
+    function showToast(text, isError = false) {
+      const toast = document.getElementById('jiraToast');
+      const toastText = document.getElementById('jiraToastText');
+      const toastIcon = document.getElementById('jiraToastIcon');
+      if (!toast) return;
+
+      toast.className = `jira-toast ${isError ? 'toast-error' : 'toast-success'} show`;
+      toastText.innerText = text;
+      toastIcon.innerHTML = isError 
+        ? '<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>'
+        : '<svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4500);
+    }
+  </script>
+
+  <!-- Toast Notification -->
+  <div id="jiraToast" class="jira-toast">
+    <span id="jiraToastIcon"></span>
+    <span id="jiraToastText">Notification</span>
+  </div>
+</body>
+</html>

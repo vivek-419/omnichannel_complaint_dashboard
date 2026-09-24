@@ -1,0 +1,31 @@
+{
+  "name": "software_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "auth:gmail": "node src/scripts/auth-gmail.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "discord.js": "^14.27.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "googleapis": "^180.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "node-telegram-bot-api": "^2.1.0",
+    "nodemailer": "^10.0.10",
+    "pg": "^8.23.0",
+    "qrcode": "^1.5.4",
+    "speakeasy": "^2.0.0",
+    "uuid": "^14.0.2"
+  }
+}

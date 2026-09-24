@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment & Secrets (Injected via AWS Secrets Manager / ECS Task Definition)
+.env
+.env.local
+.env.production
+
+# Version Control
+.git/
+.gitignore
+
+# Operating System & IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Antigravity Brain & Temp Artifacts
+.gemini/
+.system_generated/
+.tempmediaStorage/
+.user_uploaded/
+scratch/
+
+# Documentation source files
+*.docx
