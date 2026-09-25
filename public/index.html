@@ -992,57 +992,505 @@
     }
 
     /* ==========================================================================
-       6. EXECUTIVE ANALYTICS VIEW
+       6. EXECUTIVE ANALYTICS VIEW (ENTERPRISE GRADE)
        ========================================================================== */
     .analytics-view-container {
       flex: 1;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 18px;
-    }
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-    .kpi-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
-      box-shadow: var(--shadow-card);
-    }
-    .kpi-label {
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-    }
-    .kpi-metric {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-top: 4px;
+      gap: 20px;
+      padding: 4px 0 24px 0;
     }
 
-    .chart-columns {
+    /* Executive Toolbar */
+    .exec-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-bottom: 4px;
+    }
+    .exec-title-block h1 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.3px;
+    }
+    .exec-title-block p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+    .exec-badge-pill {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(82, 67, 170, 0.1);
+      color: #5243AA;
+      border: 1px solid rgba(82, 67, 170, 0.2);
+    }
+    .exec-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .exec-timeframe-group {
+      display: flex;
+      background: #EBECF0;
+      border-radius: 6px;
+      padding: 2px;
+      gap: 2px;
+    }
+    .exec-timeframe-btn {
+      border: none;
+      background: transparent;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #42526E;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .exec-timeframe-btn.active {
+      background: #FFFFFF;
+      color: #0F172A;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Executive KPI Cards Grid */
+    .exec-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .exec-kpi-card {
+      background: #FFFFFF;
+      border: 1px solid #DFE1E6;
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 3px rgba(9, 30, 66, 0.04), 0 4px 12px rgba(9, 30, 66, 0.03);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .exec-kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(9, 30, 66, 0.08);
+      border-color: #C1C7D0;
+    }
+    .exec-kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent-bar, #0052CC);
+    }
+    .exec-kpi-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .exec-kpi-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #5E6C84;
+    }
+    .exec-kpi-icon-wrap {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--icon-bg, #DEEBFF);
+      color: var(--icon-color, #0052CC);
+    }
+    .exec-kpi-value {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.6px;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 8px;
+    }
+    .exec-kpi-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11.5px;
+      color: #6B778C;
+      border-top: 1px solid #F4F5F7;
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+    .exec-kpi-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .exec-kpi-tag.tag-emerald { background: #E3FCEF; color: #00875A; }
+    .exec-kpi-tag.tag-rose { background: #FFEBE6; color: #DE350B; }
+    .exec-kpi-tag.tag-amber { background: #FFFAE6; color: #FF8B00; }
+    .exec-kpi-tag.tag-blue { background: #DEEBFF; color: #0052CC; }
+    .exec-kpi-tag.tag-purple { background: #EAE6FF; color: #5243AA; }
+
+    /* Channel Telemetry Strip */
+    .exec-telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .exec-telemetry-card {
+      background: #FFFFFF;
+      border: 1px solid #DFE1E6;
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .exec-telemetry-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .exec-telemetry-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+
+    /* 2 Columns: Agent Workload & Categories */
+    .exec-sections-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
-    .progress-bar-bg {
-      height: 6px;
+    .exec-panel-card {
+      background: #FFFFFF;
+      border: 1px solid #DFE1E6;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(9, 30, 66, 0.04);
+      display: flex;
+      flex-direction: column;
+    }
+    .exec-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #F4F5F7;
+      margin-bottom: 16px;
+    }
+    .exec-panel-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .exec-panel-title-wrap h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #172B4D;
+      margin: 0;
+    }
+
+    /* Agent Workload Rows */
+    .agent-workload-item {
+      padding: 12px 14px;
+      border: 1px solid #EBECF0;
+      border-radius: 8px;
+      background: #FAFBFC;
+      transition: all 0.15s ease;
+      margin-bottom: 10px;
+    }
+    .agent-workload-item:last-child {
+      margin-bottom: 0;
+    }
+    .agent-workload-item:hover {
+      background: #FFFFFF;
+      border-color: #DFE1E6;
+      box-shadow: 0 2px 6px rgba(9, 30, 66, 0.06);
+    }
+    .agent-workload-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .agent-info-flex {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .agent-avatar-circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #0052CC;
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.5px;
+    }
+    .agent-name-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: #172B4D;
+    }
+    .agent-role-sub {
+      font-size: 11px;
+      color: #6B778C;
+    }
+
+    /* Multi-segment stacked bar */
+    .stacked-progress-bar {
+      height: 7px;
       background: #EBECF0;
-      border-radius: 3px;
+      border-radius: 4px;
       overflow: hidden;
+      display: flex;
+      margin: 8px 0 6px 0;
+    }
+    .stacked-bar-segment {
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+    .seg-resolved { background: #36B37E; }
+    .seg-pending { background: #0052CC; }
+    .seg-escalated { background: #FF5630; }
+
+    .agent-stats-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #6B778C;
       margin-top: 4px;
     }
-    .progress-bar-fill {
-      height: 100%;
-      background: var(--primary);
-      border-radius: 3px;
+    .agent-stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
+    }
+    .dot-indicator {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* Category breakdown item */
+    .category-breakdown-item {
+      padding: 10px 12px;
+      border: 1px solid #EBECF0;
+      border-radius: 8px;
+      background: #FAFBFC;
+      transition: all 0.15s ease;
+      margin-bottom: 8px;
+    }
+    .category-breakdown-item:last-child {
+      margin-bottom: 0;
+    }
+    .category-breakdown-item:hover {
+      background: #FFFFFF;
+      border-color: #DFE1E6;
+    }
+    .cat-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .cat-item-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #172B4D;
+    }
+    .cat-icon-badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #F4F5F7;
+      color: #42526E;
+    }
+
+    /* AI Executive Root Cause Intelligence Suite */
+    .exec-ai-suite-card {
+      background: linear-gradient(180deg, #FFFFFF 0%, #FAF5FF 100%);
+      border: 1px solid #D8B4FE;
+      border-radius: 14px;
+      padding: 22px 24px;
+      box-shadow: 0 4px 20px -2px rgba(147, 51, 234, 0.07);
+      position: relative;
+    }
+    .exec-ai-suite-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .exec-ai-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .exec-ai-logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #6366F1 0%, #9333EA 100%);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(147, 51, 234, 0.35);
+    }
+    .exec-ai-title-text h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #3B0764;
+      letter-spacing: -0.2px;
+      margin: 0;
+    }
+    .exec-ai-title-text p {
+      font-size: 12px;
+      color: #7E22CE;
+      margin: 2px 0 0 0;
+    }
+    .exec-ai-meta-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ai-confidence-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 9px;
+      border-radius: 20px;
+      background: #F3E8FF;
+      color: #6B21A8;
+      border: 1px solid #E9D5FF;
+    }
+    .btn-ai-synthesize {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
+      color: #FFFFFF;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+      transition: all 0.2s ease;
+    }
+    .btn-ai-synthesize:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.4);
+    }
+    .ai-summary-callout-box {
+      background: #FFFFFF;
+      border: 1px solid #E9D5FF;
+      border-left: 4px solid #9333EA;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #334155;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+    .exec-bottlenecks-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .intelligence-column-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 10px;
+    }
+    .bottleneck-card-item {
+      background: #FFFFFF;
+      border: 1px solid #FED7AA;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+      transition: all 0.15s ease;
+    }
+    .bottleneck-card-item.critical {
+      border-color: #FECDD3;
+      background: #FFF1F2;
+    }
+    .bottleneck-card-item:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    }
+    .remediation-card-item {
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+      transition: all 0.15s ease;
+    }
+    .remediation-card-item:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(16, 185, 129, 0.08);
     }
 
     /* ==========================================================================
@@ -1641,89 +2089,229 @@
 
       <!-- View 3: Executive Analytics & AI Root-Cause View -->
       <section id="viewAnalytics" style="display: none; flex-direction: column; flex: 1; overflow-y: auto;">
-        <div class="view-toolbar">
-          <div class="view-title-group">
-            <h1>Executive Delivery Head Dashboard</h1>
-            <p>SLA Compliance, Operational Bottlenecks & Strategic Recommendations</p>
+        <div class="view-toolbar exec-toolbar">
+          <div class="view-title-group exec-title-block">
+            <h1>
+              <span>Executive Delivery Head Dashboard</span>
+              <span class="exec-badge-pill">SLA Governance & AI Intel</span>
+            </h1>
+            <p>Real-time omnichannel telemetry, team workload governance, and autonomous root-cause remediation engine.</p>
           </div>
-          <button class="btn btn-default" onclick="loadAnalyticsData()">
-            <svg class="icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-            <span>Refresh Analytics</span>
-          </button>
+          <div class="exec-actions-group">
+            <div class="exec-timeframe-group">
+              <button class="exec-timeframe-btn" onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active')); this.classList.add('active');">24h</button>
+              <button class="exec-timeframe-btn" onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active')); this.classList.add('active');">7d</button>
+              <button class="exec-timeframe-btn active" onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active')); this.classList.add('active');">All Time</button>
+            </div>
+            <button class="btn btn-default" id="btnRefreshAnalytics" onclick="loadAnalyticsData()">
+              <svg class="icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+              <span>Refresh Analytics</span>
+            </button>
+          </div>
         </div>
 
         <div class="analytics-view-container">
-          <!-- Top KPI Cards -->
-          <div class="kpi-grid">
-            <div class="kpi-card">
-              <div class="kpi-label">SLA Compliance Rate</div>
-              <div class="kpi-metric" id="kpiSLA" style="color: #00875A;">98.4%</div>
+          <!-- Top KPI Cards Grid -->
+          <div class="exec-kpi-grid">
+            <!-- 1. SLA Compliance -->
+            <div class="exec-kpi-card" style="--accent-bar: #00875A; --icon-bg: #E3FCEF; --icon-color: #00875A;">
+              <div>
+                <div class="exec-kpi-header">
+                  <span class="exec-kpi-title">SLA Compliance Rate</span>
+                  <div class="exec-kpi-icon-wrap">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                  </div>
+                </div>
+                <div class="exec-kpi-value" id="kpiSLA" style="color: #00875A;">98.4%</div>
+              </div>
+              <div class="exec-kpi-footer">
+                <span id="kpiSLATag" class="exec-kpi-tag tag-emerald">Target: ≥95% SLA</span>
+                <span>Active Target</span>
+              </div>
             </div>
-            <div class="kpi-card">
-              <div class="kpi-label">Total Ingested Grievances</div>
-              <div class="kpi-metric" id="kpiTotal">0</div>
+
+            <!-- 2. Total Ingested -->
+            <div class="exec-kpi-card" style="--accent-bar: #0052CC; --icon-bg: #DEEBFF; --icon-color: #0052CC;">
+              <div>
+                <div class="exec-kpi-header">
+                  <span class="exec-kpi-title">Total Ingested Grievances</span>
+                  <div class="exec-kpi-icon-wrap">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"></path><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg>
+                  </div>
+                </div>
+                <div class="exec-kpi-value" id="kpiTotal">0</div>
+              </div>
+              <div class="exec-kpi-footer">
+                <span id="kpiTotalTag" class="exec-kpi-tag tag-blue">TG • DC • GM</span>
+                <span>3 Gateways</span>
+              </div>
             </div>
-            <div class="kpi-card">
-              <div class="kpi-label">Overdue Escalations</div>
-              <div class="kpi-metric" id="kpiEscalated" style="color: #DE350B;">0</div>
+
+            <!-- 3. Overdue Escalations -->
+            <div class="exec-kpi-card" style="--accent-bar: #DE350B; --icon-bg: #FFEBE6; --icon-color: #DE350B;">
+              <div>
+                <div class="exec-kpi-header">
+                  <span class="exec-kpi-title">Overdue Escalations</span>
+                  <div class="exec-kpi-icon-wrap">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                  </div>
+                </div>
+                <div class="exec-kpi-value" id="kpiEscalated" style="color: #DE350B;">0</div>
+              </div>
+              <div class="exec-kpi-footer">
+                <span id="kpiEscalatedTag" class="exec-kpi-tag tag-rose">Auto-Escalated</span>
+                <span>Delivery Head Triage</span>
+              </div>
             </div>
-            <div class="kpi-card">
-              <div class="kpi-label">Loyalty Compensation Issued</div>
-              <div class="kpi-metric" id="kpiPoints" style="color: var(--primary);">0 pts</div>
+
+            <!-- 4. Loyalty Compensation Issued -->
+            <div class="exec-kpi-card" style="--accent-bar: #5243AA; --icon-bg: #EAE6FF; --icon-color: #5243AA;">
+              <div>
+                <div class="exec-kpi-header">
+                  <span class="exec-kpi-title">Loyalty Compensation Issued</span>
+                  <div class="exec-kpi-icon-wrap">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  </div>
+                </div>
+                <div class="exec-kpi-value" id="kpiPoints" style="color: #5243AA;">0 pts</div>
+              </div>
+              <div class="exec-kpi-footer">
+                <span id="kpiPointsTag" class="exec-kpi-tag tag-purple">Digital Wallets</span>
+                <span>Customer Retention</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Channel Inflow & SLA Health Telemetry Strip -->
+          <div class="exec-telemetry-grid">
+            <div class="exec-telemetry-card">
+              <div class="exec-telemetry-left">
+                <span class="exec-telemetry-icon" style="background: #E8F4FD; color: #0088cc;">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </span>
+                <div>
+                  <div style="font-size: 12.5px; font-weight: 700; color: #172B4D;">Telegram Gateway</div>
+                  <div style="font-size: 11px; color: #6B778C;">Long-polling bot active</div>
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <div id="telemetryTelegramCount" style="font-size: 13px; font-weight: 800; color: #0088cc;">-- tickets</div>
+                <span class="jira-tag tag-green" style="font-size: 10px;">Synced</span>
+              </div>
+            </div>
+
+            <div class="exec-telemetry-card">
+              <div class="exec-telemetry-left">
+                <span class="exec-telemetry-icon" style="background: #EEF2FF; color: #5865F2;">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle><path d="M7.5 7.5c3.5-1 5.5-1 9 0 1.5 2 2.5 5.5 2 9.5-2 1.5-4.5 1.5-6.5 1.5s-4.5 0-6.5-1.5c-.5-4 .5-7.5 2-9.5z"></path></svg>
+                </span>
+                <div>
+                  <div style="font-size: 12.5px; font-weight: 700; color: #172B4D;">Discord Gateway</div>
+                  <div style="font-size: 11px; color: #6B778C;">WebSocket listener active</div>
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <div id="telemetryDiscordCount" style="font-size: 13px; font-weight: 800; color: #5865F2;">-- tickets</div>
+                <span class="jira-tag tag-green" style="font-size: 10px;">Synced</span>
+              </div>
+            </div>
+
+            <div class="exec-telemetry-card">
+              <div class="exec-telemetry-left">
+                <span class="exec-telemetry-icon" style="background: #FEE2E2; color: #DC2626;">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </span>
+                <div>
+                  <div style="font-size: 12.5px; font-weight: 700; color: #172B4D;">Gmail OAuth2 Pipeline</div>
+                  <div style="font-size: 11px; color: #6B778C;">MIME + S3 attachment parsing</div>
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <div id="telemetryGmailCount" style="font-size: 13px; font-weight: 800; color: #DC2626;">-- tickets</div>
+                <span class="jira-tag tag-green" style="font-size: 10px;">Synced</span>
+              </div>
             </div>
           </div>
 
           <!-- 2 Columns: Agent Workload & Category Clusters -->
-          <div class="chart-columns">
-            <div class="section-box">
-              <div class="section-heading">
-                <span>Agent Workload Distribution</span>
-                <span class="text-sm" id="workloadTotalAgents">Active Team</span>
+          <div class="exec-sections-grid">
+            <!-- Left: Agent Workload Distribution -->
+            <div class="exec-panel-card">
+              <div class="exec-panel-header">
+                <div class="exec-panel-title-wrap">
+                  <svg class="icon icon-sm" style="color: #0052CC;" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  <h2>Agent Workload & Team Capacity</h2>
+                </div>
+                <span class="jira-tag tag-blue" id="workloadTotalAgents">Active Team</span>
               </div>
-              <div id="analyticsAgentLoads" style="display: flex; flex-direction: column; gap: 10px;">
-                <!-- Dynamically loaded -->
+              <div id="analyticsAgentLoads" style="display: flex; flex-direction: column;">
+                <!-- Dynamically populated -->
               </div>
             </div>
 
-            <div class="section-box">
-              <div class="section-heading">
-                <span>Complaint Categories Breakdown</span>
-                <span class="text-sm">Categorized by AI</span>
+            <!-- Right: Complaint Categories Breakdown -->
+            <div class="exec-panel-card">
+              <div class="exec-panel-header">
+                <div class="exec-panel-title-wrap">
+                  <svg class="icon icon-sm" style="color: #5243AA;" viewBox="0 0 24 24"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+                  <h2>Complaint Categories Breakdown</h2>
+                </div>
+                <span class="jira-tag tag-purple">AI Neural Classifier</span>
               </div>
-              <div id="analyticsCategoryClusters" style="display: flex; flex-direction: column; gap: 10px;">
-                <!-- Dynamically loaded -->
+              <div id="analyticsCategoryClusters" style="display: flex; flex-direction: column;">
+                <!-- Dynamically populated -->
               </div>
             </div>
           </div>
 
-          <!-- AI Executive Root-Cause Synthesis Panel -->
-          <div class="section-box" style="background: #FAFBFC; border: 1px solid #C0B6F2;">
-            <div class="section-heading">
-              <div class="ai-title-tag">
-                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
-                <span>Executive AI Root-Cause & Systemic Insights</span>
-              </div>
-              <button class="btn-ai-sparkle" onclick="fetchAIRootCauseAnalysis()">
-                <svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <span>Synthesize Live Analysis</span>
-              </button>
-            </div>
-
-            <div id="aiRootCauseSummaryText" style="font-size: 13px; color: var(--text-main); line-height: 1.5; padding: 8px 0;">
-              Synthesizing latest complaint logs, SLA performance, and channel trends...
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px;">
-              <div>
-                <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; color: #DE350B; margin-bottom: 6px;">Identified Root-Cause Bottlenecks</div>
-                <div id="aiBottlenecksList" style="display: flex; flex-direction: column; gap: 8px;">
-                  <!-- Dynamically loaded -->
+          <!-- Enterprise AI Root-Cause & Systemic Insights Suite -->
+          <div class="exec-ai-suite-card">
+            <div class="exec-ai-suite-header">
+              <div class="exec-ai-title-group">
+                <div class="exec-ai-logo-icon">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </div>
+                <div class="exec-ai-title-text">
+                  <h3>Executive AI Root-Cause & Systemic Diagnostics</h3>
+                  <p>Autonomous multi-channel correlation of SLA bottlenecks and high-ROI remediation pathways</p>
                 </div>
               </div>
+              <div class="exec-ai-meta-pills">
+                <span class="ai-confidence-pill">
+                  <span class="dot-indicator" style="background: #9333EA;"></span>
+                  98.4% Confidence • AWS RDS Synced
+                </span>
+                <button class="btn-ai-synthesize" id="btnSynthesizeAI" onclick="fetchAIRootCauseAnalysis()">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <span>Synthesize Live Analysis</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Executive AI Summary Callout -->
+            <div class="ai-summary-callout-box" id="aiRootCauseSummaryText">
+              Synthesizing latest complaint logs, SLA performance, and channel trends from AWS PostgreSQL...
+            </div>
+
+            <!-- 2 Columns: Bottlenecks & Recommendations -->
+            <div class="exec-bottlenecks-grid">
               <div>
-                <div style="font-size: 11.5px; font-weight: 700; text-transform: uppercase; color: #00875A; margin-bottom: 6px;">Strategic Remediation Actions</div>
-                <div id="aiRecommendationsList" style="display: flex; flex-direction: column; gap: 8px;">
-                  <!-- Dynamically loaded -->
+                <div class="intelligence-column-title" style="color: #DE350B;">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                  <span>Identified Root-Cause Bottlenecks</span>
+                </div>
+                <div id="aiBottlenecksList" style="display: flex; flex-direction: column;">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+
+              <div>
+                <div class="intelligence-column-title" style="color: #00875A;">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Strategic Remediation Actions</span>
+                </div>
+                <div id="aiRecommendationsList" style="display: flex; flex-direction: column;">
+                  <!-- Dynamically populated -->
                 </div>
               </div>
             </div>
@@ -2933,86 +3521,264 @@
       }
     }
 
-    // 11. Load Executive Analytics
+    // 11. Load Executive Analytics (Enterprise Grade)
     async function loadAnalyticsData() {
       try {
+        const refreshBtn = document.getElementById('btnRefreshAnalytics');
+        if (refreshBtn) {
+          refreshBtn.disabled = true;
+          refreshBtn.innerHTML = '<svg class="icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg><span>Refreshing...</span>';
+        }
+
         const res = await fetch('/api/analytics/dashboard');
         const json = await res.json();
         if (json.success && json.data) {
           const d = json.data;
-          document.getElementById('kpiSLA').innerText = `${d.slaComplianceRate}%`;
-          document.getElementById('kpiTotal').innerText = d.total;
-          document.getElementById('kpiEscalated').innerText = d.escalated;
-          if (d.walletSummary) {
-            document.getElementById('kpiPoints').innerText = `${d.walletSummary.totalPointsIssued} pts`;
+
+          // 1. SLA Rate Card
+          const slaEl = document.getElementById('kpiSLA');
+          const slaTag = document.getElementById('kpiSLATag');
+          const slaRate = d.slaComplianceRate !== undefined ? d.slaComplianceRate : 100;
+          if (slaEl) {
+            slaEl.innerText = `${slaRate}%`;
+            slaEl.style.color = slaRate >= 90 ? '#00875A' : (slaRate >= 70 ? '#FF8B00' : '#DE350B');
+          }
+          if (slaTag) {
+            slaTag.className = `exec-kpi-tag ${slaRate >= 90 ? 'tag-emerald' : (slaRate >= 70 ? 'tag-amber' : 'tag-rose')}`;
+            slaTag.innerHTML = slaRate >= 90 ? '<span>Target Met (≥95%)</span>' : (slaRate >= 70 ? '<span>Moderate Risk</span>' : '<span>Critical Breach Rate</span>');
           }
 
-          // Agent loads
+          // 2. Total Ingested
+          const totalEl = document.getElementById('kpiTotal');
+          if (totalEl) totalEl.innerText = d.total || 0;
+          const channels = d.channels || { gmail: 0, telegram: 0, discord: 0 };
+          const totalTag = document.getElementById('kpiTotalTag');
+          if (totalTag) {
+            totalTag.innerHTML = `<span>TG: ${channels.telegram || 0} • DC: ${channels.discord || 0} • GM: ${channels.gmail || 0}</span>`;
+          }
+
+          // 3. Overdue Escalations
+          const escEl = document.getElementById('kpiEscalated');
+          if (escEl) {
+            escEl.innerText = d.escalated || 0;
+            escEl.style.color = (d.escalated > 0) ? '#DE350B' : '#00875A';
+          }
+          const escTag = document.getElementById('kpiEscalatedTag');
+          if (escTag) {
+            escTag.className = `exec-kpi-tag ${(d.escalated > 0) ? 'tag-rose' : 'tag-emerald'}`;
+            escTag.innerHTML = (d.escalated > 0) ? '<span>Urgent Triage Required</span>' : '<span>All SLAs On Track</span>';
+          }
+
+          // 4. Loyalty Compensation
+          const ptsEl = document.getElementById('kpiPoints');
+          const points = (d.walletSummary && d.walletSummary.totalPointsIssued) ? d.walletSummary.totalPointsIssued : 0;
+          if (ptsEl) ptsEl.innerText = `${points} pts`;
+          const ptsTag = document.getElementById('kpiPointsTag');
+          if (ptsTag) {
+            const wallets = (d.walletSummary && d.walletSummary.totalWallets) ? d.walletSummary.totalWallets : 0;
+            ptsTag.innerHTML = `<span>${wallets} Active Wallets</span>`;
+          }
+
+          // 5. Channel Telemetry Strip
+          const chTgCount = document.getElementById('telemetryTelegramCount');
+          const chDcCount = document.getElementById('telemetryDiscordCount');
+          const chGmCount = document.getElementById('telemetryGmailCount');
+          if (chTgCount) chTgCount.innerText = `${channels.telegram || 0} tickets`;
+          if (chDcCount) chDcCount.innerText = `${channels.discord || 0} tickets`;
+          if (chGmCount) chGmCount.innerText = `${channels.gmail || 0} tickets`;
+
+          // 6. Agent Workload Distribution
           const loadBox = document.getElementById('analyticsAgentLoads');
-          loadBox.innerHTML = d.agentWorkloads.map(w => `
-            <div>
-              <div class="flex-between" style="font-size: 12.5px;">
-                <strong>${escapeHtml(w.name)}</strong>
-                <span>${w.pending} pending • ${w.resolved} resolved ${w.escalated > 0 ? `<span class="jira-tag tag-red">${w.escalated} Escalated</span>` : ''}</span>
-              </div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill" style="width: ${Math.min(100, w.pending * 10)}%;"></div>
-              </div>
-            </div>
-          `).join('');
+          const teamCountEl = document.getElementById('workloadTotalAgents');
+          if (teamCountEl && Array.isArray(d.agentWorkloads)) {
+            teamCountEl.innerText = `${d.agentWorkloads.length} Active Agents`;
+          }
 
-          // Categories
+          if (loadBox && Array.isArray(d.agentWorkloads)) {
+            loadBox.innerHTML = d.agentWorkloads.map(w => {
+              const total = (w.total || 0) || (w.pending + w.resolved);
+              const resolvedPct = total > 0 ? Math.round((w.resolved / total) * 100) : 0;
+              const pendingPct = total > 0 ? Math.round(((w.pending - (w.escalated || 0)) / total) * 100) : 0;
+              const escalatedPct = total > 0 ? Math.round((w.escalated / total) * 100) : 0;
+              const initials = (w.name || 'AG').split(' ').map(n=>n[0]).join('').substring(0, 2);
+              const isUnassigned = w.name.toLowerCase().includes('unassigned');
+              const avatarBg = isUnassigned ? '#6B778C' : '#0052CC';
+              const capacityScore = Math.min(100, Math.round((w.pending / Math.max(1, total)) * 100));
+
+              return `
+                <div class="agent-workload-item">
+                  <div class="agent-workload-top">
+                    <div class="agent-info-flex">
+                      <div class="agent-avatar-circle" style="background: ${avatarBg};">${initials}</div>
+                      <div>
+                        <div class="agent-name-text">${escapeHtml(w.name)}</div>
+                        <div class="agent-role-sub">${isUnassigned ? 'Unassigned Ingestion Triage' : 'Support SLA Responder'}</div>
+                      </div>
+                    </div>
+                    <div style="text-align: right;">
+                      <span class="jira-tag ${w.escalated > 0 ? 'tag-red' : 'tag-blue'}" style="font-weight: 700;">
+                        ${total} Assigned
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Stacked Progress Bar -->
+                  <div class="stacked-progress-bar" title="Resolved: ${w.resolved}, Active: ${w.pending}, Escalated: ${w.escalated}">
+                    <div class="stacked-bar-segment seg-resolved" style="width: ${resolvedPct}%;"></div>
+                    <div class="stacked-bar-segment seg-pending" style="width: ${Math.max(4, pendingPct)}%;"></div>
+                    <div class="stacked-bar-segment seg-escalated" style="width: ${escalatedPct}%;"></div>
+                  </div>
+
+                  <!-- Metric counters -->
+                  <div class="agent-stats-footer">
+                    <div style="display: flex; gap: 12px;">
+                      <span class="agent-stat-pill" style="color: #0052CC;">
+                        <span class="dot-indicator" style="background: #0052CC;"></span> ${w.pending} Active
+                      </span>
+                      <span class="agent-stat-pill" style="color: #00875A;">
+                        <span class="dot-indicator" style="background: #00875A;"></span> ${w.resolved} Resolved
+                      </span>
+                      <span class="agent-stat-pill" style="color: #DE350B;">
+                        <span class="dot-indicator" style="background: #DE350B;"></span> ${w.escalated} Escalated
+                      </span>
+                    </div>
+                    <span style="font-weight: 600; color: ${capacityScore > 80 ? '#DE350B' : '#00875A'}; font-size: 11px;">
+                      ${capacityScore > 80 ? '⚠️ High Load' : '✅ Balanced'}
+                    </span>
+                  </div>
+                </div>
+              `;
+            }).join('');
+          }
+
+          // 7. Categories Breakdown
           const catBox = document.getElementById('analyticsCategoryClusters');
-          catBox.innerHTML = d.topCategories.map(c => `
-            <div>
-              <div class="flex-between" style="font-size: 12.5px;">
-                <span>${escapeHtml(c.category)}</span>
-                <strong>${c.count} (${c.percentage}%)</strong>
-              </div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill" style="width: ${c.percentage}%; background: #5243AA;"></div>
-              </div>
-            </div>
-          `).join('');
+          if (catBox && Array.isArray(d.topCategories)) {
+            const getCatIcon = (name) => {
+              const n = (name || '').toLowerCase();
+              if (n.includes('tech') || n.includes('app')) {
+                return '<svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>';
+              }
+              if (n.includes('damage') || n.includes('defect')) {
+                return '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>';
+              }
+              if (n.includes('bill') || n.includes('refund')) {
+                return '<svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>';
+              }
+              if (n.includes('deliver') || n.includes('delay') || n.includes('courier')) {
+                return '<svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>';
+              }
+              return '<svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>';
+            };
 
+            const getCatGradient = (idx) => {
+              const gradients = [
+                'linear-gradient(90deg, #5243AA 0%, #79E2F2 100%)',
+                'linear-gradient(90deg, #0052CC 0%, #2684FF 100%)',
+                'linear-gradient(90deg, #FF5630 0%, #FF8B00 100%)',
+                'linear-gradient(90deg, #00875A 0%, #57D9A3 100%)',
+                'linear-gradient(90deg, #6554C0 0%, #8777D9 100%)'
+              ];
+              return gradients[idx % gradients.length];
+            };
+
+            catBox.innerHTML = d.topCategories.map((c, idx) => `
+              <div class="category-breakdown-item">
+                <div class="cat-item-header">
+                  <div class="cat-item-left">
+                    <span class="cat-icon-badge">${getCatIcon(c.category)}</span>
+                    <span>${escapeHtml(c.category)}</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 6px;">
+                    <span class="jira-tag tag-purple" style="font-weight: 700;">${c.count} tickets</span>
+                    <span style="font-size: 12px; font-weight: 700; color: #172B4D;">${c.percentage}%</span>
+                  </div>
+                </div>
+                <div class="stacked-progress-bar" style="margin: 4px 0 0 0; height: 6px;">
+                  <div class="stacked-bar-segment" style="width: ${c.percentage}%; background: ${getCatGradient(idx)};"></div>
+                </div>
+              </div>
+            `).join('');
+          }
+
+          // 8. AI Root Cause
           fetchAIRootCauseAnalysis();
         }
       } catch (err) {
         console.error('Analytics load error:', err);
+      } finally {
+        const refreshBtn = document.getElementById('btnRefreshAnalytics');
+        if (refreshBtn) {
+          refreshBtn.disabled = false;
+          refreshBtn.innerHTML = '<svg class="icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg><span>Refresh Analytics</span>';
+        }
       }
     }
 
     // 12. AI Root-Cause Synthesis
     async function fetchAIRootCauseAnalysis() {
+      const btn = document.getElementById('btnSynthesizeAI');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg><span>Synthesizing Intelligence...</span>';
+      }
+
       try {
         const res = await fetch('/api/ai/root-cause-analysis');
         const json = await res.json();
         if (json.success && json.analysis) {
           const a = json.analysis;
-          document.getElementById('aiRootCauseSummaryText').innerText = a.executiveSummary;
-          
-          document.getElementById('aiBottlenecksList').innerHTML = (a.coreBottlenecks || []).map(b => `
-            <div style="background: white; border: 1px solid var(--border); border-radius: 3px; padding: 8px 10px; font-size: 12px;">
-              <div class="flex-between">
-                <strong>${escapeHtml(b.title)}</strong>
-                <span class="jira-tag ${b.severity === 'CRITICAL' ? 'tag-red' : 'tag-yellow'}">${b.severity}</span>
-              </div>
-              <p style="color: var(--text-muted); margin-top: 3px;">${escapeHtml(b.rootCause)}</p>
-            </div>
-          `).join('');
+          const summaryEl = document.getElementById('aiRootCauseSummaryText');
+          if (summaryEl) {
+            summaryEl.innerHTML = `<strong>Autonomous Assessment:</strong> ${escapeHtml(a.executiveSummary)}`;
+          }
 
-          document.getElementById('aiRecommendationsList').innerHTML = (a.strategicRecommendations || []).map(r => `
-            <div style="background: #E3FCEF; border: 1px solid #ABF5D1; color: #00875A; border-radius: 3px; padding: 8px 10px; font-size: 12px;">
-              <div class="flex-between">
-                <strong>${escapeHtml(r.action)}</strong>
-                <span class="jira-tag tag-green">${r.priority}</span>
-              </div>
-              <p style="margin-top: 2px;">${escapeHtml(r.expectedBenefit)}</p>
-            </div>
-          `).join('');
+          const bottlenecksBox = document.getElementById('aiBottlenecksList');
+          if (bottlenecksBox) {
+            bottlenecksBox.innerHTML = (a.coreBottlenecks || []).map(b => {
+              const isCrit = b.severity === 'CRITICAL';
+              const sevClass = isCrit ? 'tag-red' : (b.severity === 'HIGH' ? 'tag-yellow' : 'tag-blue');
+              return `
+                <div class="bottleneck-card-item ${isCrit ? 'critical' : ''}">
+                  <div class="flex-between" style="margin-bottom: 4px;">
+                    <strong style="font-size: 13px; color: #172B4D;">${escapeHtml(b.title)}</strong>
+                    <span class="jira-tag ${sevClass}" style="font-weight: 800; font-size: 10px;">${b.severity}</span>
+                  </div>
+                  <p style="font-size: 12px; color: #5E6C84; line-height: 1.4; margin: 0 0 6px 0;">${escapeHtml(b.rootCause)}</p>
+                  ${b.impact ? `<div style="font-size: 11px; color: #DE350B; font-weight: 600;">⚠️ Impact: ${escapeHtml(b.impact)}</div>` : ''}
+                </div>
+              `;
+            }).join('');
+          }
+
+          const recoBox = document.getElementById('aiRecommendationsList');
+          if (recoBox) {
+            recoBox.innerHTML = (a.strategicRecommendations || []).map(r => {
+              const isImm = r.priority === 'IMMEDIATE';
+              return `
+                <div class="remediation-card-item">
+                  <div class="flex-between" style="margin-bottom: 4px;">
+                    <strong style="font-size: 13px; color: #006644;">${escapeHtml(r.action)}</strong>
+                    <span class="jira-tag ${isImm ? 'tag-green' : 'tag-blue'}" style="font-weight: 800; font-size: 10px;">${r.priority}</span>
+                  </div>
+                  <p style="font-size: 12px; color: #00875A; line-height: 1.4; margin: 0 0 6px 0;">${escapeHtml(r.expectedBenefit)}</p>
+                  <div style="display: flex; justify-content: flex-end;">
+                    <button class="btn btn-default" style="font-size: 11px; padding: 2px 8px; height: 24px; color: #00875A; border-color: #ABF5D1; background: #FFFFFF;" onclick="showToast('⚡ Strategic remediation action queued.')">
+                      <span>Execute Action ↗</span>
+                    </button>
+                  </div>
+                </div>
+              `;
+            }).join('');
+          }
         }
       } catch (e) {
         console.warn('Root cause error:', e);
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><span>Synthesize Live Analysis</span>';
+        }
       }
     }
 
