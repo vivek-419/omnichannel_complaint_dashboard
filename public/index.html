@@ -2039,6 +2039,23 @@
         </div>
       </div>
 
+      <!-- Attachments & Evidence Section (AWS S3 Cloud Storage) -->
+      <div class="section-box" id="drawerAttachmentsBox">
+        <div class="section-heading" style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="display: flex; align-items: center; gap: 6px;">
+            <span>Attachments & Customer Evidence</span>
+            <span class="badge" style="background: rgba(255, 153, 0, 0.12); color: #FF9900; font-size: 10px; padding: 2px 6px; border-radius: 3px; font-weight: 700;">AWS S3 Cloud</span>
+          </span>
+          <label class="btn btn-default" style="font-size: 11px; height: 24px; padding: 0 8px; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+            <input type="file" id="drawerAttachmentUploadInput" style="display: none;" onchange="handleManualAttachmentUpload(event)">
+            <span>+ Upload to S3</span>
+          </label>
+        </div>
+        <div id="drawerAttachmentsList" style="margin-top: 8px;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
       <!-- Conversation Messages & Audit Thread -->
       <div class="section-box">
         <div class="section-heading">
@@ -2593,6 +2610,9 @@
       // Customer Digital Wallet Status
       renderDrawerWallet(ticket);
 
+      // Attachments & Evidence (AWS S3)
+      renderDrawerAttachments(ticket);
+
       // Thread Messages
       renderDrawerThread(ticket);
 
@@ -2640,6 +2660,114 @@
       }
     }
 
+    // Render Attachments in Drawer (AWS S3 Integration)
+    function renderDrawerAttachments(ticket) {
+      const container = document.getElementById('drawerAttachmentsList');
+      if (!container) return;
+
+      const attachments = ticket.attachments || [];
+      if (attachments.length === 0) {
+        container.innerHTML = `
+          <div style="font-size: 12px; color: var(--text-muted); padding: 8px 12px; background: rgba(0,0,0,0.02); border-radius: 4px; border: 1px dashed var(--border-color); display: flex; align-items: center; justify-content: space-between;">
+            <span>No attachments attached. Click <strong>"+ Upload to S3"</strong> to add customer evidence.</span>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = `
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px;">
+          ${attachments.map((att, idx) => {
+            const isImg = att.isImage || (att.mimeType && att.mimeType.startsWith('image/')) || /\.(jpg|jpeg|png|gif|webp|bmp)$/i.test(att.filename || '');
+            const sizeStr = att.size ? (att.size > 1024 * 1024 ? (att.size / (1024 * 1024)).toFixed(1) + ' MB' : Math.round(att.size / 1024) + ' KB') : '';
+            if (isImg) {
+              return `
+                <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.06); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                  <div style="height: 95px; width: 100%; background: #0F172A; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer;" onclick="openImageModal('${escapeHtml(att.url)}', '${escapeHtml(att.filename)}')">
+                    <img src="${att.url}" alt="${escapeHtml(att.filename)}" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                  </div>
+                  <div style="padding: 6px 8px; font-size: 11px;">
+                    <div style="font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-main);" title="${escapeHtml(att.filename)}">${escapeHtml(att.filename)}</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); margin-top: 2px;">
+                      <span>${sizeStr}</span>
+                      <a href="${att.url}" target="_blank" download="${escapeHtml(att.filename)}" style="color: #0052CC; text-decoration: none; font-weight: 600;">View ↗</a>
+                    </div>
+                  </div>
+                </div>
+              `;
+            } else {
+              return `
+                <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between;">
+                  <div style="display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 20px;">📄</span>
+                    <div style="font-weight: 600; font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(att.filename)}">${escapeHtml(att.filename)}</div>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font-size: 11px; color: var(--text-muted);">
+                    <span>${sizeStr}</span>
+                    <a href="${att.url}" target="_blank" download="${escapeHtml(att.filename)}" class="btn btn-default" style="font-size: 10.5px; height: 22px; padding: 0 6px;">Download</a>
+                  </div>
+                </div>
+              `;
+            }
+          }).join('')}
+        </div>
+      `;
+    }
+
+    // Modal to zoom image on click
+    function openImageModal(imgUrl, title) {
+      let modal = document.getElementById('imageZoomModal');
+      if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'imageZoomModal';
+        modal.style.cssText = 'position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(4px); z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px;';
+        modal.onclick = (e) => { if (e.target === modal || e.target.id === 'closeImgModalBtn') modal.remove(); };
+        document.body.appendChild(modal);
+      }
+      modal.innerHTML = `
+        <div style="max-width: 90vw; max-height: 85vh; display: flex; flex-direction: column; align-items: center; position: relative;">
+          <div style="display: flex; justify-content: space-between; width: 100%; color: #fff; padding-bottom: 8px; font-size: 13px;">
+            <span style="font-weight: 600;">${escapeHtml(title)}</span>
+            <button id="closeImgModalBtn" style="background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; line-height: 1;">&times;</button>
+          </div>
+          <img src="${imgUrl}" style="max-width: 100%; max-height: 80vh; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); object-fit: contain;">
+        </div>
+      `;
+    }
+
+    // Upload attachment directly to AWS S3 from UI
+    async function handleManualAttachmentUpload(event) {
+      if (!activeTicket) return;
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const base64Data = reader.result.split(',')[1];
+        try {
+          const res = await fetch(`/api/tickets/${activeTicket.ticketId}/attachments`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              fileName: file.name,
+              mimeType: file.type,
+              base64Data
+            })
+          });
+          const data = await res.json();
+          if (data.success && data.ticket) {
+            await loadTickets();
+            openDetailDrawer(activeTicket.ticketId);
+          } else {
+            alert('Upload failed: ' + (data.error || 'Unknown error'));
+          }
+        } catch (err) {
+          alert('Upload error: ' + err.message);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
     // Render Conversation Thread
     function renderDrawerThread(ticket) {
       const threadBox = document.getElementById('drawerThreadStream');
@@ -2648,7 +2776,9 @@
         ...(ticket.agentReply ? [{ senderType: 'agent', senderName: ticket.assignedAgentName || 'Agent', text: ticket.agentReply, timestamp: ticket.resolvedAt || new Date().toISOString() }] : [])
       ];
 
-      threadBox.innerHTML = msgs.map(m => {
+      const attachments = ticket.attachments || [];
+
+      threadBox.innerHTML = msgs.map((m, idx) => {
         let bubbleClass = 'thread-bubble-customer';
         let author = m.senderName || ticket.sender;
         if (m.senderType === 'agent') {
@@ -2658,6 +2788,26 @@
           bubbleClass = 'thread-bubble-system';
           author = 'System Audit';
         }
+
+        // Include inline attachments on first customer message if present
+        let attachmentsHtml = '';
+        if (idx === 0 && attachments.length > 0 && m.senderType === 'customer') {
+          attachmentsHtml = `
+            <div style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 8px;">
+              ${attachments.map(att => {
+                if (att.isImage || /\.(jpg|jpeg|png|gif|webp|bmp)$/i.test(att.filename || '')) {
+                  return `
+                    <div style="cursor: pointer; border-radius: 4px; overflow: hidden; max-width: 140px; border: 1px solid rgba(0,0,0,0.1);" onclick="openImageModal('${escapeHtml(att.url)}', '${escapeHtml(att.filename)}')">
+                      <img src="${att.url}" alt="${escapeHtml(att.filename)}" style="width: 100%; height: 80px; object-fit: cover; display: block;">
+                    </div>
+                  `;
+                }
+                return '';
+              }).join('')}
+            </div>
+          `;
+        }
+
         return `
           <div class="thread-bubble ${bubbleClass}">
             <div class="bubble-meta">
@@ -2665,6 +2815,7 @@
               <span>${new Date(m.timestamp).toLocaleTimeString()}</span>
             </div>
             <div style="line-height: 1.45; white-space: pre-wrap;">${escapeHtml(m.text)}</div>
+            ${attachmentsHtml}
           </div>
         `;
       }).join('');

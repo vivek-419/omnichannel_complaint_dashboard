@@ -12,5 +12,6 @@ router.post('/:id/reassign', optionalAuth, ticketController.reassignTicket);
 router.patch('/:id/status', ticketController.updateStatus);
 router.delete('/:id', ticketController.deleteTicket);
 router.post('/:id/issue-reward', ticketController.issueReward);
+router.post('/:id/attachments', ticketController.uploadAttachment);
 
 module.exports = router;

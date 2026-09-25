@@ -135,6 +135,10 @@ function addTicket(ticketData) {
       t => t.channel === ticketData.channel && t.channelMessageId === ticketData.channelMessageId
     );
     if (existing) {
+      if (ticketData.attachments && ticketData.attachments.length > 0) {
+        existing.attachments = ticketData.attachments;
+        saveTickets();
+      }
       return { ticket: existing, isNew: false };
     }
   }
@@ -169,6 +173,7 @@ function addTicket(ticketData) {
     assignedAgentName: ticketData.assignedAgentName || assigned.name,
     slaDeadline: slaDeadline,
     isEscalated: false,
+    attachments: ticketData.attachments || [],
     messages: [
       {
         id: `msg-${Date.now()}-1`,
@@ -196,6 +201,16 @@ function addTicket(ticketData) {
 
   console.log(`[TicketStore] 📥 New ${normalized.channel.toUpperCase()} Ticket created: [${normalized.ticketId}] assigned to ${normalized.assignedAgentName}`);
   return { ticket: normalized, isNew: true };
+}
+
+// Add an attachment to an existing ticket (e.g. uploaded via UI to AWS S3)
+function addAttachment(ticketId, attachment) {
+  const t = tickets.find(x => x.ticketId === ticketId);
+  if (!t) return null;
+  if (!t.attachments) t.attachments = [];
+  t.attachments.push(attachment);
+  saveTickets();
+  return t;
 }
 
 // Retrieve all tickets with optional filtering
@@ -474,5 +489,6 @@ module.exports = {
   detectPriority,
   detectSentiment,
   detectCategory,
-  getAnalyticsSummary
+  getAnalyticsSummary,
+  addAttachment
 };

@@ -16,8 +16,8 @@ async function dbSaveTicket(ticket) {
       INSERT INTO tickets (
         ticket_id, channel, channel_message_id, sender, sender_id, chat_id, channel_id,
         subject, message, category, priority, sentiment, status, assigned_agent_id,
-        assigned_agent_name, sla_deadline, is_escalated, agent_reply, created_at, resolved_at
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)
+        assigned_agent_name, sla_deadline, is_escalated, agent_reply, created_at, resolved_at, attachments
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21)
       ON CONFLICT (ticket_id) DO UPDATE SET
         subject = EXCLUDED.subject,
         message = EXCLUDED.message,
@@ -29,7 +29,8 @@ async function dbSaveTicket(ticket) {
         assigned_agent_name = EXCLUDED.assigned_agent_name,
         is_escalated = EXCLUDED.is_escalated,
         agent_reply = EXCLUDED.agent_reply,
-        resolved_at = EXCLUDED.resolved_at
+        resolved_at = EXCLUDED.resolved_at,
+        attachments = COALESCE(EXCLUDED.attachments, tickets.attachments)
       RETURNING *;
     `, [
       ticket.ticketId,
@@ -51,7 +52,8 @@ async function dbSaveTicket(ticket) {
       !!ticket.isEscalated,
       ticket.agentReply || null,
       ticket.timestamp ? new Date(ticket.timestamp) : new Date(),
-      ticket.resolvedAt ? new Date(ticket.resolvedAt) : null
+      ticket.resolvedAt ? new Date(ticket.resolvedAt) : null,
+      JSON.stringify(ticket.attachments || [])
     ]);
     return res.rows[0];
   } catch (err) {
@@ -129,6 +131,7 @@ async function dbFetchAllTickets() {
       agentReply: r.agent_reply,
       timestamp: r.created_at,
       resolvedAt: r.resolved_at,
+      attachments: r.attachments || [],
       messages: r.messages || []
     }));
   } catch (err) {

@@ -227,6 +227,67 @@ function simulateMessage(req, res) {
   });
 }
 
+const s3Service = require('../services/s3.service');
+
+// POST /api/tickets/:id/attachments - Upload Evidence to AWS S3 & link to ticket
+async function uploadAttachment(req, res) {
+  const { id } = req.params;
+  const { fileName, mimeType, base64Data } = req.body;
+
+  if (!base64Data || !fileName) {
+    return res.status(400).json({ success: false, error: 'File data and fileName required.' });
+  }
+
+  try {
+    const fileBuffer = Buffer.from(base64Data, 'base64');
+    let fileUrl = null;
+    let s3Key = null;
+
+    if (s3Service && s3Service.isConfigured) {
+      const s3Res = await s3Service.uploadAttachment({
+        ticketId: id,
+        fileName,
+        contentType: mimeType,
+        fileBuffer
+      });
+      if (s3Res.success) {
+        fileUrl = s3Res.downloadUrl;
+        s3Key = s3Res.key;
+      }
+    }
+
+    if (!fileUrl) {
+      fileUrl = `data:${mimeType || 'image/jpeg'};base64,${base64Data}`;
+    }
+
+    const isImage = (mimeType && mimeType.startsWith('image/')) || /\.(jpg|jpeg|png|gif|webp|bmp)$/i.test(fileName);
+    const attachmentObj = {
+      filename: fileName,
+      mimeType: mimeType || 'application/octet-stream',
+      size: fileBuffer.length,
+      url: fileUrl,
+      s3Key,
+      isImage,
+      uploadedAt: new Date().toISOString()
+    };
+
+    const updatedTicket = ticketStore.addAttachment(id, attachmentObj);
+    if (!updatedTicket) {
+      return res.status(404).json({ success: false, error: 'Ticket not found' });
+    }
+
+    res.json({
+      success: true,
+      message: 'Attachment successfully uploaded to AWS S3 and linked to ticket!',
+      attachment: attachmentObj,
+      ticket: updatedTicket
+    });
+  } catch (err) {
+    console.error('[Upload Attachment Error]:', err.message);
+    res.status(500).json({ success: false, error: err.message });
+  }
+}
+
 module.exports = {
   getTickets,
   getTicketById,
@@ -236,5 +297,6 @@ module.exports = {
   updateStatus,
   deleteTicket,
   issueReward,
-  simulateMessage
+  simulateMessage,
+  uploadAttachment
 };

@@ -44,6 +44,94 @@ function getAuthenticatedClient() {
 
 let lastGmailError = null;
 
+const s3Service = require('./s3.service');
+
+// Helper to recursively extract attachments from Gmail MIME payload
+async function extractAttachments(payload, gmail, messageId, ticketId) {
+  const attachments = [];
+  const partsToProcess = [];
+
+  function collectParts(parts) {
+    if (!parts || !Array.isArray(parts)) return;
+    for (const p of parts) {
+      if (p.filename && p.filename.trim().length > 0 && p.body) {
+        partsToProcess.push(p);
+      }
+      if (p.parts) {
+        collectParts(p.parts);
+      }
+    }
+  }
+
+  if (payload.parts) {
+    collectParts(payload.parts);
+  } else if (payload.filename && payload.filename.trim().length > 0 && payload.body) {
+    partsToProcess.push(payload);
+  }
+
+  for (const part of partsToProcess) {
+    try {
+      let fileBuffer = null;
+      if (part.body.attachmentId) {
+        const attRes = await gmail.users.messages.attachments.get({
+          userId: 'me',
+          messageId: messageId,
+          id: part.body.attachmentId
+        });
+        if (attRes.data && attRes.data.data) {
+          fileBuffer = Buffer.from(attRes.data.data, 'base64url');
+        }
+      } else if (part.body.data) {
+        fileBuffer = Buffer.from(part.body.data, 'base64url');
+      }
+
+      if (fileBuffer) {
+        let fileUrl = null;
+        let s3Key = null;
+
+        // Upload to AWS S3 if configured
+        if (s3Service && s3Service.isConfigured) {
+          try {
+            const s3Res = await s3Service.uploadAttachment({
+              ticketId,
+              fileName: part.filename,
+              contentType: part.mimeType,
+              fileBuffer
+            });
+            if (s3Res.success) {
+              fileUrl = s3Res.downloadUrl;
+              s3Key = s3Res.key;
+            }
+          } catch (s3Err) {
+            console.error('[AWS S3 Attachment Upload Error]:', s3Err.message);
+          }
+        }
+
+        // Fallback to base64 Data URL if S3 is not available
+        if (!fileUrl) {
+          const mime = part.mimeType || 'image/jpeg';
+          fileUrl = `data:${mime};base64,${fileBuffer.toString('base64')}`;
+        }
+
+        const isImage = (part.mimeType && part.mimeType.startsWith('image/')) || /\.(jpg|jpeg|png|gif|webp|bmp)$/i.test(part.filename);
+
+        attachments.push({
+          filename: part.filename,
+          mimeType: part.mimeType || 'application/octet-stream',
+          size: part.body.size || fileBuffer.length,
+          url: fileUrl,
+          s3Key: s3Key,
+          isImage
+        });
+      }
+    } catch (attErr) {
+      console.error(`[Gmail Service] Could not download attachment "${part.filename}":`, attErr.message);
+    }
+  }
+
+  return attachments;
+}
+
 // Fetch complaint emails from inbox
 async function fetchComplaintEmails(maxResults = 30) {
   try {
@@ -80,8 +168,13 @@ async function fetchComplaintEmails(maxResults = 30) {
           subjectHeader = snippet ? snippet.substring(0, 50) : '(No Subject)';
         }
 
+        const ticketId = `GMAIL-${item.id.substring(0, 6).toUpperCase()}`;
+
+        // Extract any attachments (photos, PDFs, screenshots) & upload to S3
+        const attachments = await extractAttachments(detail.data.payload, gmail, item.id, ticketId);
+
         const complaintTicket = {
-          ticketId: `GMAIL-${item.id.substring(0, 6).toUpperCase()}`,
+          ticketId,
           channel: 'gmail',
           channelMessageId: item.id,
           sender: fromHeader,
@@ -89,7 +182,8 @@ async function fetchComplaintEmails(maxResults = 30) {
           message: snippet,
           timestamp: dateHeader,
           priority: detectPriority(subjectHeader, snippet),
-          status: 'New'
+          status: 'New',
+          attachments: attachments
         };
 
         normalizedComplaints.push(complaintTicket);
