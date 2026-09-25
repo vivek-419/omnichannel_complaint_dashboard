@@ -12,7 +12,8 @@ async function syncGmailComplaints() {
       return { success: false, error: gmailStatus.error || 'Gmail not authenticated' };
     }
 
-    const newComplaints = await fetchComplaintEmails(30);
+    const currentTickets = ticketStore.getTickets();
+    const newComplaints = await fetchComplaintEmails(20, currentTickets);
     let addedCount = 0;
 
     for (const item of newComplaints) {

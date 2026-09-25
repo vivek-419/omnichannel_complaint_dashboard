@@ -2704,14 +2704,11 @@
         </div>
       </div>
 
-      <!-- Attachments & Evidence Section (AWS S3 Cloud Storage) -->
-      <div class="section-box" id="drawerAttachmentsBox">
+      <!-- Attachments & Customer Evidence -->
+      <div class="section-box" id="drawerAttachmentsBox" style="display: none;">
         <div class="section-heading" style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="display: flex; align-items: center; gap: 6px;">
-            <span>Attachments & Customer Evidence</span>
-            <span class="jira-tag tag-yellow" style="font-size: 10px;">AWS S3</span>
-          </span>
-          <span id="drawerAttachmentCountTag" class="jira-tag tag-gray" style="font-size: 10px;">0 Files</span>
+          <span>Attachments & Customer Evidence</span>
+          <span id="drawerAttachmentCountTag" class="jira-tag tag-blue" style="font-size: 10px;">0 Files</span>
         </div>
         <div id="drawerAttachmentsList" style="margin-top: 8px;">
           <!-- Dynamically populated -->
@@ -3420,23 +3417,22 @@
       }
     }
 
-    // Render Attachments in Drawer (AWS S3 Integration)
+    // Render Attachments in Drawer
     function renderDrawerAttachments(ticket) {
+      const box = document.getElementById('drawerAttachmentsBox');
       const container = document.getElementById('drawerAttachmentsList');
       const countTag = document.getElementById('drawerAttachmentCountTag');
-      if (!container) return;
+      if (!container || !box) return;
 
       const attachments = ticket.attachments || [];
-      if (countTag) countTag.innerText = `${attachments.length} File${attachments.length === 1 ? '' : 's'}`;
-
       if (attachments.length === 0) {
-        container.innerHTML = `
-          <div style="font-size: 12px; color: var(--text-muted); padding: 8px 12px; background: var(--bg-subtle); border-radius: var(--radius); border: 1px dashed var(--border);">
-            <span>No attachments attached with this grievance.</span>
-          </div>
-        `;
+        box.style.display = 'none';
+        container.innerHTML = '';
         return;
       }
+
+      box.style.display = 'flex';
+      if (countTag) countTag.innerText = `${attachments.length} File${attachments.length === 1 ? '' : 's'}`;
 
       container.innerHTML = `
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px;">

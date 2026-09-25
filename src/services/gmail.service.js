@@ -133,7 +133,7 @@ async function extractAttachments(payload, gmail, messageId, ticketId) {
 }
 
 // Fetch complaint emails from inbox
-async function fetchComplaintEmails(maxResults = 30) {
+async function fetchComplaintEmails(maxResults = 20, existingTickets = []) {
   try {
     const auth = getAuthenticatedClient();
     const gmail = google.gmail({ version: 'v1', auth });
@@ -151,6 +151,13 @@ async function fetchComplaintEmails(maxResults = 30) {
 
     for (const item of messages) {
       try {
+        const ticketId = `GMAIL-${item.id.substring(0, 6).toUpperCase()}`;
+
+        // Skip fetching detail if this email was already ingested into ticketStore
+        if (Array.isArray(existingTickets) && existingTickets.some(t => t.channelMessageId === item.id || t.ticketId === ticketId)) {
+          continue;
+        }
+
         const detail = await gmail.users.messages.get({
           userId: 'me',
           id: item.id,
@@ -167,8 +174,6 @@ async function fetchComplaintEmails(maxResults = 30) {
         if (!subjectHeader || subjectHeader.trim() === '' || subjectHeader === '(No Subject)') {
           subjectHeader = snippet ? snippet.substring(0, 50) : '(No Subject)';
         }
-
-        const ticketId = `GMAIL-${item.id.substring(0, 6).toUpperCase()}`;
 
         // Extract any attachments (photos, PDFs, screenshots) & upload to S3
         const attachments = await extractAttachments(detail.data.payload, gmail, item.id, ticketId);
@@ -282,13 +287,25 @@ async function sendEmailReply(toEmail, subject, replyBody, threadId) {
   const sendParams = {
     userId: 'me',
     requestBody: {
-      raw: encodedMessage,
-      ...(threadId ? { threadId } : {})
+      raw: encodedMessage
     }
   };
 
-  const response = await gmail.users.messages.send(sendParams);
-  return response.data;
+  if (threadId && typeof threadId === 'string' && /^[0-9a-fA-F]{10,}$/.test(threadId)) {
+    sendParams.requestBody.threadId = threadId;
+  }
+
+  try {
+    const response = await gmail.users.messages.send(sendParams);
+    return response.data;
+  } catch (err) {
+    if (sendParams.requestBody.threadId) {
+      delete sendParams.requestBody.threadId;
+      const retryResponse = await gmail.users.messages.send(sendParams);
+      return retryResponse.data;
+    }
+    throw err;
+  }
 }
 
 function getGmailStatus() {
