@@ -1941,9 +1941,10 @@
         </div>
 
         <!-- Global Search -->
-        <div class="search-wrapper">
+        <div class="search-wrapper" style="position: relative; display: flex; align-items: center;">
           <svg class="icon icon-sm search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          <input type="text" class="search-input" id="globalSearch" placeholder="Search complaints, senders..." oninput="handleSearch(this.value)">
+          <input type="search" class="search-input" id="globalSearch" name="resolviq_search_query" placeholder="Search complaints, senders..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="handleSearch(this.value)">
+          <button id="btnClearSearch" onclick="clearSearch()" title="Clear search" style="display: none; position: absolute; right: 8px; border: none; background: transparent; cursor: pointer; color: var(--text-muted); font-size: 13px; font-weight: 700; line-height: 1;">✕</button>
         </div>
 
         <!-- Notifications Bell Button -->
@@ -2970,13 +2971,17 @@
       document.getElementById('btnTabQueue')?.classList.toggle('active', viewName === 'queue');
 
       const breadcrumb = document.getElementById('breadcrumbCurrent');
-      if (viewName === 'board') breadcrumb.innerText = 'Complaints Board';
-      else if (viewName === 'queue') breadcrumb.innerText = 'Complaints Queue';
-      else if (viewName === 'analytics') {
-        breadcrumb.innerText = 'Executive Analytics';
+      if (viewName === 'board') {
+        if (breadcrumb) breadcrumb.innerText = 'Complaints Board';
+        renderBoardView();
+      } else if (viewName === 'queue') {
+        if (breadcrumb) breadcrumb.innerText = 'Complaints Queue';
+        renderQueueView();
+      } else if (viewName === 'analytics') {
+        if (breadcrumb) breadcrumb.innerText = 'Executive Analytics';
         loadAnalyticsData();
       } else if (viewName === 'admin') {
-        breadcrumb.innerText = 'Admin Settings & Channels';
+        if (breadcrumb) breadcrumb.innerText = 'Admin Settings & Channels';
         loadAdminData();
       }
     }
@@ -3004,7 +3009,8 @@
           currentTickets = json.data.sort((a, b) => (new Date(b.timestamp).getTime() || 0) - (new Date(a.timestamp).getTime() || 0));
           renderBoardView();
           renderQueueView();
-          document.getElementById('badgeBoardCount').innerText = currentTickets.length;
+          const badge = document.getElementById('badgeBoardCount');
+          if (badge) badge.innerText = currentTickets.length;
         }
       } catch (err) {
         console.error('Error loading tickets:', err);
@@ -3044,23 +3050,32 @@
         Resolved: document.getElementById('cardsColResolved')
       };
 
+      if (!cols.New) return;
+
       // Filter tickets
-      const chFilter = document.getElementById('filterChannel').value;
-      const prFilter = document.getElementById('filterPriority').value;
-      const searchVal = (document.getElementById('globalSearch').value || '').toLowerCase();
+      const chFilter = document.getElementById('filterChannel')?.value || 'all';
+      const prFilter = document.getElementById('filterPriority')?.value || 'all';
+      const searchInput = document.getElementById('globalSearch');
+      let searchVal = (searchInput?.value || '').trim().toLowerCase();
+
+      // Guard: If browser autofilled current logged-in user email into search bar, clear it
+      if (currentUser && currentUser.email && searchVal === currentUser.email.toLowerCase()) {
+        if (searchInput) searchInput.value = '';
+        searchVal = '';
+      }
 
       let filtered = currentTickets.filter(t => {
         if (chFilter !== 'all' && t.channel !== chFilter) return false;
         if (prFilter !== 'all' && t.priority !== prFilter) return false;
         if (searchVal) {
-          const match = (t.ticketId + t.subject + t.sender + t.message).toLowerCase();
+          const match = ((t.ticketId || '') + ' ' + (t.subject || '') + ' ' + (t.sender || '') + ' ' + (t.message || '') + ' ' + (t.assignedAgentName || '')).toLowerCase();
           if (!match.includes(searchVal)) return false;
         }
         return true;
       });
 
       // Clear columns
-      Object.values(cols).forEach(c => c.innerHTML = '');
+      Object.values(cols).forEach(c => { if (c) c.innerHTML = ''; });
 
       let counts = { New: 0, InProgress: 0, Escalated: 0, Resolved: 0 };
 
@@ -3107,20 +3122,48 @@
           </div>
         `;
 
-        cols[targetCol].appendChild(card);
+        if (cols[targetCol]) {
+          cols[targetCol].appendChild(card);
+        }
       });
 
       // Update counters
-      document.getElementById('countColNew').innerText = counts.New;
-      document.getElementById('countColProgress').innerText = counts.InProgress;
-      document.getElementById('countColEscalated').innerText = counts.Escalated;
-      document.getElementById('countColResolved').innerText = counts.Resolved;
+      const elNew = document.getElementById('countColNew');
+      const elProg = document.getElementById('countColProgress');
+      const elEsc = document.getElementById('countColEscalated');
+      const elRes = document.getElementById('countColResolved');
+      if (elNew) elNew.innerText = counts.New;
+      if (elProg) elProg.innerText = counts.InProgress;
+      if (elEsc) elEsc.innerText = counts.Escalated;
+      if (elRes) elRes.innerText = counts.Resolved;
     }
 
     // 5. Render Queue List View
     function renderQueueView() {
       const tbody = document.getElementById('queueTableBody');
-      tbody.innerHTML = currentTickets.map(t => {
+      if (!tbody) return;
+
+      const chFilter = document.getElementById('filterChannel')?.value || 'all';
+      const prFilter = document.getElementById('filterPriority')?.value || 'all';
+      const searchInput = document.getElementById('globalSearch');
+      let searchVal = (searchInput?.value || '').trim().toLowerCase();
+
+      if (currentUser && currentUser.email && searchVal === currentUser.email.toLowerCase()) {
+        if (searchInput) searchInput.value = '';
+        searchVal = '';
+      }
+
+      let filtered = currentTickets.filter(t => {
+        if (chFilter !== 'all' && t.channel !== chFilter) return false;
+        if (prFilter !== 'all' && t.priority !== prFilter) return false;
+        if (searchVal) {
+          const match = ((t.ticketId || '') + ' ' + (t.subject || '') + ' ' + (t.sender || '') + ' ' + (t.message || '') + ' ' + (t.assignedAgentName || '')).toLowerCase();
+          if (!match.includes(searchVal)) return false;
+        }
+        return true;
+      });
+
+      tbody.innerHTML = filtered.map(t => {
         const isEscalated = t.isEscalated || t.status === 'Escalated';
         const slaMeta = getSLAMeta(t);
         return `
@@ -3867,6 +3910,17 @@
     }
 
     function handleSearch(val) {
+      const clearBtn = document.getElementById('btnClearSearch');
+      if (clearBtn) clearBtn.style.display = val ? 'inline-block' : 'none';
+      renderBoardView();
+      renderQueueView();
+    }
+
+    function clearSearch() {
+      const searchInput = document.getElementById('globalSearch');
+      const clearBtn = document.getElementById('btnClearSearch');
+      if (searchInput) searchInput.value = '';
+      if (clearBtn) clearBtn.style.display = 'none';
       renderBoardView();
       renderQueueView();
     }
