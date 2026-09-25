@@ -2709,12 +2709,9 @@
         <div class="section-heading" style="display: flex; justify-content: space-between; align-items: center;">
           <span style="display: flex; align-items: center; gap: 6px;">
             <span>Attachments & Customer Evidence</span>
-            <span class="badge" style="background: rgba(255, 153, 0, 0.12); color: #FF9900; font-size: 10px; padding: 2px 6px; border-radius: 3px; font-weight: 700;">AWS S3 Cloud</span>
+            <span class="jira-tag tag-yellow" style="font-size: 10px;">AWS S3</span>
           </span>
-          <label class="btn btn-default" style="font-size: 11px; height: 24px; padding: 0 8px; cursor: pointer; display: flex; align-items: center; gap: 4px;">
-            <input type="file" id="drawerAttachmentUploadInput" style="display: none;" onchange="handleManualAttachmentUpload(event)">
-            <span>+ Upload to S3</span>
-          </label>
+          <span id="drawerAttachmentCountTag" class="jira-tag tag-gray" style="font-size: 10px;">0 Files</span>
         </div>
         <div id="drawerAttachmentsList" style="margin-top: 8px;">
           <!-- Dynamically populated -->
@@ -3426,13 +3423,16 @@
     // Render Attachments in Drawer (AWS S3 Integration)
     function renderDrawerAttachments(ticket) {
       const container = document.getElementById('drawerAttachmentsList');
+      const countTag = document.getElementById('drawerAttachmentCountTag');
       if (!container) return;
 
       const attachments = ticket.attachments || [];
+      if (countTag) countTag.innerText = `${attachments.length} File${attachments.length === 1 ? '' : 's'}`;
+
       if (attachments.length === 0) {
         container.innerHTML = `
-          <div style="font-size: 12px; color: var(--text-muted); padding: 8px 12px; background: rgba(0,0,0,0.02); border-radius: 4px; border: 1px dashed var(--border-color); display: flex; align-items: center; justify-content: space-between;">
-            <span>No attachments attached. Click <strong>"+ Upload to S3"</strong> to add customer evidence.</span>
+          <div style="font-size: 12px; color: var(--text-muted); padding: 8px 12px; background: var(--bg-subtle); border-radius: var(--radius); border: 1px dashed var(--border);">
+            <span>No attachments attached with this grievance.</span>
           </div>
         `;
         return;
