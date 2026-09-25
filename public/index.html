@@ -2324,12 +2324,18 @@
     let currentTickets = [];
     let activeTicket = null;
     let currentView = 'board';
-    let currentUser = {
-      id: 'usr-agent-1',
-      name: 'Rahul Sharma',
-      email: 'agent@ccmrs.com',
-      role: 'agent'
-    };
+    let currentUser = (function() {
+      try {
+        const cached = localStorage.getItem('resolviq_user');
+        if (cached) return JSON.parse(cached);
+      } catch (e) {}
+      return {
+        id: 'usr-agent-1',
+        name: 'Rahul Sharma',
+        email: 'agent@ccmrs.com',
+        role: 'agent'
+      };
+    })();
 
     // Initialize
     document.addEventListener('DOMContentLoaded', async () => {
@@ -3228,6 +3234,10 @@
         });
         const data = await res.json();
         if (data.success && data.user) {
+          if (data.token) {
+            localStorage.setItem('resolviq_token', data.token);
+          }
+          localStorage.setItem('resolviq_user', JSON.stringify(data.user));
           applyRolePermissions(data.user);
           closeAuthPortal();
           showToast(`✅ Authenticated as ${data.user.name} (${data.user.role})`);
@@ -3295,6 +3305,10 @@
         });
         const data = await res.json();
         if (data.success && data.user) {
+          if (data.token) {
+            localStorage.setItem('resolviq_token', data.token);
+          }
+          localStorage.setItem('resolviq_user', JSON.stringify(data.user));
           applyRolePermissions(data.user);
           closeAuthPortal();
           showToast(`🎉 Welcome to ResolvIQ, ${data.user.name}! Account registered in PostgreSQL.`);
@@ -3314,7 +3328,18 @@
 
     function quickLogin(email, password) { return handleQuickAuth(email, password); }
     function submitCustomLogin() { return handleCustomSignIn(); }
-    function handleSignOut() { openAuthPortal(false); showToast('Signed out of ResolvIQ'); }
+    function handleSignOut() { 
+      localStorage.removeItem('resolviq_token');
+      localStorage.removeItem('resolviq_user');
+      currentUser = {
+        id: 'usr-agent-1',
+        name: 'Rahul Sharma',
+        email: 'agent@ccmrs.com',
+        role: 'agent'
+      };
+      openAuthPortal(false); 
+      showToast('Signed out of ResolvIQ'); 
+    }
 
     // Load Admin Settings & RBAC Users Table
     async function loadAdminData() {
@@ -3563,16 +3588,41 @@
 
     async function checkAuthSession() {
       try {
-        const res = await fetch('/api/auth/me');
+        const token = localStorage.getItem('resolviq_token');
+        const cachedUserStr = localStorage.getItem('resolviq_user');
+        
+        if (cachedUserStr) {
+          try {
+            const cachedUser = JSON.parse(cachedUserStr);
+            applyRolePermissions(cachedUser);
+            closeAuthPortal();
+          } catch (err) {}
+        }
+
+        if (!token) {
+          openAuthPortal(false);
+          return;
+        }
+
+        const res = await fetch('/api/auth/me', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         const data = await res.json();
         if (data.success && data.user) {
+          localStorage.setItem('resolviq_user', JSON.stringify(data.user));
           applyRolePermissions(data.user);
           closeAuthPortal();
         } else {
+          localStorage.removeItem('resolviq_token');
+          localStorage.removeItem('resolviq_user');
           openAuthPortal(false);
         }
       } catch (e) {
-        openAuthPortal(false);
+        if (!localStorage.getItem('resolviq_user')) {
+          openAuthPortal(false);
+        }
       }
     }
 
