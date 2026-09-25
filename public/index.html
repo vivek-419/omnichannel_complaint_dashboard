@@ -1374,6 +1374,63 @@
     }
 
     /* ==========================================================================
+       6.5 CUSTOMER DIGITAL WALLETS & COMPENSATION STYLES
+       ========================================================================== */
+    .wallet-table-row {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+    .wallet-table-row:hover {
+      background: var(--bg-subtle);
+    }
+    .wallet-audit-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: all 0.12s ease;
+    }
+    .wallet-audit-card:hover {
+      border-color: #C0B6F2;
+      box-shadow: var(--shadow-card);
+    }
+    .voucher-code-pill {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 2px 7px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-copy-code {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 1px 3px;
+      border-radius: 2px;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.1s;
+    }
+    .btn-copy-code:hover {
+      color: var(--primary);
+    }
+    .credit-pts-btn.active, .credit-disc-btn.active {
+      background: #5243AA !important;
+      color: #FFFFFF !important;
+      border-color: #5243AA !important;
+    }
+
+    /* ==========================================================================
        7. NOTIFICATION SLIDEOUT & MODALS
        ========================================================================== */
     .notification-drawer {
@@ -1755,7 +1812,7 @@
         <span class="nav-label">Executive Analytics</span>
       </a>
 
-      <a class="nav-item" id="navWallets" onclick="openWalletsModal()">
+      <a class="nav-item" id="navWallets" onclick="switchView('wallets')">
         <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
         <span class="nav-label">Digital Wallets</span>
       </a>
@@ -2046,7 +2103,7 @@
             </div>
 
             <!-- 4. Loyalty Compensation Issued -->
-            <div class="exec-kpi-card">
+            <div class="exec-kpi-card" onclick="switchView('wallets')" style="cursor: pointer;" title="Click to view Customer Digital Wallets & Compensation Ledger">
               <div>
                 <div class="exec-kpi-header">
                   <span class="exec-kpi-title">Loyalty Compensation Issued</span>
@@ -2057,7 +2114,7 @@
                 <div class="exec-kpi-value" id="kpiPoints">0 pts</div>
               </div>
               <div class="exec-kpi-footer">
-                <span id="kpiPointsTag" class="jira-tag tag-purple">Digital Wallets</span>
+                <span id="kpiPointsTag" class="jira-tag tag-purple">Digital Wallets ↗</span>
                 <span>Customer Retention</span>
               </div>
             </div>
@@ -2194,6 +2251,148 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================
+           4. CUSTOMER DIGITAL WALLETS & COMPENSATION LEDGER (SRS 3.2.7)
+           ======================================================================== -->
+      <section id="viewWallets" style="display: none; flex-direction: column; flex: 1; overflow-y: auto;">
+        <div class="analytics-view-container">
+          
+          <!-- View Toolbar -->
+          <div class="view-toolbar exec-toolbar">
+            <div class="view-title-group exec-title-block">
+              <h1>
+                <span>Customer Digital Wallets & Compensation Ledger</span>
+                <span class="jira-tag tag-purple">LOYALTY & SLA REWARDS</span>
+              </h1>
+              <p>Autonomous compensation engine, customer loyalty points balances, and active service apology vouchers.</p>
+            </div>
+            <div class="exec-actions-group">
+              <input type="text" class="select-filter" id="walletSearchInput" placeholder="Search customer, ID, voucher..." oninput="renderWalletsView()" style="width: 210px;">
+              <select class="select-filter" id="walletChannelFilter" onchange="renderWalletsView()">
+                <option value="all">All Channels</option>
+                <option value="telegram">Telegram</option>
+                <option value="discord">Discord</option>
+                <option value="gmail">Gmail</option>
+              </select>
+              <button class="btn btn-primary" onclick="openIssueCreditModal()">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span>Issue Compensation</span>
+              </button>
+              <button class="btn btn-default btn-icon-only" onclick="loadWalletsData()" title="Refresh Wallets">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M23 4v6h-6"></path><path d="M1 20v-6h6"></path><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Top KPI Metrics Grid -->
+          <div class="exec-kpi-grid">
+            <div class="exec-kpi-card">
+              <div class="exec-kpi-header">
+                <span class="exec-kpi-title">Active Customer Wallets</span>
+                <div class="exec-kpi-icon-wrap">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                </div>
+              </div>
+              <div class="exec-kpi-value" id="kpiWalletsCount">0</div>
+              <div class="exec-kpi-footer">
+                <span id="kpiWalletsCountTag" class="jira-tag tag-green">All Customers Active</span>
+                <span>RDS PostgreSQL</span>
+              </div>
+            </div>
+
+            <div class="exec-kpi-card">
+              <div class="exec-kpi-header">
+                <span class="exec-kpi-title">Total Points Issued</span>
+                <div class="exec-kpi-icon-wrap">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </div>
+              </div>
+              <div class="exec-kpi-value" id="kpiTotalPointsBalance">0 pts</div>
+              <div class="exec-kpi-footer">
+                <span class="jira-tag tag-purple">Loyalty Credits</span>
+                <span>Goodwill Ledger</span>
+              </div>
+            </div>
+
+            <div class="exec-kpi-card">
+              <div class="exec-kpi-header">
+                <span class="exec-kpi-title">Active Apology Vouchers</span>
+                <div class="exec-kpi-icon-wrap">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                </div>
+              </div>
+              <div class="exec-kpi-value" id="kpiActiveVouchersCount">0</div>
+              <div class="exec-kpi-footer">
+                <span class="jira-tag tag-blue">Discount Codes</span>
+                <span>10% - 25% Off</span>
+              </div>
+            </div>
+
+            <div class="exec-kpi-card">
+              <div class="exec-kpi-header">
+                <span class="exec-kpi-title">Avg Compensation / User</span>
+                <div class="exec-kpi-icon-wrap">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                </div>
+              </div>
+              <div class="exec-kpi-value" id="kpiAvgPointsPerUser">0 pts</div>
+              <div class="exec-kpi-footer">
+                <span class="jira-tag tag-yellow">SLA Remediation</span>
+                <span>Retention Policy</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Two Main Enterprise Sections -->
+          <div class="exec-sections-grid" style="grid-template-columns: 1fr 1.1fr; align-items: start;">
+            
+            <!-- Left: Customer Wallets Table Directory -->
+            <div class="exec-panel-card">
+              <div class="exec-panel-header">
+                <div class="exec-panel-title-wrap">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                  <h2>Customer Wallets Directory</h2>
+                </div>
+                <span id="walletDirectoryCountTag" class="jira-tag tag-blue">0 Customers</span>
+              </div>
+
+              <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 12.5px; text-align: left;">
+                  <thead>
+                    <tr style="border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: 11px; text-transform: uppercase;">
+                      <th style="padding: 8px 10px;">Customer / Sender</th>
+                      <th style="padding: 8px 10px;">Points</th>
+                      <th style="padding: 8px 10px;">Vouchers</th>
+                      <th style="padding: 8px 10px; text-align: right;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="walletsTableBody">
+                    <!-- Rendered dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Right: Full Voucher & Transaction Audit Trail -->
+            <div class="exec-panel-card">
+              <div class="exec-panel-header">
+                <div class="exec-panel-title-wrap">
+                  <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  <h2>Apology Vouchers & Compensation Audit Trail</h2>
+                </div>
+                <span id="walletAuditCountTag" class="jira-tag tag-purple">0 Records</span>
+              </div>
+
+              <div id="walletAuditStream" style="display: flex; flex-direction: column; gap: 8px; max-height: 540px; overflow-y: auto; padding-right: 2px;">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </section>
 
@@ -2782,12 +2981,73 @@
     </div>
   </div>
 
+  <!-- Issue Wallet Compensation Modal -->
+  <div class="modal-backdrop" id="modalIssueWalletCredit">
+    <div class="modal-box" style="width: 500px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <svg class="icon" style="color: #5243AA;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <span style="font-weight: 600; font-size: 14px; color: var(--text-main);">Issue Customer Apology & Compensation</span>
+        </div>
+        <button class="btn btn-default btn-icon-only" onclick="closeIssueCreditModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label class="meta-label">Target Customer / Grievance</label>
+          <select class="select-filter" id="issueCreditTargetSelect" style="width: 100%; margin-top: 4px;" onchange="onCreditTargetChanged()">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <div id="customCustomerRow" style="display: none; margin-top: 4px;">
+          <label class="meta-label">Customer ID / Sender Identifier</label>
+          <input type="text" class="select-filter" id="issueCreditCustomCustomer" placeholder="e.g. cst_customer or user@gmail.com" style="width: 100%; margin-top: 4px;">
+        </div>
+
+        <div>
+          <label class="meta-label">Loyalty Reward Points</label>
+          <div style="display: flex; gap: 6px; margin-top: 4px; margin-bottom: 6px;">
+            <button type="button" class="btn btn-default credit-pts-btn" onclick="setCreditPoints(25)">+25 Pts</button>
+            <button type="button" class="btn btn-default credit-pts-btn active" onclick="setCreditPoints(50)">+50 Pts</button>
+            <button type="button" class="btn btn-default credit-pts-btn" onclick="setCreditPoints(100)">+100 Pts</button>
+            <button type="button" class="btn btn-default credit-pts-btn" onclick="setCreditPoints(200)">+200 Pts</button>
+          </div>
+          <input type="number" class="select-filter" id="issueCreditPointsInput" value="50" min="5" max="1000" style="width: 100%;">
+        </div>
+
+        <div>
+          <label class="meta-label">Apology Voucher Discount Code</label>
+          <div style="display: flex; gap: 6px; margin-top: 4px; margin-bottom: 6px;">
+            <button type="button" class="btn btn-default credit-disc-btn" onclick="setCreditDiscount('10%')">10% Off</button>
+            <button type="button" class="btn btn-default credit-disc-btn active" onclick="setCreditDiscount('15%')">15% Off</button>
+            <button type="button" class="btn btn-default credit-disc-btn" onclick="setCreditDiscount('20%')">20% Off</button>
+            <button type="button" class="btn btn-default credit-disc-btn" onclick="setCreditDiscount('25%')">25% Off</button>
+          </div>
+          <input type="text" class="select-filter" id="issueCreditDiscountInput" value="15%" style="width: 100%;">
+        </div>
+
+        <div>
+          <label class="meta-label">Compensation Reason / Note</label>
+          <input type="text" class="select-filter" id="issueCreditReasonInput" value="SLA Resolution Delay Goodwill Compensation" placeholder="e.g. Service delay goodwill" style="width: 100%; margin-top: 4px;">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; padding-top: 10px; border-top: 1px solid var(--border);">
+          <button class="btn btn-default" onclick="closeIssueCreditModal()">Cancel</button>
+          <button class="btn btn-primary" id="btnSubmitIssueCredit" onclick="submitIssueCompensation()">
+            <span>Issue Points & Generate Voucher</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ========================================================================
        7. JAVASCRIPT LOGIC & API CLIENT
        ======================================================================== -->
   <script>
     // State
     let currentTickets = [];
+    let currentWallets = [];
     let activeTicket = null;
     let currentView = 'board';
     let currentUser = (function() {
@@ -2828,12 +3088,14 @@
       }
     }
 
-    // 2. View Switcher (Board vs Queue vs Analytics vs Admin)
+    // 2. View Switcher (Board vs Queue vs Analytics vs Wallets vs Admin)
     function switchView(viewName) {
       currentView = viewName;
       document.getElementById('viewBoard').style.display = viewName === 'board' ? 'flex' : 'none';
       document.getElementById('viewQueue').style.display = viewName === 'queue' ? 'flex' : 'none';
       document.getElementById('viewAnalytics').style.display = viewName === 'analytics' ? 'flex' : 'none';
+      const viewWallets = document.getElementById('viewWallets');
+      if (viewWallets) viewWallets.style.display = viewName === 'wallets' ? 'flex' : 'none';
       const viewAdmin = document.getElementById('viewAdmin');
       if (viewAdmin) viewAdmin.style.display = viewName === 'admin' ? 'flex' : 'none';
 
@@ -2841,6 +3103,7 @@
       document.getElementById('navBoard')?.classList.toggle('active', viewName === 'board');
       document.getElementById('navQueue')?.classList.toggle('active', viewName === 'queue');
       document.getElementById('navAnalytics')?.classList.toggle('active', viewName === 'analytics');
+      document.getElementById('navWallets')?.classList.toggle('active', viewName === 'wallets');
       document.getElementById('navAdmin')?.classList.toggle('active', viewName === 'admin');
 
       // Update Header tab pills
@@ -2857,6 +3120,9 @@
       } else if (viewName === 'analytics') {
         if (breadcrumb) breadcrumb.innerText = 'Executive Analytics';
         loadAnalyticsData();
+      } else if (viewName === 'wallets') {
+        if (breadcrumb) breadcrumb.innerText = 'Customer Digital Wallets';
+        loadWalletsData();
       } else if (viewName === 'admin') {
         if (breadcrumb) breadcrumb.innerText = 'Admin Settings & Channels';
         loadAdminData();
@@ -3788,7 +4054,353 @@
     function closeLoginModal() { closeAuthPortal(); }
     function openSimulatorModal() { document.getElementById('simulatorModal').style.display = 'flex'; }
     function closeSimulatorModal() { document.getElementById('simulatorModal').style.display = 'none'; }
-    function openWalletsModal() { switchView('analytics'); }
+    function openWalletsModal() { switchView('wallets'); }
+
+    // =========================================================================
+    // 16. DIGITAL WALLETS & COMPENSATION CONTROLLER (SRS 3.2.7)
+    // =========================================================================
+    async function loadWalletsData() {
+      try {
+        const res = await fetch('/api/wallets');
+        const json = await res.json();
+        if (json.success && Array.isArray(json.wallets)) {
+          currentWallets = json.wallets;
+          renderWalletsView();
+        }
+      } catch (err) {
+        console.error('Wallets load error:', err);
+      }
+    }
+
+    function renderWalletsView() {
+      const q = (document.getElementById('walletSearchInput')?.value || '').toLowerCase().trim();
+      const channelFilter = document.getElementById('walletChannelFilter')?.value || 'all';
+
+      // 1. Calculate Metrics
+      const totalWallets = currentWallets.length;
+      let totalPoints = 0;
+      let activeVouchersCount = 0;
+      let allTransactions = [];
+
+      currentWallets.forEach(w => {
+        totalPoints += (w.pointsBalance || 0);
+        const vouchers = w.vouchers || [];
+        activeVouchersCount += vouchers.filter(v => v.status === 'ACTIVE').length;
+
+        // Collect vouchers for audit stream
+        vouchers.forEach(v => {
+          allTransactions.push({
+            type: 'VOUCHER',
+            code: v.code,
+            discount: v.discount,
+            points: v.points,
+            reason: v.reason || 'Service Apology Credit',
+            ticketId: v.ticketId,
+            status: v.status || 'ACTIVE',
+            customerId: w.customerId,
+            customerName: w.customerName,
+            timestamp: v.issuedAt || w.updatedAt
+          });
+        });
+
+        // Collect transactions for audit stream if any extra
+        (w.transactions || []).forEach(tx => {
+          if (!allTransactions.some(t => t.code === tx.voucherCode && t.timestamp === tx.timestamp)) {
+            allTransactions.push({
+              type: tx.type || 'CREDIT',
+              code: tx.voucherCode || 'N/A',
+              discount: 'N/A',
+              points: tx.points || 0,
+              reason: tx.description || 'Points Adjustment',
+              ticketId: null,
+              status: 'CREDITED',
+              customerId: w.customerId,
+              customerName: w.customerName,
+              timestamp: tx.timestamp
+            });
+          }
+        });
+      });
+
+      // Update KPI Cards
+      const elWallets = document.getElementById('kpiWalletsCount');
+      const elPoints = document.getElementById('kpiTotalPointsBalance');
+      const elVouchers = document.getElementById('kpiActiveVouchersCount');
+      const elAvg = document.getElementById('kpiAvgPointsPerUser');
+
+      if (elWallets) elWallets.innerText = totalWallets;
+      if (elPoints) elPoints.innerText = `${totalPoints} pts`;
+      if (elVouchers) elVouchers.innerText = activeVouchersCount;
+      if (elAvg) elAvg.innerText = `${Math.round(totalPoints / Math.max(1, totalWallets))} pts`;
+
+      const dirBadge = document.getElementById('walletDirectoryCountTag');
+      if (dirBadge) dirBadge.innerText = `${totalWallets} Customers`;
+
+      // 2. Filter Customer Wallets
+      const filteredWallets = currentWallets.filter(w => {
+        const id = (w.customerId || '').toLowerCase();
+        const name = (w.customerName || '').toLowerCase();
+        const hasVoucher = (w.vouchers || []).some(v => (v.code || '').toLowerCase().includes(q) || (v.ticketId || '').toLowerCase().includes(q));
+        const matchesQuery = !q || id.includes(q) || name.includes(q) || hasVoucher;
+
+        let matchesChannel = true;
+        if (channelFilter === 'telegram') matchesChannel = id.startsWith('tg_');
+        else if (channelFilter === 'discord') matchesChannel = id.startsWith('dc_');
+        else if (channelFilter === 'gmail') matchesChannel = id.startsWith('gm_') || id.includes('@');
+
+        return matchesQuery && matchesChannel;
+      });
+
+      // 3. Render Table
+      const tbody = document.getElementById('walletsTableBody');
+      if (tbody) {
+        if (filteredWallets.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="4" style="padding: 24px; text-align: center; color: var(--text-muted);">No customer wallets match your search.</td></tr>`;
+        } else {
+          tbody.innerHTML = filteredWallets.map(w => {
+            const isTg = (w.customerId || '').startsWith('tg_');
+            const isDc = (w.customerId || '').startsWith('dc_');
+            const channelTag = isTg ? '<span class="jira-tag tag-blue" style="font-size: 10px; padding: 1px 5px;">TG</span>' : (isDc ? '<span class="jira-tag tag-purple" style="font-size: 10px; padding: 1px 5px;">DC</span>' : '<span class="jira-tag tag-red" style="font-size: 10px; padding: 1px 5px;">GM</span>');
+            const initials = (w.customerName || 'CU').split(' ').map(n=>n[0]).join('').substring(0, 2);
+            const activeVouchers = (w.vouchers || []).filter(v => v.status === 'ACTIVE');
+
+            return `
+              <tr class="wallet-table-row">
+                <td style="padding: 10px;">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 24px; height: 24px; border-radius: 50%; background: #0052CC; color: #fff; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">${initials}</div>
+                    <div>
+                      <div style="font-weight: 600; color: var(--text-main); display: flex; align-items: center; gap: 4px;">
+                        <span>${escapeHtml(w.customerName)}</span>
+                        ${channelTag}
+                      </div>
+                      <div style="font-size: 10.5px; color: var(--text-muted); font-family: monospace;">${escapeHtml(w.customerId)}</div>
+                    </div>
+                  </div>
+                </td>
+                <td style="padding: 10px;">
+                  <span class="jira-tag tag-purple" style="font-weight: 600;">${w.pointsBalance || 0} pts</span>
+                </td>
+                <td style="padding: 10px;">
+                  ${activeVouchers.length > 0 
+                    ? `<span class="jira-tag tag-green">${activeVouchers.length} Active (${activeVouchers[0].discount || '10%'})</span>` 
+                    : `<span class="jira-tag tag-gray">0 Active</span>`}
+                </td>
+                <td style="padding: 10px; text-align: right;">
+                  <button class="btn btn-default" style="height: 24px; font-size: 11px; padding: 0 8px;" onclick="quickCreditModal('${escapeHtml(w.customerId)}', '${escapeHtml(w.customerName)}')">
+                    <span>+ Credit</span>
+                  </button>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        }
+      }
+
+      // 4. Render Audit Trail
+      const auditBox = document.getElementById('walletAuditStream');
+      const auditCount = document.getElementById('walletAuditCountTag');
+      allTransactions.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      
+      const filteredAudit = allTransactions.filter(t => {
+        if (!q) return true;
+        return (t.code || '').toLowerCase().includes(q) || 
+               (t.customerName || '').toLowerCase().includes(q) || 
+               (t.customerId || '').toLowerCase().includes(q) || 
+               (t.ticketId || '').toLowerCase().includes(q) || 
+               (t.reason || '').toLowerCase().includes(q);
+      });
+
+      if (auditCount) auditCount.innerText = `${filteredAudit.length} Records`;
+
+      if (auditBox) {
+        if (filteredAudit.length === 0) {
+          auditBox.innerHTML = `<div style="padding: 24px; text-align: center; color: var(--text-muted); font-size: 12.5px;">No compensation vouchers or records found.</div>`;
+        } else {
+          auditBox.innerHTML = filteredAudit.map(t => {
+            const hasCode = t.code && t.code !== 'N/A';
+            const ticketLink = t.ticketId 
+              ? `<a href="javascript:void(0)" onclick="openDetailDrawer('${escapeHtml(t.ticketId)}')" style="color: var(--primary); font-weight: 600; text-decoration: none;">[${escapeHtml(t.ticketId)}]</a>` 
+              : '';
+
+            return `
+              <div class="wallet-audit-card">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <div style="display: flex; align-items: center; gap: 6px;">
+                    ${hasCode ? `
+                      <span class="voucher-code-pill">
+                        <span>${escapeHtml(t.code)}</span>
+                        <button class="btn-copy-code" onclick="copyVoucherCode('${escapeHtml(t.code)}')" title="Copy Voucher Code">
+                          <svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </button>
+                      </span>
+                    ` : `<span class="jira-tag tag-blue">Points Credit</span>`}
+                    ${t.discount && t.discount !== 'N/A' ? `<span class="jira-tag tag-purple">${escapeHtml(t.discount)} Off</span>` : ''}
+                    <span class="jira-tag tag-blue">+${t.points} Pts</span>
+                  </div>
+                  <span class="jira-tag ${t.status === 'ACTIVE' ? 'tag-green' : 'tag-gray'}">${t.status}</span>
+                </div>
+
+                <div style="font-size: 12px; color: var(--text-main); display: flex; align-items: center; justify-content: space-between; gap: 6px;">
+                  <div>
+                    <strong>${escapeHtml(t.customerName)}</strong>
+                    <span style="color: var(--text-muted); font-size: 11px;">(${escapeHtml(t.customerId)})</span>
+                    ${ticketLink ? `• Grievance ${ticketLink}` : ''}
+                  </div>
+                  <span style="font-size: 11px; color: var(--text-muted);">${formatTimeAgo(t.timestamp)}</span>
+                </div>
+
+                <div style="font-size: 11.5px; color: var(--text-muted);">
+                  ${escapeHtml(t.reason)}
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+    }
+
+    function copyVoucherCode(code) {
+      if (!code) return;
+      navigator.clipboard.writeText(code).then(() => {
+        showToast(`Copied code: ${code}`);
+      }).catch(() => {
+        showToast(`Code: ${code}`);
+      });
+    }
+
+    function openIssueCreditModal(preselectedCustomerId = '', preselectedTicketId = '') {
+      const select = document.getElementById('issueCreditTargetSelect');
+      if (select) {
+        let opts = `<option value="">-- Select Customer / Active Ticket --</option>`;
+        opts += `<option value="__custom__">Custom Customer Identifier / Email</option>`;
+
+        // Add active tickets
+        if (currentTickets && currentTickets.length > 0) {
+          opts += `<optgroup label="Active Grievance Tickets">`;
+          currentTickets.slice(0, 15).forEach(t => {
+            const isSel = t.ticketId === preselectedTicketId ? 'selected' : '';
+            opts += `<option value="ticket_${t.ticketId}" data-ticket="${t.ticketId}" data-customer="${t.sender}" ${isSel}>${t.ticketId} - ${escapeHtml(t.sender)} (${escapeHtml(t.subject || 'Ticket')})</option>`;
+          });
+          opts += `</optgroup>`;
+        }
+
+        // Add customer wallets
+        if (currentWallets && currentWallets.length > 0) {
+          opts += `<optgroup label="Existing Customer Wallets">`;
+          currentWallets.forEach(w => {
+            const isSel = w.customerId === preselectedCustomerId ? 'selected' : '';
+            opts += `<option value="wallet_${w.customerId}" data-customer="${w.customerId}" data-name="${escapeHtml(w.customerName)}" ${isSel}>${escapeHtml(w.customerName)} (${w.customerId}) - ${w.pointsBalance} pts</option>`;
+          });
+          opts += `</optgroup>`;
+        }
+
+        select.innerHTML = opts;
+      }
+
+      onCreditTargetChanged();
+      setCreditPoints(50);
+      setCreditDiscount('15%');
+      document.getElementById('modalIssueWalletCredit').style.display = 'flex';
+    }
+
+    function closeIssueCreditModal() {
+      const m = document.getElementById('modalIssueWalletCredit');
+      if (m) m.style.display = 'none';
+    }
+
+    function quickCreditModal(customerId, customerName) {
+      openIssueCreditModal(customerId, '');
+    }
+
+    function onCreditTargetChanged() {
+      const sel = document.getElementById('issueCreditTargetSelect');
+      const customRow = document.getElementById('customCustomerRow');
+      if (sel && customRow) {
+        customRow.style.display = sel.value === '__custom__' ? 'block' : 'none';
+      }
+    }
+
+    function setCreditPoints(pts) {
+      const inp = document.getElementById('issueCreditPointsInput');
+      if (inp) inp.value = pts;
+      document.querySelectorAll('.credit-pts-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.innerText.includes(`${pts}`));
+      });
+    }
+
+    function setCreditDiscount(disc) {
+      const inp = document.getElementById('issueCreditDiscountInput');
+      if (inp) inp.value = disc;
+      document.querySelectorAll('.credit-disc-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.innerText.includes(disc));
+      });
+    }
+
+    async function submitIssueCompensation() {
+      const btn = document.getElementById('btnSubmitIssueCredit');
+      const sel = document.getElementById('issueCreditTargetSelect');
+      const points = parseInt(document.getElementById('issueCreditPointsInput')?.value) || 50;
+      const discount = document.getElementById('issueCreditDiscountInput')?.value || '15%';
+      const reason = document.getElementById('issueCreditReasonInput')?.value || 'Service Apology Compensation';
+
+      let customerId = '';
+      let customerName = 'Valued Customer';
+      let ticketId = null;
+
+      if (!sel || !sel.value) {
+        showToast('Please select a customer or grievance ticket', true);
+        return;
+      }
+
+      if (sel.value === '__custom__') {
+        customerId = (document.getElementById('issueCreditCustomCustomer')?.value || '').trim();
+        customerName = customerId;
+        if (!customerId) {
+          showToast('Please enter a customer identifier', true);
+          return;
+        }
+      } else if (sel.value.startsWith('ticket_')) {
+        const opt = sel.options[sel.selectedIndex];
+        ticketId = opt.getAttribute('data-ticket');
+        customerId = opt.getAttribute('data-customer') || ticketId;
+        customerName = customerId;
+      } else if (sel.value.startsWith('wallet_')) {
+        const opt = sel.options[sel.selectedIndex];
+        customerId = opt.getAttribute('data-customer');
+        customerName = opt.getAttribute('data-name') || customerId;
+      }
+
+      try {
+        if (btn) {
+          btn.disabled = true;
+          btn.innerHTML = '<span>Processing...</span>';
+        }
+
+        const res = await fetch('/api/wallets/issue-reward', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ customerId, customerName, points, discount, reason, ticketId })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          showToast(`✅ Issued +${points} pts & Voucher [${data.voucher ? data.voucher.code : 'CODE'}]`);
+          closeIssueCreditModal();
+          await loadWalletsData();
+          await loadTickets();
+        } else {
+          showToast(`Error: ${data.message || 'Failed to issue compensation'}`, true);
+        }
+      } catch (err) {
+        showToast(`Request error: ${err.message}`, true);
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '<span>Issue Points & Generate Voucher</span>';
+        }
+      }
+    }
 
     function switchAuthTab(tabName) {
       const tabMap = {
