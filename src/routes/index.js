@@ -72,4 +72,14 @@ router.get('/system/db-inspect/:table', async (req, res) => {
   }
 });
 
+// AWS S3 Cloud Storage Status Endpoint
+const s3Service = require('../services/s3.service');
+router.get('/system/s3-status', (req, res) => {
+  res.json({
+    success: true,
+    s3: s3Service.getStatus(),
+    timestamp: new Date().toISOString()
+  });
+});
+
 module.exports = router;
